@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/HelveticaNeue-Bold.ttf",
+      "sha1": "4e900f0bae040aef90909f270360b1feefb15a20"
+    },
+    {
+      "path": "src/assets/fonts/HelveticaNeue-Heavy.ttf",
+      "sha1": "baaa9af6e994c5121da81443a8e658e83da06d90"
+    },
+    {
+      "path": "src/assets/fonts/HelveticaNeue-Medium.ttf",
+      "sha1": "deeab79df5d9df3aea43c1f75d7efc7b8fd8f963"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansGeorgian-Bold.ttf",
+      "sha1": "2e501b4dc25969797077f49865e98cee493916af"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansGeorgian-Medium.ttf",
+      "sha1": "3fa77620cad29530e314a0f1b2b01d90b2ec5f7b"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansGeorgian-Regular.ttf",
+      "sha1": "43c6c41519618a5992dc1abe0ee17cc3d7706a9c"
+    },
+    {
+      "path": "src/assets/fonts/NotoSansGeorgian-SemiBold.ttf",
+      "sha1": "d23a08ecd732781f45e7fe9e76209b6f543b18f8"
+    },
+    {
+      "path": "src/assets/fonts/gf-alaverdi-mt-black.ttf",
+      "sha1": "8b467f87dbe0703ea6d22f2daeb924269e283c71"
+    },
+    {
+      "path": "src/assets/fonts/gf-alaverdi-mt-bold.ttf",
+      "sha1": "114eb5a8956cb2eb6c7a224789aa5b15ab925616"
+    }
+  ]
+}
