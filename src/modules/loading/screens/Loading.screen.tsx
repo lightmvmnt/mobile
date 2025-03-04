@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {styles} from './Loading.styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {useAppDispatch, useAppSelector} from '../../../store/store';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {
@@ -12,16 +12,16 @@ import {
 } from '../../../store/thunks/auth/auth.thunk';
 import {User} from '../../../store/thunks/auth/auth.types';
 import {getTasks} from '../../../store/thunks/tasks/tasks.thunk';
-import {requestNotificationsPermission} from '../../../utils/notificationPermissions.util';
-import {notificationHandler} from '../../../utils/notificationHandler.util';
+import {requestNotificationsPermission} from '../../../services/notifications/notificationPermissions';
+import {notificationHandler} from '../../../services/notifications/notificationHandler';
 import {getUniqueId} from 'react-native-device-info';
 import {changeDeviceId} from '../../../store/slices/auth/auth.slice';
 import {
   getAllPolls,
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
-import Logo from '../../../assets/images/DzalaLogo.svg';
-import BackImg from '../../../assets/images/back_img.svg';
+import Logo from '../../../assets/icons/DzalaLogo.svg';
+import BackImg from '../../../assets/icons/back_img.svg';
 import {LAYOUT} from '../../../constants';
 
 function LoadingScreen() {

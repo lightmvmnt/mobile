@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {LogoWithTitle} from '../../../globalComponents';
-import {SafeAreaBackground} from '../../../core/components';
+import {SafeAreaBackground} from '../../../globalComponents';
 import {styles} from './Introduction.styles';
 import {View} from 'react-native';
 import {IntroductionSwiper} from '../components';

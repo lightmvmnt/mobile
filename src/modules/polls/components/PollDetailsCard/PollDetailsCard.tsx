@@ -3,14 +3,14 @@ import {ScrollView, Text, View} from 'react-native';
 import {styles} from './PollDetailsCard.styles';
 import PollStatusIndicator from '../PollStatusIndicator';
 import {SimpleIndicator} from '../../../../globalComponents';
-import TimeIcon from '../../../../assets/images/timeIcon.svg';
+import TimeIcon from '../../../../assets/icons/timeIcon.svg';
 import {Props} from './PollDetailsCard.types';
 import {TimeCalculator} from '../../../../utils/timeCalculator.util';
 import PollVoteButton from '../PollVoteButton';
 import PollVotesSelector from '../PollVotesSelector';
 import PollResult from '../PollResult';
 import InfoTooltip from '../../../../globalComponents/InfoTooltip';
-import WarningIcon from '../../../../assets/images/warningIcon.svg';
+import WarningIcon from '../../../../assets/icons/warningIcon.svg';
 
 const PollDetailsCard = ({
   poll,

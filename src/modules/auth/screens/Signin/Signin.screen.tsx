@@ -1,11 +1,14 @@
 import React from 'react';
-import {SafeAreaBackground} from '../../../../core/components';
-import {LogoWithTitle, SimpleButton} from '../../../../globalComponents';
+import {
+  LogoWithTitle,
+  SimpleButton,
+  SafeAreaBackground,
+} from '../../../../globalComponents';
 import {Linking, Platform, Text, View} from 'react-native';
 import {styles} from './Signin.styles';
 import {COLORS} from '../../../../constants';
-import GoogleIcon from '../../../../assets/images/googleSign.svg';
-import AppleIcon from '../../../../assets/images/AppleLogo.svg';
+import GoogleIcon from '../../../../assets/icons/googleSign.svg';
+import AppleIcon from '../../../../assets/icons/AppleLogo.svg';
 import {useSignin} from './Signin.hook';
 import TACBottomSheet from '../../components/TACBottomSheet';
 

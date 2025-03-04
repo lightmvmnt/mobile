@@ -4,7 +4,7 @@ import Toast from 'react-native-toast-message';
 import {useAppDispatch} from '../../store/store';
 import {Logout} from '../../store/thunks/auth/auth.thunk';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../routing/Base.routing';
+import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {GetStorageObject} from '../../utils/asyncStore.util';
 
 function BaseInterceptor() {

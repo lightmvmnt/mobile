@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import Swiper from 'react-native-swiper';
 import Slide from './Slide';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {SetStorageObjectValue} from '../../../../utils/asyncStore.util';
 
 function IntroductionInfoSwiper({

@@ -12,7 +12,7 @@ import TaskDetailScreen from '../../modules/tasks/screens/TaskDetail';
 import PollsScreen from '../../modules/polls/screens/Polls';
 import PollDetailsScreen from '../../modules/polls/screens/PollDetails';
 import ProfileScreen from '../../modules/profile/screens';
-import BaseInterceptor from '../interceptors';
+import BaseInterceptor from '../../store/interceptors';
 import LoadingScreen from '../../modules/loading/screens';
 
 export type RootStackParamList = {

@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
-import {enviroment} from '../../../utils/enviroment';
+import {enviroment} from '../../../constants/enviroment';
 import {sendDeviceIdForTasksTypes, UpdateTaskTypes} from './tasks.types';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {User} from '../auth/auth.types';

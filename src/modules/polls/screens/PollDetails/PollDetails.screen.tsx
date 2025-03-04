@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaBackgroundWithHeader} from '../../../../core/components';
+import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {styles} from './PollDetails.styles';
 import {ScreenHeader, SimpleButton} from '../../../../globalComponents';
@@ -7,7 +7,7 @@ import {View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {COLORS} from '../../../../constants';
 import PollDetailsCard from '../../components/PollDetailsCard';
-import CompletedIcon from '../../../../assets/images/CompletedIcon.svg';
+import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import {
   DeletePollVote,
   PostPollVote,

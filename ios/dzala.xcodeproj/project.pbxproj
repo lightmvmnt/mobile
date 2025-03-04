@@ -52,7 +52,7 @@
 		3B4392A12AC88292D35C810B /* Pods-dzala.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dzala.debug.xcconfig"; path = "Target Support Files/Pods-dzala/Pods-dzala.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-dzala.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dzala.release.xcconfig"; path = "Target Support Files/Pods-dzala/Pods-dzala.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-dzala-dzalaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dzala-dzalaTests.debug.xcconfig"; path = "Target Support Files/Pods-dzala-dzalaTests/Pods-dzala-dzalaTests.debug.xcconfig"; sourceTree = "<group>"; };
-		614515BBB75547F99CC91F56 /* HelveticaNeue-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Bold.ttf"; path = "../src/assets/fonts/HelveticaNeue-Bold.ttf"; sourceTree = "<group>"; };
+		614515BBB75547F99CC91F56 /* HelveticaNeue-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Bold.ttf"; path = "../src/assets/fonts/HelveticaNeue-Bold.ttf"; sourceTree = "<group>"; };
 		7097119401484BDCB8F55354 /* NotoSansGeorgian-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansGeorgian-Regular.ttf"; path = "../src/assets/fonts/NotoSansGeorgian-Regular.ttf"; sourceTree = "<group>"; };
 		7C3EABE9F82F6B6873CF51C0 /* Pods_dzala.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dzala.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = dzala/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,10 +61,10 @@
 		8D611FA10A7D43D98A5148AD /* Pods_dzala_dzalaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dzala_dzalaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A152B3692D6F333E00DA052B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1E4BEAA2D64CAE900111C95 /* dzala.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dzala.entitlements; path = dzala/dzala.entitlements; sourceTree = "<group>"; };
-		AC5E96902C59435A8C5CD394 /* HelveticaNeue-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Medium.ttf"; path = "../src/assets/fonts/HelveticaNeue-Medium.ttf"; sourceTree = "<group>"; };
+		AC5E96902C59435A8C5CD394 /* HelveticaNeue-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Medium.ttf"; path = "../src/assets/fonts/HelveticaNeue-Medium.ttf"; sourceTree = "<group>"; };
 		ACAC13B8654A4192A1C2E57B /* NotoSansGeorgian-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansGeorgian-SemiBold.ttf"; path = "../src/assets/fonts/NotoSansGeorgian-SemiBold.ttf"; sourceTree = "<group>"; };
 		C2F46347AE2C45DEA52F1639 /* gf-alaverdi-mt-black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "gf-alaverdi-mt-black.ttf"; path = "../src/assets/fonts/gf-alaverdi-mt-black.ttf"; sourceTree = "<group>"; };
-		CF3555923C8E43348A165C37 /* HelveticaNeue-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Heavy.ttf"; path = "../src/assets/fonts/HelveticaNeue-Heavy.ttf"; sourceTree = "<group>"; };
+		CF3555923C8E43348A165C37 /* HelveticaNeue-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Heavy.ttf"; path = "../src/assets/fonts/HelveticaNeue-Heavy.ttf"; sourceTree = "<group>"; };
 		D689B4EB99A54EF8A564E7AA /* NotoSansGeorgian-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansGeorgian-Bold.ttf"; path = "../src/assets/fonts/NotoSansGeorgian-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -677,10 +677,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -760,10 +757,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

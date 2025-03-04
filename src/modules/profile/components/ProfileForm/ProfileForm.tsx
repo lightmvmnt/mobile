@@ -2,12 +2,12 @@ import {Text, View} from 'react-native';
 import {styles} from './ProfileForm.styles';
 import {SimpleButton} from '../../../../globalComponents';
 import {COLORS, LAYOUT} from '../../../../constants';
-import TrashcanIcon from '../../../../assets/images/trashCanIcon.svg';
-import ExitIcon from '../../../../assets/images/exitIcon.svg';
+import TrashcanIcon from '../../../../assets/icons/trashCanIcon.svg';
+import ExitIcon from '../../../../assets/icons/exitIcon.svg';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
 import {
   AccountDeletion,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Routing from './src/core/routing/Base.routing';
+import Routing from './src/services/navigation/Base.navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {store} from './src/store/store';
@@ -18,15 +18,15 @@ configureNativeComponents();
 function App() {
   return (
     <Provider store={store}>
-      <PaperProvider>
-        <SafeAreaProvider>
-          <GestureHandlerRootView>
+      <GestureHandlerRootView>
+        <PaperProvider>
+          <SafeAreaProvider>
             <Routing />
             <SimpleModal />
             <Toast config={toastConfig} onPress={() => Toast.hide()} />
-          </GestureHandlerRootView>
-        </SafeAreaProvider>
-      </PaperProvider>
+          </SafeAreaProvider>
+        </PaperProvider>
+      </GestureHandlerRootView>
     </Provider>
   );
 }

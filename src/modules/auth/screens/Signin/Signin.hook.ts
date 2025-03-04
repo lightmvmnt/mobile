@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {getUniqueId} from 'react-native-device-info';
 import {
   GetStorageObject,

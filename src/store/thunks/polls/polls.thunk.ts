@@ -8,7 +8,7 @@ import {
   PollVote,
   PostPollVote,
 } from './polls.types';
-import {enviroment} from '../../../utils/enviroment';
+import {enviroment} from '../../../constants/enviroment';
 import axios from 'axios';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 

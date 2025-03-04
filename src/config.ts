@@ -1,8 +1,8 @@
-import {NavItem} from '../types/types';
-import HomeIcon from '../assets/images/Home.svg';
-import TasksIcon from '../assets/images/Tasks.svg';
-import ProfileIcon from '../assets/images/userIcon.svg';
-import PollsIcon from '../assets/images/pollsIcon.svg';
+import {NavItem} from './types/types';
+import HomeIcon from './assets/icons/Home.svg';
+import TasksIcon from './assets/icons/Tasks.svg';
+import ProfileIcon from './assets/icons/userIcon.svg';
+import PollsIcon from './assets/icons/pollsIcon.svg';
 
 export const NavItems: NavItem[] = [
   {

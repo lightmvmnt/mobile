@@ -1,7 +1,9 @@
 import {FlatList, View} from 'react-native';
-import {SafeAreaBackgroundWithHeader} from '../../../../core/components';
 import {styles} from './Polls.styles';
-import {ScreenHeader} from '../../../../globalComponents';
+import {
+  ScreenHeader,
+  SafeAreaBackgroundWithHeader,
+} from '../../../../globalComponents';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {useEffect, useState} from 'react';
 import {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {styles} from './PollStatusIndicator.styles';
-import InProgressIcon from '../../../../assets/images/inProgressIcon.svg';
+import InProgressIcon from '../../../../assets/icons/inProgressIcon.svg';
 
 const PollStatusIndicator = ({pollStatus}: {pollStatus: boolean}) => {
   return (

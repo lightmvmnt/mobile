@@ -1,6 +1,6 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {Account, CreateUser, SigninResponse} from './auth.types';
-import {NavigationProps} from '../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
   GetStorageObject,
@@ -8,7 +8,7 @@ import {
   SetStorageObjectValue,
 } from '../../../utils/asyncStore.util';
 import axios from 'axios';
-import {enviroment} from '../../../utils/enviroment';
+import {enviroment} from '../../../constants/enviroment';
 import {
   sendAndroidDeviceIdForTasks,
   sendIosDeviceIdForTasks,
@@ -16,7 +16,7 @@ import {
 import {
   getApnsToken,
   getFcmToken,
-} from '../../../utils/notificationHandler.util';
+} from '../../../services/notifications/notificationHandler';
 import {Platform} from 'react-native';
 import appleAuth from '@invertase/react-native-apple-authentication';
 

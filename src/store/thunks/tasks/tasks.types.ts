@@ -1,4 +1,4 @@
-import {NavigationProps} from '../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {UpdatedTask} from '../../slices/tasks/tasks.types';
 
 export interface GetTaskTypes {

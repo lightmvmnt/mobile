@@ -1,12 +1,12 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch} from '../../../../store/store';
-import {getTaskComplitionCount} from '../../../../utils/getTaskComplitionCount.util';
+import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
 import {Task} from '../../../../store/slices/tasks/tasks.types';
 import {Linking, Platform} from 'react-native';
 import {
   checkLocationPermission,
   requestLocationPermission,
-} from '../../../../utils/location.util';
+} from '../../../../services/location/location';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
 import Geolocation from '@react-native-community/geolocation';
 

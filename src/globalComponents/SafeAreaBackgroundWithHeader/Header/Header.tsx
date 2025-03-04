@@ -1,9 +1,9 @@
 import React from 'react';
 import {View} from 'react-native';
 import {styles} from './Header.styles';
-import Logo from '../../../../assets/images/DzalaLogo.svg';
-import BackImg from '../../../../assets/images/back_img.svg';
-import {LAYOUT} from '../../../../constants';
+import Logo from '../../../assets/icons/DzalaLogo.svg';
+import BackImg from '../../../assets/icons/back_img.svg';
+import {LAYOUT} from '../../../constants';
 
 function Header({height}: {height: number}) {
   return (

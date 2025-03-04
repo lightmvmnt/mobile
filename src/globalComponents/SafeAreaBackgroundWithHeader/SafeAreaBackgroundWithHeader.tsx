@@ -5,7 +5,7 @@ import {styles} from './SafeAreaBackgroundWithHeader.styles';
 import Navigator from './Navigator';
 import {NavItems} from '../../config';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {NavigationProps} from '../../routing/Base.routing';
+import {NavigationProps} from '../../services/navigation/Base.navigation';
 
 function SafeAreaBackgroundWithHeader({children}: {children: React.ReactNode}) {
   const navigation = useNavigation<NavigationProps>();

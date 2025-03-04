@@ -1,5 +1,5 @@
 import {ScrollView} from 'react-native';
-import {SafeAreaBackgroundWithHeader} from '../../../core/components';
+import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Home.styles';
 import {TasksDepartment} from '../components';
 import {useAppDispatch, useAppSelector} from '../../../store/store';

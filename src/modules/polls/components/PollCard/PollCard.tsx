@@ -8,15 +8,15 @@ import {COLORS} from '../../../../constants';
 import {TimeCalculator} from '../../../../utils/timeCalculator.util';
 import {useAppDispatch} from '../../../../store/store';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {
   getPoll,
   getPollResults,
   getPollVote,
 } from '../../../../store/thunks/polls/polls.thunk';
-import TimeIcon from '../../../../assets/images/timeIcon.svg';
-import CompletedIcon from '../../../../assets/images/CompletedIcon.svg';
-import WarningIcon from '../../../../assets/images/warningIcon.svg';
+import TimeIcon from '../../../../assets/icons/timeIcon.svg';
+import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
+import WarningIcon from '../../../../assets/icons/warningIcon.svg';
 import InfoTooltip from '../../../../globalComponents/InfoTooltip';
 
 const PollCard = ({poll, isPollVoted}: Props) => {

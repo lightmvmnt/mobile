@@ -1,7 +1,10 @@
 import messaging from '@react-native-firebase/messaging';
-import {GetStorageObject, SetStorageObjectValue} from './asyncStore.util';
-import {getTasks} from '../store/thunks/tasks/tasks.thunk';
-import {AppDispatch} from '../store/store';
+import {
+  GetStorageObject,
+  SetStorageObjectValue,
+} from '../../utils/asyncStore.util';
+import {getTasks} from '../../store/thunks/tasks/tasks.thunk';
+import {AppDispatch} from '../../store/store';
 
 export const getFcmToken = async () => {
   let checkToken = await GetStorageObject('FcmToken');

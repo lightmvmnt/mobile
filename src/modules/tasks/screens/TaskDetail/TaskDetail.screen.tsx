@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import SafeAreaBackgroundWithHeader from '../../../../core/components/SafeAreaBackgroundWithHeader';
 import {styles} from './TaskDetail.styles';
 import {useAppSelector} from '../../../../store/store';
 import {ActivityIndicator} from 'react-native-paper';
 import {COLORS} from '../../../../constants';
 import {TaskDetailCard} from '../../components';
-import {ScreenHeader} from '../../../../globalComponents';
+import {
+  ScreenHeader,
+  SafeAreaBackgroundWithHeader,
+} from '../../../../globalComponents';
 import MobilizationTaskDetailCard from '../../components/MobilizationTaskDetailCard';
 
 function TaskDetailScreen() {

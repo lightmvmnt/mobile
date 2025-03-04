@@ -4,7 +4,7 @@ import PollCard from '../../../polls/components/PollCard';
 import {Props} from './PollsDepartment.types';
 import {styles} from './PollsDepartment.styles';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 
 const PollsDepartment = ({polls, user_polls_votes}: Props) => {
   const navigation = useNavigation<NavigationProps>();

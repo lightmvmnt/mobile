@@ -2,19 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Props} from './TaskCard.types';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './TaskCard.styles';
-import SupportLogo from '../../../../assets/images/supportLogo.svg';
-import DefuseLogo from '../../../../assets/images/defuseLogo.svg';
-import MobilizationLogo from '../../../../assets/images/mobilizationLogo.svg';
+import SupportLogo from '../../../../assets/icons/supportLogo.svg';
+import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
+import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
 import {SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
-import UserIcon from '../../../../assets/images/userIcon.svg';
+import UserIcon from '../../../../assets/icons/userIcon.svg';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
-import CompletedIcon from '../../../../assets/images/CompletedIcon.svg';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import {useAppDispatch} from '../../../../store/store';
 import {getTask, updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
 import {UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
-import {getTaskComplitionCount} from '../../../../utils/getTaskComplitionCount.util';
+import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
 import {ActivityIndicator} from 'react-native-paper';
 
 function TaskCard({task}: Props) {

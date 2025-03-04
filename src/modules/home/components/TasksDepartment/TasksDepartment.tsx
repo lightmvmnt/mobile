@@ -3,7 +3,7 @@ import {styles} from './TasksDepartment.styles';
 import {Task} from '../../../../store/slices/tasks/tasks.types';
 import {TaskCard} from '../../../tasks/components';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../core/routing/Base.routing';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 
 function TasksDepartment({tasks}: {tasks: Task[]}) {
   const navigation = useNavigation<NavigationProps>();

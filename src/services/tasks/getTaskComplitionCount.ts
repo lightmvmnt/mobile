@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {GetStorageObject} from './asyncStore.util';
-import {enviroment} from './enviroment';
+import {GetStorageObject} from '../../utils/asyncStore.util';
+import {enviroment} from '../../constants/enviroment';
 
 export const getTaskComplitionCount = async (task_id: number) => {
   try {

@@ -2,8 +2,8 @@ import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {Props} from './PollVotesSelector.types';
 import {styles} from './PollVotesSelector.styles';
-import CheckedIcon from '../../../../assets/images/checked.svg';
-import UncheckedIcon from '../../../../assets/images/unchecked.svg';
+import CheckedIcon from '../../../../assets/icons/checked.svg';
+import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
 
 const PollVotesSelector = ({
   options,

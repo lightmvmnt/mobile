@@ -1,5 +1,5 @@
 import {ScrollView, View} from 'react-native';
-import {SafeAreaBackgroundWithHeader} from '../../../core/components';
+import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Profile.styles';
 import {ScreenHeader} from '../../../globalComponents';
 import {ProfileForm} from '../components';
