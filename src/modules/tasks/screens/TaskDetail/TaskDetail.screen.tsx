@@ -9,7 +9,6 @@ import {
   ScreenHeader,
   SafeAreaBackgroundWithHeader,
 } from '../../../../globalComponents';
-import MobilizationTaskDetailCard from '../../components/MobilizationTaskDetailCard';
 
 function TaskDetailScreen() {
   const {task_details, task_details_loading, loading} = useAppSelector(
@@ -44,14 +43,7 @@ function TaskDetailScreen() {
         <View style={styles.detailPage}>
           <ScreenHeader title={`მისია: ${taskCategory}`} />
           <View style={styles.detailTaskContainer}>
-            {task_details?.mission.category === 2 ? (
-              <MobilizationTaskDetailCard
-                task={task_details}
-                task_loading={loading}
-              />
-            ) : (
-              <TaskDetailCard task={task_details} task_loading={loading} />
-            )}
+            <TaskDetailCard task={task_details} task_loading={loading} />
           </View>
         </View>
       ) : (
