@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {Linking, ScrollView, Text, View} from 'react-native';
 import SupportLogo from '../../../../assets/icons/supportLogo.svg';
 import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
 import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
 import {SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
 import UserIcon from '../../../../assets/icons/userIcon.svg';
+import UrlIcon from '../../../../assets/icons/LinkIcon.svg';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import {useAppDispatch} from '../../../../store/store';
 import {updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
@@ -13,6 +14,7 @@ import {getTaskComplitionCount} from '../../../../services/tasks/getTaskCompliti
 import {Props} from '../TaskDetailCard/TaskDetailCard.types';
 import {styles} from './TaskDetailCard.styles';
 import {UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
+import {changeModalState} from '../../../../store/slices/app/app.slice';
 import {ActivityIndicator} from 'react-native-paper';
 
 function TaskDetailCard({task, task_loading}: Props) {
@@ -39,12 +41,33 @@ function TaskDetailCard({task, task_loading}: Props) {
     }
   };
 
+  const onLinkButtonPress = () => {
+    if (!task) {
+      return;
+    }
+
+    onTaskUpdate({is_completed: true});
+    Linking.openURL(task.mission.target_url);
+  };
+
   const onDoneButtonPress = () => {
     if (!task) {
       return;
     }
 
-    onTaskUpdate({is_completed: !task.is_completed});
+    if (task.is_completed) {
+      onTaskUpdate({is_completed: false});
+    } else {
+      dispatch(
+        changeModalState({
+          isModalOpen: true,
+          modalDescription:
+            'მისიის შესასრულებლად გადადი მოცემულ ბმულზე და შეასრულე დავალება',
+          modalButtonHandler: () => {},
+          secondaryButtonTitle: 'გასაგებია',
+        }),
+      );
+    }
   };
 
   return (
@@ -66,6 +89,19 @@ function TaskDetailCard({task, task_loading}: Props) {
             {task?.mission.description}
           </Text>
         </ScrollView>
+      </View>
+
+      <View style={styles.completedButtonContainer}>
+        <SimpleButton
+          variant="contained"
+          text={'ლინკზე გადასვლა'}
+          Icon={UrlIcon}
+          onPress={() => onLinkButtonPress()}
+          width={320}
+          height={40}
+          buttonColor={COLORS.MAIN}
+          textColor={COLORS.LIGHT}
+        />
       </View>
 
       <View style={styles.cardBottomSide}>

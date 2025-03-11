@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {LAYOUT} from '../../../constants';
+import {COLORS, LAYOUT} from '../../../constants';
 
 export const styles = StyleSheet.create({
   screen: {
@@ -16,5 +16,12 @@ export const styles = StyleSheet.create({
   },
   profileScrollView: {
     width: LAYOUT.WIDTH - 30,
+  },
+  referralContainer: {
+    padding: 8,
+    backgroundColor: COLORS.GRAY,
+    marginBottom: 10,
+    width: LAYOUT.WIDTH - 30,
+    borderRadius: 8,
   },
 });

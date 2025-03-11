@@ -10,6 +10,7 @@ import {
   getAllPolls,
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
+import UserProgressInfo from '../components/UserProgressInfo';
 
 function HomeScreen() {
   const {tasks} = useAppSelector(state => state.tasks);
@@ -27,7 +28,11 @@ function HomeScreen() {
 
   return (
     <SafeAreaBackgroundWithHeader>
-      <ScrollView contentContainerStyle={styles.screen}>
+      <ScrollView
+        contentContainerStyle={styles.screen}
+        bounces={false}
+        overScrollMode={'never'}>
+        <UserProgressInfo />
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment
           polls={in_progress_polls.slice(0, 3)}

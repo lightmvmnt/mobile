@@ -57,7 +57,7 @@ function PollsScreen() {
   return (
     <SafeAreaBackgroundWithHeader>
       <View style={styles.screen}>
-        <ScreenHeader title="გამოკითხვები" />
+        <ScreenHeader title="არჩევნები" />
         <View style={styles.pollsContainer}>
           <View style={styles.tabButtonsContainer}>
             <PollsTabButton

@@ -8,5 +8,10 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:dzala.onelink.me</string>
+		<string>applinks:dzalatest.onelink.me</string>
+	</array>
 </dict>
 </plist>

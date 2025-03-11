@@ -115,7 +115,7 @@ const PollDetailsScreen = () => {
     <SafeAreaBackgroundWithHeader>
       {!poll_details_loading ? (
         <View style={styles.detailPage}>
-          <ScreenHeader title="გამოკითხვა" />
+          <ScreenHeader title="არჩევანი" />
           <View style={styles.detailTaskContainer}>
             <PollDetailsCard
               poll={poll_details}

@@ -5,4 +5,5 @@ export interface AppInitialState {
   modalButtonHandler: () => void;
   mainButtonTitle?: string;
   secondaryButtonTitle?: string;
+  referralLink?: string;
 }
