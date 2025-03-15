@@ -1,34 +1,74 @@
 import React from 'react';
-import {Platform, Text, View} from 'react-native';
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './ReferralInput.styles';
-import {SimpleButton} from '../../../../globalComponents';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
-import {COLORS, LAYOUT} from '../../../../constants';
+import {CountIndicator} from '../../../../globalComponents';
+import ReferralIcon from '../../../../assets/icons/referralIcon.svg';
+import CopyIcon from '../../../../assets/icons/copyIcon.svg';
+import {COLORS} from '../../../../constants';
+import Clipboard from '@react-native-clipboard/clipboard';
+import Toast from 'react-native-toast-message';
 
 const ReferalInupt = ({
   link,
+  loading,
   generateReferralLink,
 }: {
   link: string;
+  loading: boolean;
   generateReferralLink: () => void;
 }) => {
+  const referralLinkInputHandler = () => {
+    if (!link) {
+      generateReferralLink();
+    }
+  };
+
+  const copyReferralLinkHandler = () => {
+    Clipboard.setString(link);
+
+    Toast.show({
+      type: 'success',
+      text2: 'მოსაწვევი ლინკი წარმატებით დაკოპირდა',
+      visibilityTime: 1500,
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Text style={styles.input} selectable numberOfLines={1}>
-          {link ? link : 'ბმული'}
-        </Text>
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoTitle}>მოიწვიე მეგობარი</Text>
+        <CountIndicator loading={false} count={10} />
       </View>
-      <SimpleButton
-        text="რეფერალი"
-        width={LAYOUT.WIDTH - 270}
-        height={40}
-        onPress={generateReferralLink}
-        variant="contained"
-        fontSize={FontSizeGenerator(Platform.OS === 'android' ? 13 : 12)}
-        buttonColor={COLORS.NEW_MAIN}
-        textColor={COLORS.LIGHT}
-      />
+
+      <View style={styles.inputContainer}>
+        {!link ? (
+          <TouchableOpacity
+            style={styles.inputPressable}
+            onPress={referralLinkInputHandler}>
+            <ReferralIcon />
+            <Text style={styles.input} numberOfLines={1}>
+              {loading ? (
+                <ActivityIndicator color={COLORS.NEW_MAIN} size={18} />
+              ) : (
+                'დააჭირეთ ბმულის მისაღებად'
+              )}
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <>
+            <View style={styles.inputPressable}>
+              <ReferralIcon />
+              <Text style={styles.input} numberOfLines={1}>
+                {link}
+              </Text>
+            </View>
+
+            <TouchableOpacity onPress={copyReferralLinkHandler}>
+              <CopyIcon />
+            </TouchableOpacity>
+          </>
+        )}
+      </View>
     </View>
   );
 };

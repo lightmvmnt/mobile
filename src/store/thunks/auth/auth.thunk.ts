@@ -161,9 +161,7 @@ export const authentication = createAsyncThunk(
           dispatch(sendIosDeviceIdForTasks(NotificationSubscription));
         }
 
-        appsFlyer.setCustomerUserId(String(response.data.data.user.id), res => {
-          console.log(res);
-        });
+        appsFlyer.setCustomerUserId(String(response.data.data.user.id));
 
         navigation.navigate('Loading');
       }

@@ -17,7 +17,7 @@ const UserProgressInfo = () => {
         Icon={CompletedMissions}
       />
       <InfoContainer
-        title="დაგრობებული ქულა"
+        title="დაგროვებული ქულა"
         count={200}
         counterBgColor={COLORS.SECONDARY}
         counterColor={COLORS.DARK}

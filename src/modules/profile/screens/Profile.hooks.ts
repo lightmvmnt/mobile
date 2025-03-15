@@ -1,14 +1,21 @@
 import appsFlyer from 'react-native-appsflyer';
 import {useAppDispatch, useAppSelector} from '../../../store/store';
-import {changeReferralLink} from '../../../store/slices/app/app.slice';
+import {
+  changeGenerateReferralLinkLoading,
+  setReferralLink,
+} from '../../../store/slices/app/app.slice';
 
 export const useProfile = () => {
   const {user} = useAppSelector(state => state.auth);
-  const {referralLink} = useAppSelector(state => state.app);
+  const {referralLink, generateReferralLinkLoading} = useAppSelector(
+    state => state.app,
+  );
 
   const dispatch = useAppDispatch();
 
   const generateReferralLink = () => {
+    dispatch(changeGenerateReferralLinkLoading(true));
+
     appsFlyer.generateInviteLink(
       {
         channel: 'referral',
@@ -21,7 +28,7 @@ export const useProfile = () => {
       result => {
         if (result) {
           const link = String(result);
-          dispatch(changeReferralLink(link));
+          dispatch(setReferralLink(link));
         }
       },
       err => console.log(err),
@@ -30,6 +37,7 @@ export const useProfile = () => {
 
   return {
     referralLink,
+    generateReferralLinkLoading,
     generateReferralLink,
   };
 };

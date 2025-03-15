@@ -9,6 +9,7 @@ import {configureNativeComponents} from './src/utils/configureNativeComponents.u
 import {PaperProvider} from 'react-native-paper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import appsFlyer, {InitSDKOptions} from 'react-native-appsflyer';
+import {TaskSuggestionModal} from './src/modules/tasks/components';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,
@@ -16,11 +17,11 @@ const toastConfig: ToastConfig = {
 
 const appsFlyerOptions: InitSDKOptions = {
   devKey: 'XjAJxzVUJT3hPaufeUUK5K',
-  appId: '111157983',
+  appId: '6742493689',
   isDebug: true,
   onInstallConversionDataListener: true,
   onDeepLinkListener: true,
-  timeToWaitForATTUserAuthorization: 10,
+  timeToWaitForATTUserAuthorization: 1,
 };
 
 configureNativeComponents();
@@ -33,11 +34,15 @@ function App() {
       error => console.log(error),
     );
 
-    appsFlyer.setAppInviteOneLinkID('x8gn', res => console.log(res));
+    appsFlyer.setAppInviteOneLinkID('x8gn');
 
-    appsFlyer.onInstallConversionData(data => console.log(data));
+    appsFlyer.onDeepLink(data => console.log(data, 'letsgooo'));
 
-    appsFlyer.onAppOpenAttribution(data => console.log(data));
+    appsFlyer.onInstallConversionData(data => {
+      if (data.data.af_status === 'Non-organic') {
+        console.log(data.data.refferer_id);
+      }
+    });
   }, []);
 
   return (
@@ -47,6 +52,7 @@ function App() {
           <SafeAreaProvider>
             <Routing />
             <SimpleModal />
+            <TaskSuggestionModal />
             <Toast config={toastConfig} onPress={() => Toast.hide()} />
           </SafeAreaProvider>
         </PaperProvider>

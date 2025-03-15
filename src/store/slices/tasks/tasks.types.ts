@@ -20,4 +20,5 @@ export interface TasksInitialState {
   loading: boolean;
   task_details: Task | null;
   task_details_loading: boolean;
+  is_task_suggestion_modal_visible: boolean;
 }

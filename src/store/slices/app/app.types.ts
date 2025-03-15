@@ -6,4 +6,5 @@ export interface AppInitialState {
   mainButtonTitle?: string;
   secondaryButtonTitle?: string;
   referralLink?: string;
+  generateReferralLinkLoading?: boolean;
 }

@@ -7,19 +7,21 @@ import ReferalInupt from '../components/ReferralInput';
 import {useProfile} from './Profile.hooks';
 
 function ProfileScreen() {
-  const {referralLink, generateReferralLink} = useProfile();
+  const {referralLink, generateReferralLinkLoading, generateReferralLink} =
+    useProfile();
 
   return (
     <SafeAreaBackgroundWithHeader>
       <View style={styles.screen}>
         <ScreenHeader title="პროფილი" />
         <View style={styles.profileContainer}>
-          <View style={styles.referralContainer}>
-            <ReferalInupt
-              link={referralLink ? referralLink : ''}
-              generateReferralLink={generateReferralLink}
-            />
-          </View>
+          <ReferalInupt
+            loading={
+              generateReferralLinkLoading ? generateReferralLinkLoading : false
+            }
+            link={referralLink ? referralLink : ''}
+            generateReferralLink={generateReferralLink}
+          />
           <ScrollView contentContainerStyle={styles.profileScrollView}>
             <ProfileForm />
           </ScrollView>

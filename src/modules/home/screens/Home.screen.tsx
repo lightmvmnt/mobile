@@ -11,6 +11,7 @@ import {
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
 import UserProgressInfo from '../components/UserProgressInfo';
+import {TaskSuggestionCard} from '../../tasks/components';
 
 function HomeScreen() {
   const {tasks} = useAppSelector(state => state.tasks);
@@ -33,6 +34,7 @@ function HomeScreen() {
         bounces={false}
         overScrollMode={'never'}>
         <UserProgressInfo />
+        <TaskSuggestionCard />
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment
           polls={in_progress_polls.slice(0, 3)}

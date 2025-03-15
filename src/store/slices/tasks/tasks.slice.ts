@@ -7,12 +7,20 @@ const initialState: TasksInitialState = {
   loading: false,
   task_details: null,
   task_details_loading: false,
+  is_task_suggestion_modal_visible: false,
 };
 
 export const TasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {},
+  reducers: {
+    changeTaskSuggestionModalVisibility: (
+      state,
+      action: {payload: boolean},
+    ) => {
+      state.is_task_suggestion_modal_visible = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getTasks.pending, state => {
@@ -53,5 +61,7 @@ export const TasksSlice = createSlice({
       });
   },
 });
+
+export const {changeTaskSuggestionModalVisibility} = TasksSlice.actions;
 
 export default TasksSlice.reducer;

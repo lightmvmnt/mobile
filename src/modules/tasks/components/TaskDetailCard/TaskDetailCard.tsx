@@ -3,9 +3,8 @@ import {Linking, ScrollView, Text, View} from 'react-native';
 import SupportLogo from '../../../../assets/icons/supportLogo.svg';
 import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
 import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
-import {SimpleButton} from '../../../../globalComponents';
+import {CountIndicator, SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
-import UserIcon from '../../../../assets/icons/userIcon.svg';
 import UrlIcon from '../../../../assets/icons/LinkIcon.svg';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import {useAppDispatch} from '../../../../store/store';
@@ -15,7 +14,6 @@ import {Props} from '../TaskDetailCard/TaskDetailCard.types';
 import {styles} from './TaskDetailCard.styles';
 import {UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
-import {ActivityIndicator} from 'react-native-paper';
 
 function TaskDetailCard({task, task_loading}: Props) {
   const [completedCount, setCompletedCount] = useState(0);
@@ -105,16 +103,7 @@ function TaskDetailCard({task, task_loading}: Props) {
       </View>
 
       <View style={styles.cardBottomSide}>
-        <View style={styles.viewerIndicator}>
-          {countLoading ? (
-            <ActivityIndicator size={20} color={COLORS.MAIN} />
-          ) : (
-            <>
-              <UserIcon width={15} height={15} />
-              <Text style={styles.viewerIndicatorText}>{completedCount}</Text>
-            </>
-          )}
-        </View>
+        <CountIndicator loading={countLoading} count={completedCount} />
 
         <SimpleButton
           variant="contained"
