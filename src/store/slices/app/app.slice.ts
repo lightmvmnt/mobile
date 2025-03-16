@@ -8,8 +8,6 @@ const initialState: AppInitialState = {
   modalTitle: '',
   mainButtonTitle: '',
   secondaryButtonTitle: '',
-  referralLink: '',
-  generateReferralLinkLoading: false,
 };
 
 export const appSlice = createSlice({
@@ -30,22 +28,9 @@ export const appSlice = createSlice({
       state.mainButtonTitle = action.payload.mainButtonTitle;
       state.secondaryButtonTitle = action.payload.secondaryButtonTitle;
     },
-    setReferralLink: (state, action: {payload: string}) => {
-      state.referralLink = action.payload;
-      state.generateReferralLinkLoading = false;
-    },
-    changeGenerateReferralLinkLoading: (state, action: {payload: boolean}) => {
-      state.generateReferralLinkLoading = action.payload;
-    },
   },
 });
 
-export const {
-  hideModal,
-  openModal,
-  changeModalState,
-  setReferralLink,
-  changeGenerateReferralLinkLoading,
-} = appSlice.actions;
+export const {hideModal, openModal, changeModalState} = appSlice.actions;
 
 export default appSlice.reducer;

@@ -10,6 +10,7 @@ import {PaperProvider} from 'react-native-paper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import appsFlyer, {InitSDKOptions} from 'react-native-appsflyer';
 import {TaskSuggestionModal} from './src/modules/tasks/components';
+import {SetStorageObjectValue} from './src/utils/asyncStore.util';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,
@@ -40,7 +41,7 @@ function App() {
 
     appsFlyer.onInstallConversionData(data => {
       if (data.data.af_status === 'Non-organic') {
-        console.log(data.data.refferer_id);
+        SetStorageObjectValue('refferer_id', data.data.af_referrer_customer_id);
       }
     });
   }, []);

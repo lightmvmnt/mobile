@@ -53,16 +53,22 @@ function ProfileForm() {
       </View>
       <View style={styles.form}>
         <View style={styles.input}>
-          <Text style={styles.inputTitle}>სახელი</Text>
-          <Text style={styles.inputValue}>{account?.first_name}</Text>
+          <Text style={styles.inputTitle}>სახელი:</Text>
+          <Text style={styles.inputValue} numberOfLines={1}>
+            {account?.first_name}
+          </Text>
         </View>
         <View style={styles.input}>
-          <Text style={styles.inputTitle}>გვარი</Text>
-          <Text style={styles.inputValue}>{account?.last_name}</Text>
+          <Text style={styles.inputTitle}>გვარი:</Text>
+          <Text style={styles.inputValue} numberOfLines={1}>
+            {account?.last_name}
+          </Text>
         </View>
         <View style={[styles.input, {marginBottom: 0}]}>
-          <Text style={styles.inputTitle}>ელ. ფოსტა</Text>
-          <Text style={styles.inputValue}>{account?.email}</Text>
+          <Text style={styles.inputTitle}>ელ. ფოსტა:</Text>
+          <Text style={styles.inputValue} numberOfLines={1}>
+            {account?.email}
+          </Text>
         </View>
       </View>
       <View style={styles.actionButtonsContainer}>

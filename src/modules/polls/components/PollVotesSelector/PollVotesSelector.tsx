@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {Props} from './PollVotesSelector.types';
 import {styles} from './PollVotesSelector.styles';
 import CheckedIcon from '../../../../assets/icons/checked.svg';
@@ -12,7 +12,7 @@ const PollVotesSelector = ({
   loading,
 }: Props) => {
   return (
-    <ScrollView>
+    <>
       {options.map((option, index) => (
         <TouchableOpacity
           onPress={() => handleVoteSelect(option)}
@@ -41,7 +41,7 @@ const PollVotesSelector = ({
           </View>
         </TouchableOpacity>
       ))}
-    </ScrollView>
+    </>
   );
 };
 

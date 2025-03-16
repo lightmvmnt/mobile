@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {COLORS, FONTS} from '../../../../constants';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 
@@ -27,19 +27,28 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
   input: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: COLORS.GRAY,
+    padding: 16,
     marginBottom: 25,
   },
   inputTitle: {
     fontFamily: FONTS.GEO_BOLD,
-    fontSize: FontSizeGenerator(14),
-    marginBottom: 10,
+    fontSize: FontSizeGenerator(Platform.OS === 'android' ? 14 : 13),
+    textAlign: 'center',
     height: 20,
+    marginRight: 10,
   },
   inputValue: {
     fontFamily: FONTS.GEO_REGULAR,
-    fontSize: FontSizeGenerator(16),
+    fontSize: FontSizeGenerator(Platform.OS === 'android' ? 16 : 15),
+    textAlign: 'center',
+    height: 22,
+    maxWidth: 180,
   },
   actionButtonsContainer: {
     padding: 10,

@@ -24,7 +24,11 @@ const PollDetailsCard = ({
   const {difference} = TimeCalculator(poll?.due_date);
 
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        {marginBottom: poll?.is_active && poll?.type === 'multi' ? 60 : 16},
+      ]}>
       <View style={styles.indicatorsContainer}>
         <PollStatusIndicator pollStatus={poll ? poll.is_active : false} />
 
@@ -44,40 +48,60 @@ const PollDetailsCard = ({
         </View>
       </View>
 
-      <View style={styles.infoContainer}>
+      <View
+        style={[
+          styles.infoContainer,
+          {
+            maxHeight: poll?.is_active
+              ? null
+              : poll?.type === 'multi'
+              ? 230
+              : 280,
+          },
+        ]}>
         <Text style={styles.infoTitle}>{poll?.title}</Text>
-        <ScrollView contentContainerStyle={styles.infoDescScrollView}>
-          <Text style={styles.infoDesc} selectable={true}>
-            {poll?.full_description}
-          </Text>
-        </ScrollView>
-      </View>
+        {poll?.is_active ? (
+          <>
+            <Text
+              style={[styles.infoDesc, {marginBottom: 15}]}
+              selectable={true}>
+              {poll?.full_description}
+            </Text>
 
-      <View style={styles.actionButtonContainer}>
-        {poll?.is_active && poll?.type === 'multi' ? (
-          <PollVotesSelector
-            options={poll.options}
-            isOptionSelected={isOptionSelected}
-            handleVoteSelect={handleVoteSelect}
-            loading={votes_loading}
-          />
-        ) : null}
+            {poll?.type === 'single' ? (
+              <>
+                {poll?.options.map((option, index) => (
+                  <PollVoteButton
+                    key={index}
+                    poll_id={poll.id}
+                    option={option}
+                    votes={votes}
+                    loading={votes_loading}
+                  />
+                ))}
+              </>
+            ) : null}
 
-        {poll?.is_active && poll.type === 'single' ? (
-          <ScrollView>
-            {poll?.options.map((option, index) => (
-              <PollVoteButton
-                key={index}
-                poll_id={poll.id}
-                option={option}
-                votes={votes}
+            {poll?.type === 'multi' ? (
+              <PollVotesSelector
+                options={poll.options}
+                isOptionSelected={isOptionSelected}
+                handleVoteSelect={handleVoteSelect}
                 loading={votes_loading}
               />
-            ))}
+            ) : null}
+          </>
+        ) : (
+          <ScrollView contentContainerStyle={styles.infoDescScrollView}>
+            <Text style={styles.infoDesc} selectable={true}>
+              {poll?.full_description}
+            </Text>
           </ScrollView>
-        ) : null}
+        )}
+      </View>
 
-        {!poll?.is_active && results ? (
+      {!poll?.is_active && results ? (
+        <View style={styles.actionButtonContainer}>
           <ScrollView>
             {poll?.options.map((option, i) => (
               <PollResult
@@ -91,8 +115,8 @@ const PollDetailsCard = ({
               />
             ))}
           </ScrollView>
-        ) : null}
-      </View>
+        </View>
+      ) : null}
     </View>
   );
 };

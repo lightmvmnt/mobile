@@ -15,7 +15,7 @@ const CountIndicator = ({
   return (
     <View style={styles.viewerIndicator}>
       {loading ? (
-        <ActivityIndicator size={20} color={COLORS.MAIN} />
+        <ActivityIndicator size={20} color={COLORS.NEW_MAIN} />
       ) : (
         <>
           <UserIcon width={15} height={15} />

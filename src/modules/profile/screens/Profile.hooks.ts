@@ -3,15 +3,24 @@ import {useAppDispatch, useAppSelector} from '../../../store/store';
 import {
   changeGenerateReferralLinkLoading,
   setReferralLink,
-} from '../../../store/slices/app/app.slice';
+} from '../../../store/slices/user/user.slice';
+import {getUserReferralCount} from '../../../store/thunks/user/user.thunk';
+import {useEffect} from 'react';
 
 export const useProfile = () => {
   const {user} = useAppSelector(state => state.auth);
-  const {referralLink, generateReferralLinkLoading} = useAppSelector(
-    state => state.app,
-  );
+  const {
+    referralLink,
+    generateReferralLinkLoading,
+    referralCount,
+    getReferralCountLoading,
+  } = useAppSelector(state => state.user);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserReferralCount());
+  }, [dispatch]);
 
   const generateReferralLink = () => {
     dispatch(changeGenerateReferralLinkLoading(true));
@@ -38,6 +47,8 @@ export const useProfile = () => {
   return {
     referralLink,
     generateReferralLinkLoading,
+    referralCount,
+    getReferralCountLoading,
     generateReferralLink,
   };
 };

@@ -10,11 +10,15 @@ import Toast from 'react-native-toast-message';
 
 const ReferalInupt = ({
   link,
-  loading,
+  generateLinkLoading,
+  getCountLoading,
+  count,
   generateReferralLink,
 }: {
   link: string;
-  loading: boolean;
+  generateLinkLoading: boolean;
+  getCountLoading: boolean;
+  count: number;
   generateReferralLink: () => void;
 }) => {
   const referralLinkInputHandler = () => {
@@ -37,7 +41,7 @@ const ReferalInupt = ({
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <Text style={styles.infoTitle}>მოიწვიე მეგობარი</Text>
-        <CountIndicator loading={false} count={10} />
+        <CountIndicator loading={getCountLoading} count={count} />
       </View>
 
       <View style={styles.inputContainer}>
@@ -47,10 +51,10 @@ const ReferalInupt = ({
             onPress={referralLinkInputHandler}>
             <ReferralIcon />
             <Text style={styles.input} numberOfLines={1}>
-              {loading ? (
+              {generateLinkLoading ? (
                 <ActivityIndicator color={COLORS.NEW_MAIN} size={18} />
               ) : (
-                'დააჭირეთ ბმულის მისაღებად'
+                'დააჭირეთ მეგობრის მოსაწვევად'
               )}
             </Text>
           </TouchableOpacity>

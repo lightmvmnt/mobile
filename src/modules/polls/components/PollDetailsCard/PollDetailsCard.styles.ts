@@ -5,12 +5,10 @@ import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 export const styles = StyleSheet.create({
   card: {
     width: LAYOUT.WIDTH - 30,
-    minHeight: 250,
     padding: 16,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: COLORS.BORDER,
-    marginBottom: 16,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -34,7 +32,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 8,
-    maxHeight: 200,
   },
   infoTitle: {
     width: '100%',

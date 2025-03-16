@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   infoTitle: {
     fontFamily: FONTS.GEO_BOLD,
-    fontSize: FontSizeGenerator(15),
+    fontSize: FontSizeGenerator(16),
     color: COLORS.DARK,
     minHeight: 20,
   },
@@ -47,6 +47,5 @@ export const styles = StyleSheet.create({
     fontSize: FontSizeGenerator(14),
     minHeight: 20,
     marginLeft: 8,
-    maxWidth: 250,
   },
 });

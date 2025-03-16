@@ -1,24 +1,27 @@
 import {ScrollView, View} from 'react-native';
 import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Profile.styles';
-import {ScreenHeader} from '../../../globalComponents';
 import {ProfileForm} from '../components';
 import ReferalInupt from '../components/ReferralInput';
 import {useProfile} from './Profile.hooks';
 
 function ProfileScreen() {
-  const {referralLink, generateReferralLinkLoading, generateReferralLink} =
-    useProfile();
+  const {
+    referralLink,
+    generateReferralLinkLoading,
+    getReferralCountLoading,
+    referralCount,
+    generateReferralLink,
+  } = useProfile();
 
   return (
     <SafeAreaBackgroundWithHeader>
       <View style={styles.screen}>
-        <ScreenHeader title="პროფილი" />
         <View style={styles.profileContainer}>
           <ReferalInupt
-            loading={
-              generateReferralLinkLoading ? generateReferralLinkLoading : false
-            }
+            generateLinkLoading={generateReferralLinkLoading}
+            count={referralCount}
+            getCountLoading={getReferralCountLoading}
             link={referralLink ? referralLink : ''}
             generateReferralLink={generateReferralLink}
           />

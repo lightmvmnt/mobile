@@ -41,14 +41,13 @@ export const styles = StyleSheet.create({
   cardDescriptionContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: 270,
+    maxHeight: 320,
   },
   cardDescriptionScrollView: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    paddingVertical: 10,
     width: 320,
-    backgroundColor: COLORS.GRAY,
     borderRadius: 8,
   },
   cardDescriptionText: {
