@@ -25,6 +25,7 @@ function HomeScreen() {
     dispatch(getUserPollsVotes());
   }, [dispatch]);
 
+ 
   return (
     <SafeAreaBackgroundWithHeader>
       <ScrollView contentContainerStyle={styles.screen}>

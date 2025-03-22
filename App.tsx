@@ -8,6 +8,10 @@ import Toast, {ErrorToast, ToastConfig} from 'react-native-toast-message';
 import {configureNativeComponents} from './src/utils/configureNativeComponents.util';
 import {PaperProvider} from 'react-native-paper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import NavigationWrapper from '@services/navigation/NavigationWrapper';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTabStackNavigator from '@src/services/navigation/BottomTabStack/BottomTabStackNavigator';
+import BaseInterceptor from './src/store/interceptors/Base.interceptor';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,
@@ -21,9 +25,12 @@ function App() {
       <GestureHandlerRootView>
         <PaperProvider>
           <SafeAreaProvider>
-            <Routing />
-            <SimpleModal />
-            <Toast config={toastConfig} onPress={() => Toast.hide()} />
+            <NavigationContainer>
+              <NavigationWrapper />
+              <SimpleModal />
+              <Toast config={toastConfig} onPress={() => Toast.hide()} />
+              <BaseInterceptor />
+            </NavigationContainer>
           </SafeAreaProvider>
         </PaperProvider>
       </GestureHandlerRootView>

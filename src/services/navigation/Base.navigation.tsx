@@ -44,7 +44,6 @@ function Routing() {
         <Stack.Screen name="PollDetails" component={PollDetailsScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
-      <BaseInterceptor />
     </NavigationContainer>
   );
 }

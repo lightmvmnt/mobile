@@ -162,9 +162,9 @@ export const authentication = createAsyncThunk(
           dispatch(sendIosDeviceIdForTasks(NotificationSubscription));
         }
 
-        navigation.navigate('Loading');
+        // navigation.navigate('Loading');
       }
-
+      console.log('response.data loginnnn', response.data);
       return response.data;
     } catch (error) {
       await GoogleSignin.signOut();
@@ -222,7 +222,7 @@ export const CheckSessionValidation = createAsyncThunk(
       await RemoveStorageValue('access_token');
       await RemoveStorageValue('user');
 
-      navigation.navigate('Signin');
+      // navigation.navigate('Signin');
 
       return rejectWithValue(error);
     }
@@ -238,7 +238,7 @@ export const Logout = createAsyncThunk(
       await RemoveStorageValue('access_token');
       await RemoveStorageValue('user');
 
-      navigation.navigate('Signin');
+      // navigation.navigate('Signin');
     } catch (error) {
       return rejectWithValue(error);
     }

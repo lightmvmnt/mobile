@@ -1,10 +1,10 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './TasksDepartment.styles';
-import {Task} from '@store/slices/tasks/tasks.types';
-import {TaskCard} from '@modules/tasks/components';
+import {Task} from '../../../../store/slices/tasks/tasks.types';
+import {TaskCard} from '../../../tasks/components';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '@services/navigation/Base.navigation';
-import t from '@services/translations/translator';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+// import t from 'src/services/translations/translator';
 
 function TasksDepartment({tasks}: {tasks: Task[]}) {
   const navigation = useNavigation<NavigationProps>();
@@ -12,11 +12,11 @@ function TasksDepartment({tasks}: {tasks: Task[]}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>{t('homeScreen.missions')}</Text>
+        <Text style={styles.headerText}>{('homeScreen.missions')}</Text>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate('Tasks')}>
-          <Text style={styles.headerButton}>{t('homeScreen.all')}</Text>
+          <Text style={styles.headerButton}>{('homeScreen.all')}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.tasksContainer}>
