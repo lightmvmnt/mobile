@@ -5,9 +5,8 @@ import {styles} from './TaskCard.styles';
 import SupportLogo from '../../../../assets/icons/supportLogo.svg';
 import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
 import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
-import {SimpleButton} from '../../../../globalComponents';
+import {CountIndicator, SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
-import UserIcon from '../../../../assets/icons/userIcon.svg';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
@@ -15,7 +14,6 @@ import {useAppDispatch} from '../../../../store/store';
 import {getTask, updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
 import {UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
 import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
-import {ActivityIndicator} from 'react-native-paper';
 
 function TaskCard({task}: Props) {
   const [completedCount, setCompletedCount] = useState(0);
@@ -68,16 +66,7 @@ function TaskCard({task}: Props) {
       </View>
 
       <View style={styles.cardBottomSide}>
-        <View style={styles.viewerIndicator}>
-          {countLoading ? (
-            <ActivityIndicator size={20} color={COLORS.MAIN} />
-          ) : (
-            <>
-              <UserIcon width={15} height={15} />
-              <Text style={styles.viewerIndicatorText}>{completedCount}</Text>
-            </>
-          )}
-        </View>
+        <CountIndicator loading={countLoading} count={completedCount} />
         {task?.is_completed ? (
           <SimpleButton
             variant="contained"

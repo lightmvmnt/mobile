@@ -1,10 +1,24 @@
 import {Text, View} from 'react-native';
 import {styles} from './InfoContainer.styles';
+import {Props} from './InfoContainer.types';
 
-function InfoContainer() {
+function InfoContainer({
+  count,
+  counterBgColor,
+  counterColor,
+  title,
+  Icon,
+}: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.info}>Coming Soon</Text>
+      <View style={styles.titleContainer}>
+        <Icon width={30} height={30} />
+        <Text style={styles.title}>{title}</Text>
+      </View>
+      <View
+        style={[styles.counterContainer, {backgroundColor: counterBgColor}]}>
+        <Text style={[styles.counter, {color: counterColor}]}>{count}</Text>
+      </View>
     </View>
   );
 }

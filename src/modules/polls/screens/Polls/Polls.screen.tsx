@@ -1,9 +1,6 @@
 import {FlatList, View} from 'react-native';
 import {styles} from './Polls.styles';
-import {
-  ScreenHeader,
-  SafeAreaBackgroundWithHeader,
-} from '../../../../globalComponents';
+import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {useEffect, useState} from 'react';
 import {
@@ -57,7 +54,6 @@ function PollsScreen() {
   return (
     <SafeAreaBackgroundWithHeader>
       <View style={styles.screen}>
-        <ScreenHeader title="გამოკითხვები" />
         <View style={styles.pollsContainer}>
           <View style={styles.tabButtonsContainer}>
             <PollsTabButton

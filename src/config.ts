@@ -13,12 +13,12 @@ export const NavItems: NavItem[] = [
   {
     Icon: TasksIcon,
     to: 'Tasks',
-    label: 'მისიები',
+    label: 'მისია',
   },
   {
     Icon: PollsIcon,
     to: 'Polls',
-    label: 'გამოკითხვა',
+    label: 'არჩევანი',
   },
   {
     Icon: ProfileIcon,

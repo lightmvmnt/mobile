@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {ScrollView} from 'react-native';
 import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Home.styles';
@@ -10,6 +11,8 @@ import {
   getAllPolls,
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
+import {GetStorageObject} from '../../../utils/asyncStore.util';
+import {sendReferrerId} from '../../../store/thunks/user/user.thunk';
 
 function HomeScreen() {
   const {tasks} = useAppSelector(state => state.tasks);
@@ -19,6 +22,18 @@ function HomeScreen() {
 
   const dispatch = useAppDispatch();
 
+  const getReffererId = async () => {
+    const id = await GetStorageObject('refferer_id');
+
+    if (id) {
+      dispatch(sendReferrerId(id));
+    }
+  };
+
+  useEffect(() => {
+    getReffererId();
+  }, []);
+
   useEffect(() => {
     dispatch(getTasks());
     dispatch(getAllPolls());
@@ -27,7 +42,12 @@ function HomeScreen() {
 
   return (
     <SafeAreaBackgroundWithHeader>
-      <ScrollView contentContainerStyle={styles.screen}>
+      <ScrollView
+        contentContainerStyle={styles.screen}
+        bounces={false}
+        overScrollMode={'never'}>
+        {/* <UserProgressInfo /> */}
+        {/* <TaskSuggestionCard /> */}
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment
           polls={in_progress_polls.slice(0, 3)}

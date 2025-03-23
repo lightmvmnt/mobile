@@ -11,7 +11,7 @@ function TasksDepartment({tasks}: {tasks: Task[]}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>მისიები</Text>
+        <Text style={styles.headerText}>მისია</Text>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate('Tasks')}>

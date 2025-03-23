@@ -5,6 +5,9 @@ PODS:
   - AppAuth/Core (1.7.6)
   - AppAuth/ExternalUserAgent (1.7.6):
     - AppAuth/Core
+  - AppsFlyerFramework (6.15.3):
+    - AppsFlyerFramework/Main (= 6.15.3)
+  - AppsFlyerFramework/Main (6.15.3)
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.76.5)
@@ -1316,27 +1319,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-geolocation (3.4.0):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
+  - react-native-appsflyer (6.15.3):
+    - AppsFlyerFramework (= 6.15.3)
+    - React
   - react-native-safe-area-context (5.2.0):
     - DoubleConversion
     - glog
@@ -1673,6 +1658,27 @@ PODS:
   - RNAppleAuthentication (2.4.0):
     - React-Core
   - RNCAsyncStorage (2.1.1):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNCClipboard (1.16.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2037,7 +2043,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
-  - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
+  - react-native-appsflyer (from `../node_modules/react-native-appsflyer`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -2068,6 +2074,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNAppleAuthentication (from `../node_modules/@invertase/react-native-apple-authentication`)"
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
@@ -2083,6 +2090,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - AppsFlyerFramework
     - Firebase
     - FirebaseCore
     - FirebaseCoreExtension
@@ -2170,8 +2178,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
-  react-native-geolocation:
-    :path: "../node_modules/@react-native-community/geolocation"
+  react-native-appsflyer:
+    :path: "../node_modules/react-native-appsflyer"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-nativeconfig:
@@ -2232,6 +2240,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@invertase/react-native-apple-authentication"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCClipboard:
+    :path: "../node_modules/@react-native-clipboard/clipboard"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNFBApp:
@@ -2257,6 +2267,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
+  AppsFlyerFramework: ad7ff0d22aa36c7f8cc4f71a5424e19b89ccb8ae
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   FBLazyVector: 1bf99bb46c6af9a2712592e707347315f23947aa
@@ -2305,7 +2316,7 @@ SPEC CHECKSUMS:
   React-logger: ae95f0effa7e1791bd6f7283caddca323d4fbc1e
   React-Mapbuffer: f0c766c9dfb313c91b07457beb4e4ec9b2e02435
   React-microtasksnativemodule: 23565fc14a9588c3116cdf279c8124d7285856cc
-  react-native-geolocation: 19e121dda71716926a4558790f69344951f2a3ce
+  react-native-appsflyer: f6929760b13373fd33fd9f3ee6eb7e4d90e9c2c2
   react-native-safe-area-context: 5588e0de0040c963551ed6a7df5674251c7a286b
   React-nativeconfig: 565ebf4340d9ede95b523f0e3640f48286985ef5
   React-NativeModulesApple: 6ec0cac27d99644895c1c22b2b7a33441854a539
@@ -2336,12 +2347,13 @@ SPEC CHECKSUMS:
   ReactCommon: 7da12c0f59956995a153de45835b64c89e0a4a57
   RNAppleAuthentication: 8d313d93fe2238d6b7ff0a39c67ebcf298d96653
   RNCAsyncStorage: 710d4ce7cf39a896e790dd10de7413cce099f0cb
+  RNCClipboard: 3ef2c56a4968719eed9f7e8e58ee2282922c60ea
   RNDeviceInfo: d863506092aef7e7af3a1c350c913d867d795047
   RNFBApp: 54ee335a7d8a72071f53c3786435cc537c2ecc40
   RNFBMessaging: 10e835be65989d7fe64c0e92a1afeff5b6398021
   RNGestureHandler: 775541e3d86a595b45b970d6e13e72d7190061ff
   RNGoogleSignin: bff3ac0dffd9a0806d7bcb7e8ba02c60a015296d
-  RNPermissions: e8991ebfdf13e6e36925389d9f1dfc67fefe49bb
+  RNPermissions: c20e837926e4db7836bb910540a7de6d76a4aaf9
   RNReanimated: 117e66743e507221fc0d11e68c611dc07b214456
   RNScreens: 8045a0f42a2e15581553bb1356bd2e3ecd3e1063
   RNSVG: ce20215fa0260a11ea36962326ca3099db552ffb
@@ -2349,6 +2361,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 7548e4449365bf0ef60db4aefe58abff37fcabec
 
-PODFILE CHECKSUM: 87d63f2575e8bc7814c165ae41059074dc47366e
+PODFILE CHECKSUM: 9b1bf3349ff439c715c73edf8b4db7a599b8e6c0
 
 COCOAPODS: 1.15.2

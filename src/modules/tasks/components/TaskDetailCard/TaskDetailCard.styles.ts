@@ -41,14 +41,13 @@ export const styles = StyleSheet.create({
   cardDescriptionContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: 270,
+    maxHeight: 320,
   },
   cardDescriptionScrollView: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    paddingVertical: 10,
     width: 320,
-    backgroundColor: COLORS.GRAY,
     borderRadius: 8,
   },
   cardDescriptionText: {
@@ -67,23 +66,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 15,
-  },
-  viewerIndicator: {
-    width: 60,
-    height: 40,
-    marginRight: 10,
-    backgroundColor: COLORS.SECONDARY_BG_COLOR,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 25,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  viewerIndicatorText: {
-    fontSize: FontSizeGenerator(14),
-    fontFamily: FONTS.GEO_SEMIBOLD,
-    color: COLORS.DARK,
-    marginLeft: 5,
   },
 });

@@ -33,7 +33,9 @@ function SigninScreen() {
           <Text style={styles.TACText}>
             შემდეგ გვერდზე გადასვლით, ვადასტურებ რომ ვეთანხმები{' '}
             <Text
-              onPress={() => Linking.openURL('https://dzala.app/')}
+              onPress={() =>
+                Linking.openURL('https://dzala.app/privacy-policy-eng.html')
+              }
               style={styles.TACLink}>
               წესებს და პირობებს
             </Text>

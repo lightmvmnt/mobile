@@ -19,6 +19,7 @@ import {
 } from '../../../services/notifications/notificationHandler';
 import {Platform} from 'react-native';
 import appleAuth from '@invertase/react-native-apple-authentication';
+import appsFlyer from 'react-native-appsflyer';
 
 GoogleSignin.configure({
   webClientId: enviroment.CLIENT_ID,
@@ -154,13 +155,13 @@ export const authentication = createAsyncThunk(
           token,
         };
 
-        console.log(NotificationSubscription);
-
         if (Platform.OS === 'android') {
           dispatch(sendAndroidDeviceIdForTasks(NotificationSubscription));
         } else {
           dispatch(sendIosDeviceIdForTasks(NotificationSubscription));
         }
+
+        appsFlyer.setCustomerUserId(String(response.data.data.user.id));
 
         navigation.navigate('Loading');
       }

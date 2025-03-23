@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {styles} from './PollDetails.styles';
-import {ScreenHeader, SimpleButton} from '../../../../globalComponents';
-import {View} from 'react-native';
+import {SimpleButton} from '../../../../globalComponents';
+import {ScrollView, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {COLORS} from '../../../../constants';
 import PollDetailsCard from '../../components/PollDetailsCard';
@@ -115,17 +115,30 @@ const PollDetailsScreen = () => {
     <SafeAreaBackgroundWithHeader>
       {!poll_details_loading ? (
         <View style={styles.detailPage}>
-          <ScreenHeader title="გამოკითხვა" />
           <View style={styles.detailTaskContainer}>
-            <PollDetailsCard
-              poll={poll_details}
-              votes={poll_votes}
-              results={poll_results}
-              results_loading={poll_results_loading}
-              isOptionSelected={isOptionSelected}
-              handleVoteSelect={handleVoteSelect}
-              votes_loading={poll_votes_loading}
-            />
+            {poll_details?.is_active ? (
+              <ScrollView contentContainerStyle={styles.detailTaskScrollView}>
+                <PollDetailsCard
+                  poll={poll_details}
+                  votes={poll_votes}
+                  results={poll_results}
+                  results_loading={poll_results_loading}
+                  isOptionSelected={isOptionSelected}
+                  handleVoteSelect={handleVoteSelect}
+                  votes_loading={poll_votes_loading}
+                />
+              </ScrollView>
+            ) : (
+              <PollDetailsCard
+                poll={poll_details}
+                votes={poll_votes}
+                results={poll_results}
+                results_loading={poll_results_loading}
+                isOptionSelected={isOptionSelected}
+                handleVoteSelect={handleVoteSelect}
+                votes_loading={poll_votes_loading}
+              />
+            )}
             {poll_details?.type === 'multi' ? (
               <View style={styles.confirmButtonContainer}>
                 <SimpleButton

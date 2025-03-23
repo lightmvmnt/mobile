@@ -34,7 +34,43 @@
               "client_id": "813935825552-vkh63lpbf942f9jtrlh9r12i15sda5us.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "org.solvio.LightMvmnt"
+                "bundle_id": "org.solvio.dzala"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813935825552:android:96ca2f15547148f71a3e15",
+        "android_client_info": {
+          "package_name": "com.dzala.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn_Pag7xRX24L81t8Veb_L-PtB3E7lFYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "813935825552-vkh63lpbf942f9jtrlh9r12i15sda5us.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.solvio.dzala"
               }
             }
           ]
@@ -70,7 +106,7 @@
               "client_id": "813935825552-vkh63lpbf942f9jtrlh9r12i15sda5us.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "org.solvio.LightMvmnt"
+                "bundle_id": "org.solvio.dzala"
               }
             }
           ]
