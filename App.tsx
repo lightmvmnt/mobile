@@ -18,8 +18,8 @@ const toastConfig: ToastConfig = {
 
 const appsFlyerOptions: InitSDKOptions = {
   devKey: 'XjAJxzVUJT3hPaufeUUK5K',
-  appId: '6742493689',
-  isDebug: false,
+  appId: '111157983',
+  isDebug: true,
   onInstallConversionDataListener: true,
   onDeepLinkListener: true,
   timeToWaitForATTUserAuthorization: 1,
