@@ -14,10 +14,12 @@ import PollDetailsScreen from '../../modules/polls/screens/PollDetails';
 import ProfileScreen from '../../modules/profile/screens';
 import BaseInterceptor from '../../store/interceptors';
 import LoadingScreen from '../../modules/loading/screens';
+import UpdateScreen from '../../modules/update/screens/Update.screen';
 
 export type RootStackParamList = {
   Loading: undefined;
   Introduction: undefined;
+  Update: undefined;
   Signin: undefined;
   Home: undefined;
   Tasks: undefined;
@@ -36,6 +38,7 @@ function Routing() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Loading" component={LoadingScreen} />
         <Stack.Screen name="Introduction" component={IntroductionScreen} />
+        <Stack.Screen name="Update" component={UpdateScreen} />
         <Stack.Screen name="Signin" component={SigninScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Tasks" component={TasksScreen} />
