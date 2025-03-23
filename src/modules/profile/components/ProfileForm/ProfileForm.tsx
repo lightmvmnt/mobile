@@ -78,7 +78,7 @@ function ProfileForm() {
             textColor={COLORS.LIGHT}
             text="მომხმარებლის წაშლა"
             height={40}
-            width={LAYOUT.WIDTH - 50}
+            width={LAYOUT.WIDTH - 30}
             onPress={accountDeleteButtonHandler}
             variant="contained"
             Icon={TrashcanIcon}
@@ -92,7 +92,7 @@ function ProfileForm() {
           textColor={COLORS.LIGHT}
           text="გასვლა"
           height={40}
-          width={LAYOUT.WIDTH - 50}
+          width={LAYOUT.WIDTH - 30}
           onPress={logoutButtonHandler}
           variant="contained"
           Icon={ExitIcon}

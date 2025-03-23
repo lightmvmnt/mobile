@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   infoContainer: {
     width: '100%',
@@ -47,5 +47,6 @@ export const styles = StyleSheet.create({
     fontSize: FontSizeGenerator(14),
     minHeight: 20,
     marginLeft: 8,
+    width: 250,
   },
 });
