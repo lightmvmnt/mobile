@@ -1,8 +1,8 @@
-import {ScrollView, View} from 'react-native';
-import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
+import {View} from 'react-native';
+import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import {styles} from './Profile.styles';
-import {ProfileForm} from '../components';
-import ReferalInupt from '../components/ReferralInput';
+import {ProfileForm} from '../../components';
+import ReferalInupt from '../../components/ReferralInput';
 import {useProfile} from './Profile.hooks';
 
 function ProfileScreen() {
@@ -25,9 +25,7 @@ function ProfileScreen() {
             link={referralLink ? referralLink : ''}
             generateReferralLink={generateReferralLink}
           />
-          <ScrollView contentContainerStyle={styles.profileScrollView}>
-            <ProfileForm />
-          </ScrollView>
+          <ProfileForm />
         </View>
       </View>
     </SafeAreaBackgroundWithHeader>

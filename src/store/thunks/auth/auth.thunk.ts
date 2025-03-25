@@ -1,5 +1,10 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {Account, CreateUser, SigninResponse} from './auth.types';
+import {
+  Account,
+  CreateUser,
+  SigninResponse,
+  UpdateUserPayload,
+} from './auth.types';
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
@@ -269,6 +274,36 @@ export const AccountDeletion = createAsyncThunk(
       if (response.status === 204) {
         dispatch(Logout(navigation));
       }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (updated_user: UpdateUserPayload, {rejectWithValue}) => {
+    try {
+      const session_token = await GetStorageObject('session_token');
+      const access_token = await GetStorageObject('access_token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-Token': session_token,
+          Authorization: `Bearer ${access_token}`,
+        },
+      };
+
+      const body = JSON.stringify(updated_user);
+
+      const response = await axios.patch<Account>(
+        `${enviroment.API_BASE_URL}/users/me/`,
+        body,
+        config,
+      );
 
       return response.data;
     } catch (error) {

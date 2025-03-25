@@ -1,10 +1,10 @@
 import appsFlyer from 'react-native-appsflyer';
-import {useAppDispatch, useAppSelector} from '../../../store/store';
+import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {
   changeGenerateReferralLinkLoading,
   setReferralLink,
-} from '../../../store/slices/user/user.slice';
-import {getUserReferralCount} from '../../../store/thunks/user/user.thunk';
+} from '../../../../store/slices/referral/referral.slice';
+import {getUserReferralCount} from '../../../../store/thunks/user/user.thunk';
 import {useEffect} from 'react';
 
 export const useProfile = () => {
@@ -14,7 +14,7 @@ export const useProfile = () => {
     generateReferralLinkLoading,
     referralCount,
     getReferralCountLoading,
-  } = useAppSelector(state => state.user);
+  } = useAppSelector(state => state.referral);
 
   const dispatch = useAppDispatch();
 

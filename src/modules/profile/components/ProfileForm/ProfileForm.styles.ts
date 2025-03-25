@@ -1,10 +1,10 @@
 import {Platform, StyleSheet} from 'react-native';
-import {COLORS, FONTS} from '../../../../constants';
+import {COLORS, FONTS, LAYOUT} from '../../../../constants';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 
 export const styles = StyleSheet.create({
   formContainer: {
-    width: '100%',
+    width: LAYOUT.WIDTH - 30,
     borderRadius: 12,
   },
   header: {
@@ -19,10 +19,22 @@ export const styles = StyleSheet.create({
     color: COLORS.DARK,
     minHeight: 20,
   },
-  form: {
-    backgroundColor: COLORS.LIGHT,
-    marginBottom: 15,
+  editButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 8,
+    backgroundColor: COLORS.GRAY,
+    borderRadius: 8,
   },
+  editButtonText: {
+    fontFamily: FONTS.GEO_SEMIBOLD,
+    fontSize: FontSizeGenerator(Platform.OS === 'android' ? 14 : 13),
+    height: 20,
+    color: COLORS.DARK,
+    marginLeft: 8,
+  },
+
   input: {
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -48,6 +60,7 @@ export const styles = StyleSheet.create({
     width: 250,
   },
   actionButtonsContainer: {
+    marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },

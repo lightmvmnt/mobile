@@ -5,6 +5,7 @@ import {
   authentication,
   Logout,
   GetUserData,
+  updateUser,
 } from '../../thunks/auth/auth.thunk';
 
 const initialState: AuthInitialState = {
@@ -82,6 +83,16 @@ export const authSlice = createSlice({
       })
       .addCase(GetUserData.fulfilled, (state, action) => {
         state.account = action.payload;
+      })
+      .addCase(updateUser.pending, state => {
+        state.loading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.account = action.payload;
+        state.loading = false;
+      })
+      .addCase(updateUser.rejected, state => {
+        state.loading = false;
       });
   },
 });

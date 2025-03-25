@@ -11,10 +11,11 @@ import TasksScreen from '../../modules/tasks/screens/Tasks';
 import TaskDetailScreen from '../../modules/tasks/screens/TaskDetail';
 import PollsScreen from '../../modules/polls/screens/Polls';
 import PollDetailsScreen from '../../modules/polls/screens/PollDetails';
-import ProfileScreen from '../../modules/profile/screens';
+import ProfileScreen from '../../modules/profile/screens/Profile';
 import BaseInterceptor from '../../store/interceptors';
 import LoadingScreen from '../../modules/loading/screens';
 import UpdateScreen from '../../modules/update/screens/Update.screen';
+import ProfileEditScreen from '../../modules/profile/screens/ProfileEdit';
 
 export type RootStackParamList = {
   Loading: undefined;
@@ -27,6 +28,7 @@ export type RootStackParamList = {
   Polls: undefined;
   PollDetails: undefined;
   Profile: undefined;
+  ProfileEdit: undefined;
 };
 export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
@@ -46,6 +48,7 @@ function Routing() {
         <Stack.Screen name="Polls" component={PollsScreen} />
         <Stack.Screen name="PollDetails" component={PollDetailsScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="ProfileEdit" component={ProfileEditScreen} />
       </Stack.Navigator>
       <BaseInterceptor />
     </NavigationContainer>

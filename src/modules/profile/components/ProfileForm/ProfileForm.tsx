@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './ProfileForm.styles';
 import {SimpleButton} from '../../../../globalComponents';
 import {COLORS, LAYOUT} from '../../../../constants';
@@ -13,6 +13,8 @@ import {
   AccountDeletion,
   Logout,
 } from '../../../../store/thunks/auth/auth.thunk';
+import EditIcon from '../../../../assets/icons/editIcon.svg';
+import FormInput from './FormInput';
 
 function ProfileForm() {
   const {account, loading} = useAppSelector(state => state.auth);
@@ -46,31 +48,27 @@ function ProfileForm() {
     );
   };
 
+  const profileEditButtonHandler = () => {
+    navigation.navigate('ProfileEdit');
+  };
+
   return (
     <View style={styles.formContainer}>
       <View style={styles.header}>
         <Text style={styles.title}>დეტალები</Text>
+        <TouchableOpacity
+          style={styles.editButton}
+          activeOpacity={0.7}
+          onPress={profileEditButtonHandler}>
+          <EditIcon width={16} height={16} />
+          <Text style={styles.editButtonText}>შეცვლა</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.form}>
-        <View style={styles.input}>
-          <Text style={styles.inputTitle}>სახელი:</Text>
-          <Text style={styles.inputValue} numberOfLines={1}>
-            {account?.first_name}
-          </Text>
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.inputTitle}>გვარი:</Text>
-          <Text style={styles.inputValue} numberOfLines={1}>
-            {account?.last_name}
-          </Text>
-        </View>
-        <View style={[styles.input, {marginBottom: 0}]}>
-          <Text style={styles.inputTitle}>ელ. ფოსტა:</Text>
-          <Text style={styles.inputValue} numberOfLines={1}>
-            {account?.email}
-          </Text>
-        </View>
-      </View>
+
+      <FormInput name="სახელი" value={account ? account?.first_name : ''} />
+      <FormInput name="გვარი" value={account ? account?.last_name : ''} />
+      <FormInput name="ელ-ფოსტა" value={account ? account?.email : ''} />
+
       <View style={styles.actionButtonsContainer}>
         <View style={styles.actionButtonWrapper}>
           <SimpleButton
