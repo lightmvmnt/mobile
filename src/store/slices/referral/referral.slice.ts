@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {InitialState} from './referral.types';
-import {getUserReferralCount} from '../../thunks/user/user.thunk';
+import {getUserReferralCount} from '../../thunks/referral/referral.thunk';
 
 const initialState: InitialState = {
   referralCount: 0,

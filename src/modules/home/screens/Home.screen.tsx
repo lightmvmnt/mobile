@@ -12,7 +12,7 @@ import {
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
-import {sendReferrerId} from '../../../store/thunks/user/user.thunk';
+import {sendReferrerId} from '../../../store/thunks/referral/referral.thunk';
 
 function HomeScreen() {
   const {tasks} = useAppSelector(state => state.tasks);

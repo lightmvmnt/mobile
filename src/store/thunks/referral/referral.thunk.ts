@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {enviroment} from '../../../constants/enviroment';
-import {getUserReferralCountResponse} from './user.types';
+import {getUserReferralCountResponse} from './referral.types';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 
 export const getUserReferralCount = createAsyncThunk(

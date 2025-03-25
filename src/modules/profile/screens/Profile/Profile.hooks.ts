@@ -4,7 +4,7 @@ import {
   changeGenerateReferralLinkLoading,
   setReferralLink,
 } from '../../../../store/slices/referral/referral.slice';
-import {getUserReferralCount} from '../../../../store/thunks/user/user.thunk';
+import {getUserReferralCount} from '../../../../store/thunks/referral/referral.thunk';
 import {useEffect} from 'react';
 
 export const useProfile = () => {
