@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
     color: COLORS.DARK,
     marginLeft: 8,
   },
-
   input: {
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -59,12 +58,19 @@ export const styles = StyleSheet.create({
     height: 20,
     width: 250,
   },
-  actionButtonsContainer: {
-    marginTop: 15,
-    justifyContent: 'center',
+  settingsButton: {
+    justifyContent: 'space-between',
     alignItems: 'center',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: COLORS.GRAY,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
   },
-  actionButtonWrapper: {
-    marginBottom: 10,
+  settingsButtonTitle: {
+    fontFamily: FONTS.GEO_SEMIBOLD,
+    fontSize: FontSizeGenerator(Platform.OS === 'android' ? 15 : 14),
+    height: 20,
   },
 });
