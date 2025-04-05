@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './ProfileForm.styles';
 import {useAppSelector} from '../../../../store/store';
 import {useNavigation} from '@react-navigation/native';
@@ -33,17 +33,19 @@ function ProfileForm() {
         </TouchableOpacity>
       </View>
 
-      <FormInput name="სახელი" value={account ? account?.first_name : ''} />
-      <FormInput name="გვარი" value={account ? account?.last_name : ''} />
-      <FormInput name="ელ-ფოსტა" value={account ? account?.email : ''} />
+      <ScrollView>
+        <FormInput name="სახელი" value={account ? account?.first_name : ''} />
+        <FormInput name="გვარი" value={account ? account?.last_name : ''} />
+        <FormInput name="ელ-ფოსტა" value={account ? account?.email : ''} />
 
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.settingsButton}
-        onPress={profileSettingsButtonHandler}>
-        <Text style={styles.settingsButtonTitle}>ანგარიშის პარამეტრები</Text>
-        <GoBackIcon style={{transform: [{rotateZ: '180deg'}]}} />
-      </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.settingsButton}
+          onPress={profileSettingsButtonHandler}>
+          <Text style={styles.settingsButtonTitle}>ანგარიშის პარამეტრები</Text>
+          <GoBackIcon style={{transform: [{rotateZ: '180deg'}]}} />
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }

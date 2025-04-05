@@ -4,7 +4,10 @@ import {enviroment} from '../../../constants/enviroment';
 import {sendDeviceIdForTasksTypes, UpdateTaskTypes} from './tasks.types';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {User} from '../auth/auth.types';
-import {Task} from '../../slices/tasks/tasks.types';
+import {
+  GetCompletedTaskCountResponse,
+  Task,
+} from '../../slices/tasks/tasks.types';
 
 export const getTasks = createAsyncThunk(
   'tasks/getTasks',
@@ -122,6 +125,7 @@ export const updateTask = createAsyncThunk(
 
       if (response.status === 200) {
         dispatch(getTasks());
+        dispatch(getCompletedTaskCount());
       }
 
       return response.data;
@@ -137,6 +141,21 @@ export const getTask = createAsyncThunk(
     try {
       const response = await axios.get<Task>(
         `${enviroment.API_BASE_URL}/missions/${task_id}/`,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getCompletedTaskCount = createAsyncThunk(
+  'tasks/getCompletedTaskCount',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetCompletedTaskCountResponse>(
+        `${enviroment.API_BASE_URL}/missions/user/count/`,
       );
 
       return response.data;

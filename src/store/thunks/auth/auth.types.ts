@@ -43,3 +43,7 @@ export interface SigninResponse {
   };
   status: number;
 }
+
+export interface GetUserTotalPointsResponse {
+  points: number;
+}

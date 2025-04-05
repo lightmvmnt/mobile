@@ -9,9 +9,13 @@ import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {
   CheckSessionValidation,
   GetUserData,
+  getUserTotalPoints,
 } from '../../../store/thunks/auth/auth.thunk';
 import {User} from '../../../store/thunks/auth/auth.types';
-import {getTasks} from '../../../store/thunks/tasks/tasks.thunk';
+import {
+  getCompletedTaskCount,
+  getTasks,
+} from '../../../store/thunks/tasks/tasks.thunk';
 import {requestNotificationsPermission} from '../../../services/notifications/notificationPermissions';
 import {notificationHandler} from '../../../services/notifications/notificationHandler';
 import {getUniqueId} from 'react-native-device-info';
@@ -27,8 +31,10 @@ import {LAYOUT} from '../../../constants';
 function LoadingScreen() {
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);
 
-  const {isAuth, user, account} = useAppSelector(state => state.auth);
-  const {tasks} = useAppSelector(state => state.tasks);
+  const {isAuth, user, account, userTotalPoints} = useAppSelector(
+    state => state.auth,
+  );
+  const {tasks, completed_tasks_count} = useAppSelector(state => state.tasks);
   const {polls} = useAppSelector(state => state.polls);
 
   const navigation = useNavigation<NavigationProps>();
@@ -77,7 +83,9 @@ function LoadingScreen() {
 
       if (session_user && session_token && access_token) {
         dispatch(getTasks());
+        dispatch(getCompletedTaskCount());
         dispatch(GetUserData());
+        dispatch(getUserTotalPoints());
         dispatch(getAllPolls());
         dispatch(getUserPollsVotes());
       } else {
@@ -93,10 +101,30 @@ function LoadingScreen() {
   useEffect(() => {
     requestNotificationsPermission();
     notificationHandler(dispatch);
-    if (isFocused && isAuth && user && account && tasks && polls) {
+    if (
+      isFocused &&
+      isAuth &&
+      user &&
+      account &&
+      tasks &&
+      completed_tasks_count >= 0 &&
+      userTotalPoints >= 0 &&
+      polls
+    ) {
       navigation.navigate('Home');
     }
-  }, [tasks, isAuth, user, polls, account, navigation, isFocused, dispatch]);
+  }, [
+    tasks,
+    completed_tasks_count,
+    isAuth,
+    user,
+    userTotalPoints,
+    polls,
+    account,
+    navigation,
+    isFocused,
+    dispatch,
+  ]);
 
   return (
     <View style={styles.container}>

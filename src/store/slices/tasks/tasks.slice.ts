@@ -1,6 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {TasksInitialState} from './tasks.types';
-import {getTask, getTasks, updateTask} from '../../thunks/tasks/tasks.thunk';
+import {
+  getCompletedTaskCount,
+  getTask,
+  getTasks,
+  updateTask,
+} from '../../thunks/tasks/tasks.thunk';
 
 const initialState: TasksInitialState = {
   tasks: [],
@@ -8,6 +13,8 @@ const initialState: TasksInitialState = {
   task_details: null,
   task_details_loading: false,
   is_task_suggestion_modal_visible: false,
+  completed_tasks_count: 0,
+  completed_tasks_count_loading: false,
 };
 
 export const TasksSlice = createSlice({
@@ -58,6 +65,17 @@ export const TasksSlice = createSlice({
       .addCase(getTask.fulfilled, (state, action) => {
         state.task_details = action.payload;
         state.task_details_loading = false;
+      })
+      .addCase(getCompletedTaskCount.pending, state => {
+        state.completed_tasks_count_loading = true;
+      })
+      .addCase(getCompletedTaskCount.fulfilled, (state, action) => {
+        state.completed_tasks_count = action.payload.total_missions_completed;
+        state.completed_tasks_count_loading = false;
+      })
+      .addCase(getCompletedTaskCount.rejected, state => {
+        state.completed_tasks_count = 0;
+        state.completed_tasks_count_loading = false;
       });
   },
 });

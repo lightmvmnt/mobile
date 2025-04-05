@@ -31,13 +31,11 @@ function App() {
   useEffect(() => {
     appsFlyer.initSdk(
       appsFlyerOptions,
-      result => console.log(result),
+      () => {},
       error => console.log(error),
     );
 
     appsFlyer.setAppInviteOneLinkID('x8gn');
-
-    appsFlyer.onDeepLink(data => console.log(data, 'letsgooo'));
 
     appsFlyer.onInstallConversionData(data => {
       if (data.data.af_status === 'Non-organic') {

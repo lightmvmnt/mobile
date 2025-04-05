@@ -1,6 +1,7 @@
 import {Text, View} from 'react-native';
 import {styles} from './InfoContainer.styles';
 import {Props} from './InfoContainer.types';
+import {ActivityIndicator} from 'react-native-paper';
 
 function InfoContainer({
   count,
@@ -8,6 +9,7 @@ function InfoContainer({
   counterColor,
   title,
   Icon,
+  loading,
 }: Props) {
   return (
     <View style={styles.container}>
@@ -17,7 +19,13 @@ function InfoContainer({
       </View>
       <View
         style={[styles.counterContainer, {backgroundColor: counterBgColor}]}>
-        <Text style={[styles.counter, {color: counterColor}]}>{count}</Text>
+        <Text style={[styles.counter, {color: counterColor}]}>
+          {loading ? (
+            <ActivityIndicator size={16} color={counterColor} />
+          ) : (
+            count
+          )}
+        </Text>
       </View>
     </View>
   );

@@ -13,6 +13,7 @@ import {
 } from '../../../store/thunks/polls/polls.thunk';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {sendReferrerId} from '../../../store/thunks/referral/referral.thunk';
+import UserProgressInfo from '../components/UserProgressInfo';
 
 function HomeScreen() {
   const {tasks} = useAppSelector(state => state.tasks);
@@ -46,7 +47,7 @@ function HomeScreen() {
         contentContainerStyle={styles.screen}
         bounces={false}
         overScrollMode={'never'}>
-        {/* <UserProgressInfo /> */}
+        <UserProgressInfo />
         {/* <TaskSuggestionCard /> */}
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment

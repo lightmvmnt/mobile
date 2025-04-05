@@ -32,13 +32,9 @@ export const sendReferrerId = createAsyncThunk(
         },
       };
 
-      console.log(id, 'gagzavnisass');
-
       const body = JSON.stringify({
         referrer_user: parseInt(id),
       });
-
-      console.log(body);
 
       const response = await axios.post(
         `${enviroment.API_BASE_URL}/users/referral/`,

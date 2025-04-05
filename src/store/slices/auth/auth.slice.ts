@@ -6,6 +6,7 @@ import {
   Logout,
   GetUserData,
   updateUser,
+  getUserTotalPoints,
 } from '../../thunks/auth/auth.thunk';
 
 const initialState: AuthInitialState = {
@@ -16,6 +17,8 @@ const initialState: AuthInitialState = {
   user: null,
   account: null,
   deviceId: '',
+  userTotalPoints: 0,
+  userTotalPointsLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -93,6 +96,17 @@ export const authSlice = createSlice({
       })
       .addCase(updateUser.rejected, state => {
         state.loading = false;
+      })
+      .addCase(getUserTotalPoints.pending, state => {
+        state.userTotalPointsLoading = true;
+      })
+      .addCase(getUserTotalPoints.fulfilled, (state, action) => {
+        state.userTotalPoints = action.payload.points;
+        state.userTotalPointsLoading = false;
+      })
+      .addCase(getUserTotalPoints.rejected, state => {
+        state.userTotalPoints = 0;
+        state.userTotalPointsLoading = false;
       });
   },
 });

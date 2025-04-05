@@ -2,6 +2,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {
   Account,
   CreateUser,
+  GetUserTotalPointsResponse,
   SigninResponse,
   UpdateUserPayload,
 } from './auth.types';
@@ -314,6 +315,23 @@ export const updateUser = createAsyncThunk(
       if (response.status === 200) {
         navigation.navigate('Profile');
       }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getUserTotalPoints = createAsyncThunk(
+  'auth/getUserTotalPoints',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetUserTotalPointsResponse>(
+        `${enviroment.API_BASE_URL}/users/me/points/`,
+      );
+
+      console.log(response.data);
 
       return response.data;
     } catch (error) {

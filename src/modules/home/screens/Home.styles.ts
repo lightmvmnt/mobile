@@ -6,6 +6,5 @@ export const styles = StyleSheet.create({
     width: LAYOUT.WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
   },
 });

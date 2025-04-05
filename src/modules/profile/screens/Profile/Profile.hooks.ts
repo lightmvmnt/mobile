@@ -8,13 +8,19 @@ import {getUserReferralCount} from '../../../../store/thunks/referral/referral.t
 import {useEffect} from 'react';
 
 export const useProfile = () => {
-  const {user} = useAppSelector(state => state.auth);
+  const {user, userTotalPoints, userTotalPointsLoading} = useAppSelector(
+    state => state.auth,
+  );
   const {
     referralLink,
     generateReferralLinkLoading,
     referralCount,
     getReferralCountLoading,
   } = useAppSelector(state => state.referral);
+
+  const {completed_tasks_count, completed_tasks_count_loading} = useAppSelector(
+    state => state.tasks,
+  );
 
   const dispatch = useAppDispatch();
 
@@ -49,6 +55,10 @@ export const useProfile = () => {
     generateReferralLinkLoading,
     referralCount,
     getReferralCountLoading,
+    userTotalPoints,
+    userTotalPointsLoading,
+    completed_tasks_count,
+    completed_tasks_count_loading,
     generateReferralLink,
   };
 };

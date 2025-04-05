@@ -8,4 +8,6 @@ export interface AuthInitialState {
   user: User | null;
   deviceId: string;
   account: Account | null;
+  userTotalPoints: number;
+  userTotalPointsLoading: boolean;
 }

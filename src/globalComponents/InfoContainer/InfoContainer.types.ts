@@ -6,4 +6,5 @@ export interface Props {
   count: number;
   counterBgColor: string;
   counterColor: string;
+  loading: boolean;
 }
