@@ -3,11 +3,14 @@ import {ScrollView, Text, View} from 'react-native';
 import SupportLogo from '../../../../assets/icons/supportLogo.svg';
 import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
 import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
-import {CountIndicator, SimpleButton} from '../../../../globalComponents';
+import {
+  CountIndicator,
+  PointIndicator,
+  SimpleButton,
+} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
 import UrlIcon from '../../../../assets/icons/LinkIcon.svg';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
-
 import {Props} from '../TaskDetailCard/TaskDetailCard.types';
 import {styles} from './TaskDetailCard.styles';
 import {useTaskDetail} from './TaskDetailCard.hook';
@@ -16,6 +19,8 @@ function TaskDetailCard({task, task_loading}: Props) {
   const {
     completedCount,
     countLoading,
+    taskPoint,
+    tasksPointsLoading,
     onDoneButtonPress,
     onLinkButtonPress,
     onLocationButtonPress,
@@ -25,6 +30,15 @@ function TaskDetailCard({task, task_loading}: Props) {
 
   return (
     <View style={styles.card}>
+      <View style={styles.taskInfoContainer}>
+        <CountIndicator loading={countLoading} count={completedCount} />
+        {taskPoint !== null ? (
+          <View style={styles.taskInfoWrapper}>
+            <PointIndicator loading={tasksPointsLoading} point={taskPoint} />
+          </View>
+        ) : null}
+      </View>
+
       <View style={styles.cardTopSide}>
         {task?.mission.category === 1 && <SupportLogo width={50} height={50} />}
         {task?.mission.category === 2 && (
@@ -40,7 +54,7 @@ function TaskDetailCard({task, task_loading}: Props) {
         style={[
           styles.cardDescriptionContainer,
           {
-            maxHeight: handleTaskDescriptionHeight(),
+            height: handleTaskDescriptionHeight(),
           },
         ]}>
         <ScrollView contentContainerStyle={styles.cardDescriptionScrollView}>
@@ -90,8 +104,6 @@ function TaskDetailCard({task, task_loading}: Props) {
       ) : null}
 
       <View style={styles.cardBottomSide}>
-        <CountIndicator loading={countLoading} count={completedCount} />
-
         <SimpleButton
           variant="contained"
           buttonColor={task?.is_completed ? COLORS.GRAY : COLORS.MAIN}
@@ -103,7 +115,7 @@ function TaskDetailCard({task, task_loading}: Props) {
               : 'შევასრულე'
           }
           Icon={task?.is_completed ? CompletedIcon : undefined}
-          width={250}
+          width={320}
           height={40}
           buttonLoading={task_loading}
         />

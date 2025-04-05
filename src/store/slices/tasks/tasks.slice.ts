@@ -4,17 +4,20 @@ import {
   getCompletedTaskCount,
   getTask,
   getTasks,
+  getTasksPoints,
   updateTask,
 } from '../../thunks/tasks/tasks.thunk';
 
 const initialState: TasksInitialState = {
   tasks: [],
   loading: false,
-  task_details: null,
-  task_details_loading: false,
-  is_task_suggestion_modal_visible: false,
-  completed_tasks_count: 0,
-  completed_tasks_count_loading: false,
+  taskDetails: null,
+  taskDetailsLoading: false,
+  isTaskSuggestionModalVisible: false,
+  completedTasksCount: 0,
+  completedTasksCountLoading: false,
+  tasksPoints: [],
+  tasksPointsLoading: false,
 };
 
 export const TasksSlice = createSlice({
@@ -25,7 +28,7 @@ export const TasksSlice = createSlice({
       state,
       action: {payload: boolean},
     ) => {
-      state.is_task_suggestion_modal_visible = action.payload;
+      state.isTaskSuggestionModalVisible = action.payload;
     },
   },
   extraReducers(builder) {
@@ -48,8 +51,8 @@ export const TasksSlice = createSlice({
         state.loading = false;
       })
       .addCase(updateTask.fulfilled, (state, action) => {
-        if (state.task_details && state.task_details.id === action.payload.id) {
-          state.task_details = action.payload;
+        if (state.taskDetails && state.taskDetails.id === action.payload.id) {
+          state.taskDetails = action.payload;
         }
         state.tasks = state.tasks.map(task =>
           task.id === action.meta.arg.task_id ? action.payload : task,
@@ -57,25 +60,36 @@ export const TasksSlice = createSlice({
         state.loading = false;
       })
       .addCase(getTask.pending, state => {
-        state.task_details_loading = true;
+        state.taskDetailsLoading = true;
       })
       .addCase(getTask.rejected, state => {
-        state.task_details_loading = false;
+        state.taskDetailsLoading = false;
       })
       .addCase(getTask.fulfilled, (state, action) => {
-        state.task_details = action.payload;
-        state.task_details_loading = false;
+        state.taskDetails = action.payload;
+        state.taskDetailsLoading = false;
       })
       .addCase(getCompletedTaskCount.pending, state => {
-        state.completed_tasks_count_loading = true;
+        state.completedTasksCountLoading = true;
       })
       .addCase(getCompletedTaskCount.fulfilled, (state, action) => {
-        state.completed_tasks_count = action.payload.total_missions_completed;
-        state.completed_tasks_count_loading = false;
+        state.completedTasksCount = action.payload.total_missions_completed;
+        state.completedTasksCountLoading = false;
       })
       .addCase(getCompletedTaskCount.rejected, state => {
-        state.completed_tasks_count = 0;
-        state.completed_tasks_count_loading = false;
+        state.completedTasksCount = 0;
+        state.completedTasksCountLoading = false;
+      })
+      .addCase(getTasksPoints.pending, state => {
+        state.tasksPointsLoading = true;
+      })
+      .addCase(getTasksPoints.fulfilled, (state, action) => {
+        state.tasksPoints = action.payload;
+        state.tasksPointsLoading = false;
+      })
+      .addCase(getTasksPoints.rejected, state => {
+        state.tasksPoints = [];
+        state.tasksPointsLoading = false;
       });
   },
 });

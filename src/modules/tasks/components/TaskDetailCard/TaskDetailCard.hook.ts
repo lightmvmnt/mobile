@@ -1,15 +1,21 @@
-import {useAppDispatch} from '../../../../store/store';
+import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
 import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
-import {Task, UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
+import {Task} from '../../../../store/slices/tasks/tasks.types';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
 import {useEffect, useState} from 'react';
 import {Linking} from 'react-native';
 import {heightGenerator} from '../../../../utils/heightGenerator.util';
+import {UpdatedTaskPayload} from '../../../../store/thunks/tasks/tasks.types';
 
 export const useTaskDetail = (task: Task | null) => {
   const [completedCount, setCompletedCount] = useState(0);
   const [countLoading, setCountLoading] = useState(true);
+  const [taskPoint, setTaskPoint] = useState<number | null>(null);
+
+  const {tasksPoints, tasksPointsLoading} = useAppSelector(
+    state => state.tasks,
+  );
 
   const dispatch = useAppDispatch();
 
@@ -25,7 +31,21 @@ export const useTaskDetail = (task: Task | null) => {
     getCount();
   }, [task]);
 
-  const onTaskUpdate = (updatedTask: UpdatedTask) => {
+  useEffect(() => {
+    if (!tasksPoints.length || !task) {
+      return;
+    }
+
+    const task_point = tasksPoints.find(
+      tasks => tasks.mission_id === task.mission.id,
+    );
+
+    if (task_point) {
+      setTaskPoint(task_point.points);
+    }
+  }, [task, tasksPoints]);
+
+  const onTaskUpdate = (updatedTask: UpdatedTaskPayload) => {
     if (task) {
       dispatch(updateTask({task_id: task.id, updated_task: updatedTask}));
     }
@@ -74,15 +94,17 @@ export const useTaskDetail = (task: Task | null) => {
     }
 
     if (task.mission.category === 2) {
-      return heightGenerator() - 290;
+      return heightGenerator() - 320;
     }
 
-    return heightGenerator() - 230;
+    return heightGenerator() - 275;
   };
 
   return {
     completedCount,
     countLoading,
+    taskPoint,
+    tasksPointsLoading,
     onLinkButtonPress,
     onDoneButtonPress,
     onLocationButtonPress,

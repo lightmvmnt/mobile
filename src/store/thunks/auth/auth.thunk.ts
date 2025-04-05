@@ -331,8 +331,6 @@ export const getUserTotalPoints = createAsyncThunk(
         `${enviroment.API_BASE_URL}/users/me/points/`,
       );
 
-      console.log(response.data);
-
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

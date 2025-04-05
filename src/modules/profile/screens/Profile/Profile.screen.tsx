@@ -19,8 +19,8 @@ function ProfileScreen() {
     referralCount,
     userTotalPoints,
     userTotalPointsLoading,
-    completed_tasks_count,
-    completed_tasks_count_loading,
+    completedTasksCount,
+    completedTasksCountLoading,
     generateReferralLink,
   } = useProfile();
 
@@ -31,11 +31,11 @@ function ProfileScreen() {
           <View style={styles.userInfoContainer}>
             <InfoContainer
               title="შესრულებული მისიები"
-              count={completed_tasks_count}
+              count={completedTasksCount}
               counterBgColor={COLORS.NEW_MAIN}
               counterColor={COLORS.LIGHT}
               Icon={CompletedMissions}
-              loading={completed_tasks_count_loading}
+              loading={completedTasksCountLoading}
             />
             <InfoContainer
               title="დაგროვებული ქულა"

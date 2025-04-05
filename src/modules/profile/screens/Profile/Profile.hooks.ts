@@ -18,7 +18,7 @@ export const useProfile = () => {
     getReferralCountLoading,
   } = useAppSelector(state => state.referral);
 
-  const {completed_tasks_count, completed_tasks_count_loading} = useAppSelector(
+  const {completedTasksCount, completedTasksCountLoading} = useAppSelector(
     state => state.tasks,
   );
 
@@ -57,8 +57,8 @@ export const useProfile = () => {
     getReferralCountLoading,
     userTotalPoints,
     userTotalPointsLoading,
-    completed_tasks_count,
-    completed_tasks_count_loading,
+    completedTasksCount,
+    completedTasksCountLoading,
     generateReferralLink,
   };
 };

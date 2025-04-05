@@ -15,6 +15,7 @@ import {User} from '../../../store/thunks/auth/auth.types';
 import {
   getCompletedTaskCount,
   getTasks,
+  getTasksPoints,
 } from '../../../store/thunks/tasks/tasks.thunk';
 import {requestNotificationsPermission} from '../../../services/notifications/notificationPermissions';
 import {notificationHandler} from '../../../services/notifications/notificationHandler';
@@ -34,7 +35,9 @@ function LoadingScreen() {
   const {isAuth, user, account, userTotalPoints} = useAppSelector(
     state => state.auth,
   );
-  const {tasks, completed_tasks_count} = useAppSelector(state => state.tasks);
+  const {tasks, completedTasksCount, tasksPoints} = useAppSelector(
+    state => state.tasks,
+  );
   const {polls} = useAppSelector(state => state.polls);
 
   const navigation = useNavigation<NavigationProps>();
@@ -83,6 +86,7 @@ function LoadingScreen() {
 
       if (session_user && session_token && access_token) {
         dispatch(getTasks());
+        dispatch(getTasksPoints());
         dispatch(getCompletedTaskCount());
         dispatch(GetUserData());
         dispatch(getUserTotalPoints());
@@ -107,7 +111,8 @@ function LoadingScreen() {
       user &&
       account &&
       tasks &&
-      completed_tasks_count >= 0 &&
+      tasksPoints &&
+      completedTasksCount >= 0 &&
       userTotalPoints >= 0 &&
       polls
     ) {
@@ -115,7 +120,8 @@ function LoadingScreen() {
     }
   }, [
     tasks,
-    completed_tasks_count,
+    tasksPoints,
+    completedTasksCount,
     isAuth,
     user,
     userTotalPoints,

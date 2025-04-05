@@ -8,7 +8,7 @@ import {View} from 'react-native';
 import {useAppSelector} from '../../../../store/store';
 
 const UserProgressInfo = () => {
-  const {completed_tasks_count, completed_tasks_count_loading} = useAppSelector(
+  const {completedTasksCount, completedTasksCountLoading} = useAppSelector(
     state => state.tasks,
   );
 
@@ -20,11 +20,11 @@ const UserProgressInfo = () => {
     <View style={styles.progressInfoContainer}>
       <InfoContainer
         title="შესრულებული მისიები"
-        count={completed_tasks_count}
+        count={completedTasksCount}
         counterBgColor={COLORS.NEW_MAIN}
         counterColor={COLORS.LIGHT}
         Icon={CompletedMissions}
-        loading={completed_tasks_count_loading}
+        loading={completedTasksCountLoading}
       />
       <InfoContainer
         title="დაგროვებული ქულა"

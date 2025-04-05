@@ -13,6 +13,15 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.BORDER,
     marginBottom: 16,
   },
+  taskInfoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  taskInfoWrapper: {
+    marginLeft: 10,
+  },
   cardTopSide: {
     flexDirection: 'row',
     width: '100%',

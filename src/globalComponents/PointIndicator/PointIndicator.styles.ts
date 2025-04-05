@@ -1,12 +1,12 @@
 import {Platform, StyleSheet} from 'react-native';
-import {COLORS, FONTS} from '../../constants';
 import {FontSizeGenerator} from '../../utils/fontSizeGenerator.util';
+import {COLORS, FONTS} from '../../constants';
 
 export const styles = StyleSheet.create({
-  viewerIndicator: {
+  pointIndicator: {
     width: 60,
     height: 30,
-    backgroundColor: COLORS.SECONDARY_BG_COLOR,
+    backgroundColor: COLORS.SECONDARY,
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 50,
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  viewerIndicatorText: {
+  pointIndicatorText: {
     fontSize: FontSizeGenerator(Platform.OS === 'android' ? 14 : 13),
     fontFamily: FONTS.GEO_SEMIBOLD,
     color: COLORS.DARK,
