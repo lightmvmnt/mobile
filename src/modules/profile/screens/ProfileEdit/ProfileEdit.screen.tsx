@@ -5,6 +5,8 @@ import {FormValues} from './ProfileEdit.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {UpdateUserPayload} from '../../../../store/thunks/auth/auth.types';
 import {updateUser} from '../../../../store/thunks/auth/auth.thunk';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 
 const ProfileEditScreen = () => {
   const {account, loading} = useAppSelector(state => state.auth);
@@ -12,6 +14,7 @@ const ProfileEditScreen = () => {
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();
 
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
     if (!account) {
@@ -31,7 +34,14 @@ const ProfileEditScreen = () => {
       last_name: values.lastName,
     };
 
-    dispatch(updateUser(updatedUser));
+    if (
+      account?.first_name === updatedUser.first_name &&
+      account.last_name === updatedUser.last_name
+    ) {
+      return;
+    }
+
+    dispatch(updateUser({navigation, updated_user: updatedUser}));
   };
 
   return (

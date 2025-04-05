@@ -284,7 +284,13 @@ export const AccountDeletion = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-  async (updated_user: UpdateUserPayload, {rejectWithValue}) => {
+  async (
+    {
+      updated_user,
+      navigation,
+    }: {updated_user: UpdateUserPayload; navigation: NavigationProps},
+    {rejectWithValue},
+  ) => {
     try {
       const session_token = await GetStorageObject('session_token');
       const access_token = await GetStorageObject('access_token');
@@ -304,6 +310,10 @@ export const updateUser = createAsyncThunk(
         body,
         config,
       );
+
+      if (response.status === 200) {
+        navigation.navigate('Profile');
+      }
 
       return response.data;
     } catch (error) {

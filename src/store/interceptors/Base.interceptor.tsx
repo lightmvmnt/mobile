@@ -35,7 +35,7 @@ function BaseInterceptor() {
           return Promise.reject(error);
         }
 
-        console.log((error as AxiosError).response);
+        console.log((error as AxiosError).response?.data);
 
         switch (status) {
           case 401: {

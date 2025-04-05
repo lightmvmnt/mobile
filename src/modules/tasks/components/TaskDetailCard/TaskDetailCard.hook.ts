@@ -4,15 +4,12 @@ import {getTaskComplitionCount} from '../../../../services/tasks/getTaskCompliti
 import {Task, UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
 import {useEffect, useState} from 'react';
-import {Linking, Platform} from 'react-native';
-import {LAYOUT} from '../../../../constants';
+import {Linking} from 'react-native';
 import {heightGenerator} from '../../../../utils/heightGenerator.util';
 
 export const useTaskDetail = (task: Task | null) => {
   const [completedCount, setCompletedCount] = useState(0);
   const [countLoading, setCountLoading] = useState(true);
-
-  console.log(LAYOUT.HEIGHT, Platform.OS);
 
   const dispatch = useAppDispatch();
 
