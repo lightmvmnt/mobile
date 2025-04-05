@@ -23,6 +23,7 @@ import {getUniqueId} from 'react-native-device-info';
 import {changeDeviceId} from '../../../store/slices/auth/auth.slice';
 import {
   getAllPolls,
+  getPollsPoints,
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
 import Logo from '../../../assets/icons/DzalaLogo.svg';
@@ -38,7 +39,7 @@ function LoadingScreen() {
   const {tasks, completedTasksCount, tasksPoints} = useAppSelector(
     state => state.tasks,
   );
-  const {polls} = useAppSelector(state => state.polls);
+  const {polls, pollsPoints} = useAppSelector(state => state.polls);
 
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useAppDispatch();
@@ -91,6 +92,7 @@ function LoadingScreen() {
         dispatch(GetUserData());
         dispatch(getUserTotalPoints());
         dispatch(getAllPolls());
+        dispatch(getPollsPoints());
         dispatch(getUserPollsVotes());
       } else {
         if (isFirstLaunched) {
@@ -114,7 +116,8 @@ function LoadingScreen() {
       tasksPoints &&
       completedTasksCount >= 0 &&
       userTotalPoints >= 0 &&
-      polls
+      polls &&
+      pollsPoints
     ) {
       navigation.navigate('Home');
     }
@@ -126,6 +129,7 @@ function LoadingScreen() {
     user,
     userTotalPoints,
     polls,
+    pollsPoints,
     account,
     navigation,
     isFocused,

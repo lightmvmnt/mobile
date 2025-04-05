@@ -177,8 +177,6 @@ export const getTasksPoints = createAsyncThunk(
         `${enviroment.API_BASE_URL}/missions/points/`,
       );
 
-      console.log(response.data);
-
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

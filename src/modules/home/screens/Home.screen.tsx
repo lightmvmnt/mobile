@@ -17,9 +17,8 @@ import UserProgressInfo from '../components/UserProgressInfo';
 
 function HomeScreen() {
   const {tasks} = useAppSelector(state => state.tasks);
-  const {in_progress_polls, user_polls_votes} = useAppSelector(
-    state => state.polls,
-  );
+  const {inProgressPolls, userPollsVotes, pollsPoints, pollPointsLoading} =
+    useAppSelector(state => state.polls);
 
   const dispatch = useAppDispatch();
 
@@ -51,8 +50,10 @@ function HomeScreen() {
         {/* <TaskSuggestionCard /> */}
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment
-          polls={in_progress_polls.slice(0, 3)}
-          user_polls_votes={user_polls_votes}
+          polls_points={pollsPoints}
+          poll_points_loading={pollPointsLoading}
+          polls={inProgressPolls.slice(0, 3)}
+          user_polls_votes={userPollsVotes}
         />
       </ScrollView>
     </SafeAreaBackgroundWithHeader>

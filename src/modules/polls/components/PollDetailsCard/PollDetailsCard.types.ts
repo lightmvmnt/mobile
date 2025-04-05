@@ -10,6 +10,8 @@ export interface Props {
   votes: PollVote[];
   votes_loading: boolean;
   results_loading: boolean;
+  points_loading: boolean;
+  points: number | null;
   results: PollResults | null;
   isOptionSelected: (option: PollOption) => boolean;
   handleVoteSelect: (option: PollOption) => void;
