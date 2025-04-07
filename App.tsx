@@ -8,10 +8,9 @@ import Toast, {ErrorToast, ToastConfig} from 'react-native-toast-message';
 import {configureNativeComponents} from './src/utils/configureNativeComponents.util';
 import {PaperProvider} from 'react-native-paper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import NavigationWrapper from '@services/navigation/NavigationWrapper';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomTabStackNavigator from '@src/services/navigation/BottomTabStack/BottomTabStackNavigator';
 import BaseInterceptor from './src/store/interceptors/Base.interceptor';
+import NavigationWrapper from './src/services/navigation/NavigationWrapper';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,
