@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '@store/store';
 import { NavigationProp, useIsFocused, useNavigation } from '@react-navigation/native';
-import { GetStorageObject } from '@utils/asyncStore.util';
 import { changeDeviceId } from '@store/slices/auth/auth.slice';
 import { CheckSessionValidation, GetUserData } from '@store/thunks/auth/auth.thunk';
 import { getUniqueId } from 'react-native-device-info';
@@ -11,9 +9,11 @@ import { getAllPolls, getUserPollsVotes } from '@store/thunks/polls/polls.thunk'
 import { User } from '@store/thunks/auth/auth.types';
 import { requestNotificationsPermission } from '@services/notifications/notificationPermissions';
 import { notificationHandler } from '@services/notifications/notificationHandler';
-import LoadingScreen from '@modules/loading/screens';
 import BottomTabStackNavigator from './BottomTabStack/BottomTabStackNavigator';
 import AuthStackNavigator from './AuthStack/AuthStackNavigator';
+import LoadingScreen from 'modules/loading/screens/Loading.screen';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { GetStorageObject } from 'utils/asyncStore.util';
 
 const NavigationWrapper = () => {
     

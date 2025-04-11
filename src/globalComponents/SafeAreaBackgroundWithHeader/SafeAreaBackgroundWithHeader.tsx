@@ -34,7 +34,6 @@ function SafeAreaBackgroundWithHeader({children}: {children: React.ReactNode}) {
     <View style={styles.container}>
       <Header height={0.15} />
       <View style={[styles.safeArea, {flex: 0.85}]}>{children}</View>
-      <Navigator items={NavItems} />
     </View>
   );
 }

@@ -6,7 +6,7 @@ import HomeScreen from "@modules/home/screens";
 import PollsScreen from "@modules/polls/screens/Polls";
 import ProfileScreen from "@modules/profile/screens";
 import TasksScreen from "@modules/tasks/screens/Tasks";
-import TabBardComponent from "./TabBardComponent";
+import TabBarComponent from "./TabBarComponent";
 
 
 export type BottomTabStackNavigatorParamList = {
@@ -24,7 +24,7 @@ const  BottomTabStackNavigator = () => {
     return (
         <BottomTabStack.Navigator
             initialRouteName={"Home"}
-            tabBar={props => <TabBardComponent {...props} />}
+            tabBar={props => <TabBarComponent {...props} />}
             backBehavior={"history"}
             screenOptions={{headerShown: false,}}
         >

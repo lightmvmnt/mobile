@@ -1,5 +1,11 @@
 export default {
     translation: {
+        tabBarComponent: {
+            home: "მთავარი",
+            tasks: "მისიები",
+            polls: "გამოკითხვა",
+            profile: "პროფილი",
+        },
         auth: {
 
         },
