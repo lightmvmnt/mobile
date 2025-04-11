@@ -1,23 +1,17 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
+   "extends": "@tsconfig/react-native/tsconfig.json",
+    "compilerOptions": {
+    "baseUrl": "./",
     "paths": {
-      "@src/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/globalComponents/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@services/*": ["./src/services/*"],
-      "@store/*": ["./src/store/*"],
-      "@modules/*": ["./src/modules/*"],
-      "@types/*": ["./src/types/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@config/*": ["./src/config.ts"],
-      "@navigation/*": ["./src/services/navigation/*"],
-      "@tasks/*": ["./src/services/tasks/*"],
-      "@translations/*": ["./src/services/translations/*"],
-      "@location/*": ["./src/services/location/*"],
-      "@notifications/*": ["./src/services/notifications/*"]
+      "*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@constants/*": ["src/constants/*"],
+      "@modules/*": ["src/modules/*"],
+      "@services/*": ["src/services/*"],
+      "@store/*": ["src/store/*"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
+      "@globalComponents/*": ["src/globalComponents/*"]
     }
   }
 }
