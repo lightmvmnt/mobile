@@ -11,8 +11,9 @@ import GoogleIcon from '../../../../assets/icons/googleSign.svg';
 import AppleIcon from '../../../../assets/icons/AppleLogo.svg';
 import {useSignin} from './Signin.hook';
 import TACBottomSheet from '../../components/TACBottomSheet';
+import { SigninScreenParams } from 'services/navigation/AuthStack/AuthStackNavigator';
 
-function SigninScreen() {
+const SigninScreen: React.FC<SigninScreenParams> = () => {
   const {
     loading,
     snapPoints,

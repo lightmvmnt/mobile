@@ -23,7 +23,7 @@ function IntroductionInfoSwiper({
 
   const goToNextPage = () => {
     SetStorageObjectValue('IS_FIRST_LAUNCH', 'Done');
-    navigation.navigate('Signin');
+    navigation.navigate('SigninScreen');
   };
 
   const handleIndexChanged = (index: number) => {
