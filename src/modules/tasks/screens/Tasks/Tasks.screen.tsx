@@ -8,8 +8,9 @@ import {
   ScreenHeader,
   SafeAreaBackgroundWithHeader,
 } from '../../../../globalComponents';
+import { TasksScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-function TasksScreen() {
+const TasksScreen: React.FC<TasksScreenParams>  = () =>  {
   const {tasks, loading} = useAppSelector(state => state.tasks);
 
   const dispatch = useAppDispatch();

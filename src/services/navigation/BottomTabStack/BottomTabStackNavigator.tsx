@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 import HomeScreen from "@modules/home/screens";
@@ -10,30 +10,39 @@ import TabBarComponent from "./TabBarComponent";
 
 
 export type BottomTabStackNavigatorParamList = {
-    Home: undefined;
-    Tasks: undefined;
-    Polls: undefined;
-    Profile: undefined;
+    HomeScreen: undefined;
+    TasksScreen: undefined;
+    PollsScreen: undefined;
+    ProfileScreen: undefined;
 }
+
+export type HomeScreenParams = NativeStackScreenProps<BottomTabStackNavigatorParamList, 'HomeScreen'>;
+export type TasksScreenParams = NativeStackScreenProps<BottomTabStackNavigatorParamList, 'TasksScreen'>;
+export type PollsScreenParams = NativeStackScreenProps<BottomTabStackNavigatorParamList, 'PollsScreen'>;
+export type ProfileScreenParams = NativeStackScreenProps<BottomTabStackNavigatorParamList, 'ProfileScreen'>;
+
 
 export type BottomTabStackNavigatorProps = NativeStackNavigationProp<BottomTabStackNavigatorParamList>;
 
+
 const BottomTabStack = createBottomTabNavigator<BottomTabStackNavigatorParamList>();
+
 
 const  BottomTabStackNavigator = () => {
     return (
         <BottomTabStack.Navigator
-            initialRouteName={"Home"}
+            initialRouteName={"HomeScreen"}
             tabBar={props => <TabBarComponent {...props} />}
             backBehavior={"history"}
             screenOptions={{headerShown: false,}}
         >
-            <BottomTabStack.Screen name="Home" component={HomeScreen} />
-            <BottomTabStack.Screen name="Tasks" component={TasksScreen} />
-            <BottomTabStack.Screen name="Polls" component={PollsScreen} />
-            <BottomTabStack.Screen name="Profile" component={ProfileScreen} />
+            <BottomTabStack.Screen name="HomeScreen" component={HomeScreen} />
+            <BottomTabStack.Screen name="TasksScreen" component={TasksScreen} />
+            <BottomTabStack.Screen name="PollsScreen" component={PollsScreen} />
+            <BottomTabStack.Screen name="ProfileScreen" component={ProfileScreen} />
         </BottomTabStack.Navigator>
     )
 }
+
 
 export default BottomTabStackNavigator;

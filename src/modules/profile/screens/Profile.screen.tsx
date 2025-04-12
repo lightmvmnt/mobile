@@ -3,8 +3,9 @@ import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Profile.styles';
 import {ScreenHeader} from '../../../globalComponents';
 import {ProfileForm} from '../components';
+import { ProfileScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-function ProfileScreen() {
+const ProfileScreen: React.FC<ProfileScreenParams> = ({}) => {
   return (
     <SafeAreaBackgroundWithHeader>
       <View style={styles.screen}>

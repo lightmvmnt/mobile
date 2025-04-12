@@ -1,5 +1,4 @@
 import React from 'react';
-import Routing from './src/services/navigation/Base.navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {store} from './src/store/store';

@@ -12,8 +12,9 @@ import {
 } from '../../../../store/thunks/polls/polls.thunk';
 import PollCard from '../../components/PollCard';
 import PollsTabButton from '../../components/PollsTabButton';
+import { PollsScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-function PollsScreen() {
+const PollsScreen: React.FC<PollsScreenParams> = ({}) => {
   const {
     in_progress_polls,
     completed_polls,

@@ -39,7 +39,7 @@ const NavigationWrapper = () => {
         if (!is_first_launched) {
           setIsLoading(false);
           setStackType('authStack');
-        //   navigation.navigate('Home');
+        //   navigation.navigate('HomeHomeScreen');
 
         //   navigation.navigate('Introduction');
         } else {
@@ -108,13 +108,12 @@ const NavigationWrapper = () => {
         if (isFocused && isAuth && user && account && tasks && polls) {
             setIsLoading(false);
             setStackType('bottomStack');
-            // navigation.navigate('Home');
+            // navigation.navigate('HomeHomeScreen');
         }
     }, [tasks, isAuth, user, polls, account, isFocused, dispatch]);
 
 
     useEffect(() => {
-      console.log('oxoxoxoxoxoxoxoxxoox', sessionToken, accessToken);
         if(sessionToken){
             getSessionToken(sessionToken)  
         }

@@ -32,16 +32,16 @@ const TabBarComponent: React.FC<BottomTabBarProps> = ({state, descriptors, navig
     
     const routeName = getRouteName();
 
-    const isHomeActive = routeName === 'Home';
-    const isTasksActive = routeName === 'Tasks';
-    const isPollsActive = routeName === 'Polls';
-    const isProfileActive = routeName === "Profile";
+    const isHomeActive = routeName === 'HomeScreen';
+    const isTasksActive = routeName === 'TasksScreen';
+    const isPollsActive = routeName === 'PollsScreen';
+    const isProfileActive = routeName === "ProfileScreen";
 
 
-    const navigateToHome = () => navigation.navigate('Home');
-    const navigateToTasks = () => navigation.navigate('Tasks');
-    const navigateToPolls = () => navigation.navigate('Polls');
-    const navigateToProfile = () => navigation.navigate('Profile');
+    const navigateToHome = () => navigation.navigate('HomeScreen');
+    const navigateToTasks = () => navigation.navigate('TasksScreen');
+    const navigateToPolls = () => navigation.navigate('PollsScreen');
+    const navigateToProfile = () => navigation.navigate('ProfileScreen');
 
 
     return (

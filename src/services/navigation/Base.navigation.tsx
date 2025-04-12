@@ -19,12 +19,8 @@ export type RootStackParamList = {
   Loading: undefined;
   Introduction: undefined;
   Signin: undefined;
-  Home: undefined;
-  Tasks: undefined;
   TaskDetail: undefined;
-  Polls: undefined;
   PollDetails: undefined;
-  Profile: undefined;
 };
 export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
@@ -37,12 +33,8 @@ function Routing() {
         <Stack.Screen name="Loading" component={LoadingScreen} />
         <Stack.Screen name="Introduction" component={IntroductionScreen} />
         <Stack.Screen name="Signin" component={SigninScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Tasks" component={TasksScreen} />
         <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
-        <Stack.Screen name="Polls" component={PollsScreen} />
         <Stack.Screen name="PollDetails" component={PollDetailsScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

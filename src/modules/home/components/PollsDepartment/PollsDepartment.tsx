@@ -24,7 +24,7 @@ const PollsDepartment = ({polls, user_polls_votes}: Props) => {
         <Text style={styles.headerText}>გამოკითხვები</Text>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigation.navigate('Polls')}>
+          onPress={() => navigation.navigate('PollsScreen')}>
           <Text style={styles.headerButton}>ყველა</Text>
         </TouchableOpacity>
       </View>

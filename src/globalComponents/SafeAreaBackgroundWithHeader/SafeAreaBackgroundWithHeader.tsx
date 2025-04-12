@@ -2,8 +2,6 @@ import React, {useEffect} from 'react';
 import {BackHandler, View} from 'react-native';
 import Header from './Header';
 import {styles} from './SafeAreaBackgroundWithHeader.styles';
-import Navigator from './Navigator';
-import {NavItems} from '../../config';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {NavigationProps} from '../../services/navigation/Base.navigation';
 
@@ -13,7 +11,7 @@ function SafeAreaBackgroundWithHeader({children}: {children: React.ReactNode}) {
 
   useEffect(() => {
     const backAction = () => {
-      if (route.name === 'Home') {
+      if (route.name === 'HomeScreen') {
         BackHandler.exitApp();
       } else {
         navigation.goBack();

@@ -18,7 +18,7 @@ function TasksDepartment({tasks}: {tasks: Task[]}) {
         <Text style={styles.headerText}>{t('homeScreen.missions')}</Text>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigation.navigate('Tasks')}>
+          onPress={() => navigation.navigate('TasksScreen')}>
           <Text style={styles.headerButton}>{t('homeScreen.all')}</Text>
         </TouchableOpacity>
       </View>

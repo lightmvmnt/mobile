@@ -10,8 +10,10 @@ import {
   getAllPolls,
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
+import { HomeScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-function HomeScreen() {
+const  HomeScreen: React.FC<HomeScreenParams> = ({}) => {
+  
   const {tasks} = useAppSelector(state => state.tasks);
   const {in_progress_polls, user_polls_votes} = useAppSelector(
     state => state.polls,
