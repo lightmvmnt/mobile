@@ -3,13 +3,12 @@ import {useEffect} from 'react';
 import Toast from 'react-native-toast-message';
 import {useAppDispatch} from '../../store/store';
 import {Logout} from '../../store/thunks/auth/auth.thunk';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {GetStorageObject} from '../../utils/asyncStore.util';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
 
 function BaseInterceptor() {
   const dispatch = useAppDispatch();
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
 
   useEffect(() => {
     const requestInterceptor = axios.interceptors.request.use(

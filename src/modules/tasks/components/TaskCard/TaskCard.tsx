@@ -8,20 +8,20 @@ import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
 import {SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
 import UserIcon from '../../../../assets/icons/userIcon.svg';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import {useAppDispatch} from '../../../../store/store';
 import {getTask, updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
 import {UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
 import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
 import {ActivityIndicator} from 'react-native-paper';
+import { RootStackNavigatorProps } from 'services/navigation/RootStack/RootStackNavigator';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
 
 function TaskCard({task}: Props) {
   const [completedCount, setCompletedCount] = useState(0);
   const [countLoading, setCountLoading] = useState(true);
 
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function TaskCard({task}: Props) {
   const getToTaskDetailScreen = () => {
     if (task) {
       dispatch(getTask(task.id));
-      navigation.navigate('TaskDetail');
+      navigation.navigate('GlobalStack', {screen: 'TaskDetail'});
     }
   };
 

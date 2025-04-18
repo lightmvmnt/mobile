@@ -21,7 +21,6 @@ export type TasksScreenParams = NativeStackScreenProps<BottomTabStackNavigatorPa
 export type PollsScreenParams = NativeStackScreenProps<BottomTabStackNavigatorParamList, 'PollsScreen'>;
 export type ProfileScreenParams = NativeStackScreenProps<BottomTabStackNavigatorParamList, 'ProfileScreen'>;
 
-
 export type BottomTabStackNavigatorProps = NativeStackNavigationProp<BottomTabStackNavigatorParamList>;
 
 

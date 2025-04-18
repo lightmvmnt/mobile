@@ -1,7 +1,5 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {getUniqueId} from 'react-native-device-info';
 import {
   GetStorageObject,
@@ -12,6 +10,7 @@ import {
   IosSignIn,
 } from '../../../../store/thunks/auth/auth.thunk';
 import BottomSheet from '@gorhom/bottom-sheet';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
 
 export const useSignin = () => {
   const [localDeviceId, setLocalDeviceId] = useState('');
@@ -19,7 +18,8 @@ export const useSignin = () => {
 
   const {deviceId, loading} = useAppSelector(state => state.auth);
 
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
+
   const sheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['25%', '90%'], []);
   const dispatch = useAppDispatch();

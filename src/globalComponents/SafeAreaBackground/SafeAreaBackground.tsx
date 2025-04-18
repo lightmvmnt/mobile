@@ -1,17 +1,21 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {styles} from './SafeAreaBackground.styles';
 import {BackHandler, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../services/navigation/Base.navigation';
-import {useAppSelector} from '../../store/store';
-import BackImg from '../../assets/icons/back_img.svg';
+
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+import { useAppSelector } from '../../store/store';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
+
 import {LAYOUT} from '../../constants';
+import {styles} from './SafeAreaBackground.styles';
+
+import BackImg from '../../assets/icons/back_img.svg';
+
 
 function SafeAreaBackground({children}: {children: React.ReactNode}) {
   const {user} = useAppSelector(state => state.auth);
 
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
 
   useEffect(() => {
     const backAction = () => {

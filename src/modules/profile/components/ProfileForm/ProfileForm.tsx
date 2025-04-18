@@ -6,19 +6,18 @@ import TrashcanIcon from '../../../../assets/icons/trashCanIcon.svg';
 import ExitIcon from '../../../../assets/icons/exitIcon.svg';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
 import {
   AccountDeletion,
   Logout,
 } from '../../../../store/thunks/auth/auth.thunk';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
 
 function ProfileForm() {
   const {account, loading} = useAppSelector(state => state.auth);
   const disaptch = useAppDispatch();
 
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
 
   const logoutButtonHandler = () => {
     disaptch(

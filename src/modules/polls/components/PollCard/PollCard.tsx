@@ -7,8 +7,6 @@ import {SimpleButton, SimpleIndicator} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
 import {TimeCalculator} from '../../../../utils/timeCalculator.util';
 import {useAppDispatch} from '../../../../store/store';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {
   getPoll,
   getPollResults,
@@ -18,12 +16,13 @@ import TimeIcon from '../../../../assets/icons/timeIcon.svg';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import WarningIcon from '../../../../assets/icons/warningIcon.svg';
 import InfoTooltip from '../../../../globalComponents/InfoTooltip';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
 
 const PollCard = ({poll, isPollVoted}: Props) => {
   const {difference} = TimeCalculator(poll.due_date);
 
   const dispatch = useAppDispatch();
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
 
   const handlePollDetailsButton = () => {
     dispatch(getPoll(poll.id));
@@ -31,7 +30,7 @@ const PollCard = ({poll, isPollVoted}: Props) => {
     if (!poll.is_active) {
       dispatch(getPollResults(poll.id));
     }
-    navigation.navigate('PollDetails');
+    navigation.navigate('GlobalStack', {screen: 'PollDetails'});
   };
 
   return (

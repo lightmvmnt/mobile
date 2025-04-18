@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { NavigationProp, useIsFocused, useNavigation } from '@react-navigation/native';
+import { CompositeNavigationProp, NavigationProp, useIsFocused, } from '@react-navigation/native';
 import { changeDeviceId } from '@store/slices/auth/auth.slice';
 import { CheckSessionValidation, GetUserData } from '@store/thunks/auth/auth.thunk';
 import { getUniqueId } from 'react-native-device-info';
@@ -9,11 +9,18 @@ import { getAllPolls, getUserPollsVotes } from '@store/thunks/polls/polls.thunk'
 import { User } from '@store/thunks/auth/auth.types';
 import { requestNotificationsPermission } from '@services/notifications/notificationPermissions';
 import { notificationHandler } from '@services/notifications/notificationHandler';
-import BottomTabStackNavigator from './BottomTabStack/BottomTabStackNavigator';
-import AuthStackNavigator from './AuthStack/AuthStackNavigator';
+import AuthStackNavigator, { AuthStackNavigatorParamList } from './AuthStack/AuthStackNavigator';
 import LoadingScreen from 'modules/loading/screens/Loading.screen';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { GetStorageObject } from 'utils/asyncStore.util';
+import RootStackNavigator, { RootStackParamList } from './RootStack/RootStackNavigator';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+// Union RootStack with AuthStack
+export type AppNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<RootStackParamList>,
+  NativeStackNavigationProp<AuthStackNavigatorParamList>
+>;
 
 const NavigationWrapper = () => {
     
@@ -25,7 +32,6 @@ const NavigationWrapper = () => {
     const {tasks} = useAppSelector(state => state.tasks);
     const {polls} = useAppSelector(state => state.polls);
     
-    // const navigation = useNavigation<NavigationProp<any>>();
     const dispatch = useAppDispatch();
     const isFocused = useIsFocused();
 
@@ -131,7 +137,7 @@ const NavigationWrapper = () => {
 
     return (    
         <>
-            {stackType === 'bottomStack' ? <BottomTabStackNavigator /> : <AuthStackNavigator />}
+            {stackType === 'bottomStack' ? <RootStackNavigator /> : <AuthStackNavigator />}
         </>
     )
 }

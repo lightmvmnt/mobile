@@ -1,11 +1,14 @@
 import React, {useRef, useState} from 'react';
-import {styles} from './IntroductionSwiper.styles';
 import {View} from 'react-native';
+
 import Swiper from 'react-native-swiper';
-import Slide from './Slide';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+
+import {styles} from './IntroductionSwiper.styles';
 import {SetStorageObjectValue} from '../../../../utils/asyncStore.util';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
+
+import Slide from './Slide';
+
 
 function IntroductionInfoSwiper({
   slideIndexHandler,
@@ -15,7 +18,7 @@ function IntroductionInfoSwiper({
   const [isLastSlide, setIsLastSlide] = useState(false);
 
   const swiperRef = useRef<Swiper>(null);
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
 
   const goToNextSlide = () => {
     swiperRef.current?.scrollBy(1);
