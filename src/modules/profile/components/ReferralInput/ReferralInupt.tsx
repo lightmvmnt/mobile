@@ -62,7 +62,7 @@ const ReferalInupt = ({
           <>
             <View style={styles.inputPressable}>
               <ReferralIcon />
-              <Text style={styles.input} numberOfLines={1}>
+              <Text style={styles.link} numberOfLines={1}>
                 {link}
               </Text>
             </View>

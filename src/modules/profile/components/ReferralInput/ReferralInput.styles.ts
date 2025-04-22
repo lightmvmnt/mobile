@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {COLORS, FONTS, LAYOUT} from '../../../../constants';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 
@@ -44,7 +44,14 @@ export const styles = StyleSheet.create({
   input: {
     fontFamily: FONTS.GEO_REGULAR,
     color: COLORS.DARK,
-    fontSize: FontSizeGenerator(14),
+    fontSize: FontSizeGenerator(Platform.OS === 'android' ? 14 : 13),
+    minHeight: 20,
+    marginLeft: 8,
+  },
+  link: {
+    fontFamily: FONTS.GEO_REGULAR,
+    color: COLORS.DARK,
+    fontSize: FontSizeGenerator(Platform.OS === 'android' ? 14 : 13),
     minHeight: 20,
     marginLeft: 8,
     width: 250,

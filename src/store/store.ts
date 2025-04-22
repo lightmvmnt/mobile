@@ -4,7 +4,7 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import tasksReducer from './slices/tasks/tasks.slice';
 import appReducer from './slices/app/app.slice';
 import PollsReducer from './slices/polls/polls.slice';
-import UserReducer from './slices/user/user.slice';
+import referralReducer from './slices/referral/referral.slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +12,7 @@ export const store = configureStore({
     tasks: tasksReducer,
     app: appReducer,
     polls: PollsReducer,
-    user: UserReducer,
+    referral: referralReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({serializableCheck: false}),

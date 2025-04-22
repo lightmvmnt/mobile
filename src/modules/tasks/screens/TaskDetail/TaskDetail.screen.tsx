@@ -8,16 +8,16 @@ import {TaskDetailCard} from '../../components';
 import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 
 function TaskDetailScreen() {
-  const {task_details, task_details_loading, loading} = useAppSelector(
+  const {taskDetails, taskDetailsLoading, loading} = useAppSelector(
     state => state.tasks,
   );
 
   return (
     <SafeAreaBackgroundWithHeader>
-      {!task_details_loading ? (
+      {!taskDetailsLoading ? (
         <View style={styles.detailPage}>
           <View style={styles.detailTaskContainer}>
-            <TaskDetailCard task={task_details} task_loading={loading} />
+            <TaskDetailCard task={taskDetails} task_loading={loading} />
           </View>
         </View>
       ) : (

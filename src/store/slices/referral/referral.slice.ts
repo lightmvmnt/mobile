@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {InitialState} from './user.types';
-import {getUserReferralCount} from '../../thunks/user/user.thunk';
+import {InitialState} from './referral.types';
+import {getUserReferralCount} from '../../thunks/referral/referral.thunk';
 
 const initialState: InitialState = {
   referralCount: 0,
@@ -9,7 +9,7 @@ const initialState: InitialState = {
   getReferralCountLoading: false,
 };
 
-export const userSlice = createSlice({
+export const referralSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -38,6 +38,6 @@ export const userSlice = createSlice({
 });
 
 export const {setReferralLink, changeGenerateReferralLinkLoading} =
-  userSlice.actions;
+  referralSlice.actions;
 
-export default userSlice.reducer;
+export default referralSlice.reducer;

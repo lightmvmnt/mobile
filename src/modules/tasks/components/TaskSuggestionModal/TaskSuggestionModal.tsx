@@ -14,9 +14,7 @@ const TaskSuggestionModal = () => {
     message: '',
   });
 
-  const {is_task_suggestion_modal_visible} = useAppSelector(
-    state => state.tasks,
-  );
+  const {isTaskSuggestionModalVisible} = useAppSelector(state => state.tasks);
 
   const dispatch = useAppDispatch();
 
@@ -54,7 +52,7 @@ const TaskSuggestionModal = () => {
 
   return (
     <Modal
-      visible={is_task_suggestion_modal_visible}
+      visible={isTaskSuggestionModalVisible}
       onDismiss={modalDismissHandler}
       contentContainerStyle={styles.containerStyle}
       style={styles.modal}>

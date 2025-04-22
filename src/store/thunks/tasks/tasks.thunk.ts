@@ -1,10 +1,16 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {enviroment} from '../../../constants/enviroment';
-import {sendDeviceIdForTasksTypes, UpdateTaskTypes} from './tasks.types';
+import {
+  GetCompletedTaskCountResponse,
+  GetTaskPointsResponse,
+  sendDeviceIdForTasksTypes,
+  TaskResponse,
+  UpdateTaskTypes,
+} from './tasks.types';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {User} from '../auth/auth.types';
-import {Task} from '../../slices/tasks/tasks.types';
+import {getUserTotalPoints} from '../auth/auth.thunk';
 
 export const getTasks = createAsyncThunk(
   'tasks/getTasks',
@@ -12,7 +18,7 @@ export const getTasks = createAsyncThunk(
     try {
       const session_user: User = await GetStorageObject('user');
 
-      const response = await axios.get<Task[]>(
+      const response = await axios.get<TaskResponse[]>(
         `${enviroment.API_BASE_URL}/missions/user/${session_user.id}/`,
       );
 
@@ -114,7 +120,7 @@ export const updateTask = createAsyncThunk(
 
       const body = JSON.stringify(updated_task);
 
-      const response = await axios.put<Task>(
+      const response = await axios.put<TaskResponse>(
         `${enviroment.API_BASE_URL}/missions/${task_id}/`,
         body,
         config,
@@ -122,6 +128,8 @@ export const updateTask = createAsyncThunk(
 
       if (response.status === 200) {
         dispatch(getTasks());
+        dispatch(getCompletedTaskCount());
+        dispatch(getUserTotalPoints());
       }
 
       return response.data;
@@ -135,8 +143,38 @@ export const getTask = createAsyncThunk(
   'tasks/getTask',
   async (task_id: number, {rejectWithValue}) => {
     try {
-      const response = await axios.get<Task>(
+      const response = await axios.get<TaskResponse>(
         `${enviroment.API_BASE_URL}/missions/${task_id}/`,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getCompletedTaskCount = createAsyncThunk(
+  'tasks/getCompletedTaskCount',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetCompletedTaskCountResponse>(
+        `${enviroment.API_BASE_URL}/missions/user/count/`,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getTasksPoints = createAsyncThunk(
+  'tasks/getTasksPoints',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetTaskPointsResponse[]>(
+        `${enviroment.API_BASE_URL}/missions/points/`,
       );
 
       return response.data;

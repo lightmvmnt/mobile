@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {styles} from './PollDetailsCard.styles';
 import PollStatusIndicator from '../PollStatusIndicator';
-import {SimpleIndicator} from '../../../../globalComponents';
+import {PointIndicator, SimpleIndicator} from '../../../../globalComponents';
 import TimeIcon from '../../../../assets/icons/timeIcon.svg';
 import {Props} from './PollDetailsCard.types';
 import {TimeCalculator} from '../../../../utils/timeCalculator.util';
@@ -16,8 +16,10 @@ const PollDetailsCard = ({
   poll,
   votes,
   results,
+  points,
   votes_loading,
   results_loading,
+  points_loading,
   isOptionSelected,
   handleVoteSelect,
 }: Props) => {
@@ -35,6 +37,12 @@ const PollDetailsCard = ({
         <View style={styles.secondaryIndicatorsContainer}>
           {difference && poll?.is_active ? (
             <SimpleIndicator Icon={TimeIcon} text={difference} />
+          ) : null}
+
+          {points && poll?.is_active ? (
+            <View style={styles.indicatorWrapper}>
+              <PointIndicator loading={points_loading} point={points} />
+            </View>
           ) : null}
 
           {poll?.is_active ? (

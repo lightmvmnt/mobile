@@ -21,6 +21,11 @@ export interface Account {
   email: string;
 }
 
+export interface UpdateUserPayload {
+  first_name: string;
+  last_name: string;
+}
+
 export interface SigninResponse {
   data: {
     user: User;
@@ -37,4 +42,8 @@ export interface SigninResponse {
     access_token: string;
   };
   status: number;
+}
+
+export interface GetUserTotalPointsResponse {
+  points: number;
 }

@@ -18,8 +18,8 @@ const toastConfig: ToastConfig = {
 
 const appsFlyerOptions: InitSDKOptions = {
   devKey: 'XjAJxzVUJT3hPaufeUUK5K',
-  appId: '6742493689',
-  isDebug: false,
+  appId: '111157983',
+  isDebug: true,
   onInstallConversionDataListener: true,
   onDeepLinkListener: true,
   timeToWaitForATTUserAuthorization: 1,
@@ -31,13 +31,11 @@ function App() {
   useEffect(() => {
     appsFlyer.initSdk(
       appsFlyerOptions,
-      result => console.log(result),
+      () => {},
       error => console.log(error),
     );
 
     appsFlyer.setAppInviteOneLinkID('x8gn');
-
-    appsFlyer.onDeepLink(data => console.log(data, 'letsgooo'));
 
     appsFlyer.onInstallConversionData(data => {
       if (data.data.af_status === 'Non-organic') {

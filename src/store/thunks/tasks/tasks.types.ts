@@ -1,5 +1,17 @@
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
-import {UpdatedTask} from '../../slices/tasks/tasks.types';
+
+export interface TaskResponse {
+  id: number;
+  mission: {
+    id: number;
+    category: number;
+    description: string;
+    status: string;
+    target_url: string;
+    title: string;
+  };
+  is_completed: boolean;
+}
 
 export interface GetTaskTypes {
   session_token: string;
@@ -15,7 +27,20 @@ export interface sendDeviceIdForTasksTypes {
   token: string;
 }
 
+export interface UpdatedTaskPayload {
+  is_completed: boolean;
+}
+
 export interface UpdateTaskTypes {
   task_id: number;
-  updated_task: UpdatedTask;
+  updated_task: UpdatedTaskPayload;
+}
+
+export interface GetCompletedTaskCountResponse {
+  total_missions_completed: 0;
+}
+
+export interface GetTaskPointsResponse {
+  mission_id: number;
+  points: number;
 }

@@ -20,6 +20,11 @@ export interface GetPollResultsResponse {
   total_vote_count: number;
 }
 
+export interface GetPollPointsResponse {
+  poll_id: number;
+  points: number;
+}
+
 export interface PollResult {
   option_id: number;
   vote_count: number;

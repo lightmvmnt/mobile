@@ -1,16 +1,26 @@
 import {Platform, StyleSheet} from 'react-native';
 import {COLORS, FONTS} from '../../../../constants';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
+import {heightGenerator} from '../../../../utils/heightGenerator.util';
 
 export const styles = StyleSheet.create({
   card: {
     width: '100%',
-    height: 'auto',
+    height: heightGenerator(),
     padding: 16,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: COLORS.BORDER,
     marginBottom: 16,
+  },
+  taskInfoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  taskInfoWrapper: {
+    marginLeft: 10,
   },
   cardTopSide: {
     flexDirection: 'row',
@@ -41,7 +51,6 @@ export const styles = StyleSheet.create({
   cardDescriptionContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: 320,
   },
   cardDescriptionScrollView: {
     justifyContent: 'center',
@@ -54,11 +63,15 @@ export const styles = StyleSheet.create({
     fontFamily: FONTS.GEO_MEDIUM,
     fontSize: FontSizeGenerator(Platform.OS === 'android' ? 15 : 13),
   },
-  completedButtonContainer: {
+  buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
     marginTop: 20,
     width: '100%',
+  },
+  buttonWrapper: {
+    marginLeft: 10,
   },
   cardBottomSide: {
     width: '100%',

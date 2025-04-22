@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {LAYOUT} from '../../../constants';
+import {LAYOUT} from '../../../../constants';
 
 export const styles = StyleSheet.create({
   screen: {
@@ -7,14 +7,18 @@ export const styles = StyleSheet.create({
     width: LAYOUT.WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 15,
   },
   profileContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  profileScrollView: {
-    width: LAYOUT.WIDTH - 30,
+  userInfoContainer: {
+    width: LAYOUT.WIDTH - 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 15,
   },
 });

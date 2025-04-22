@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
+  GetPollPointsResponse,
   GetPollResultsResponse,
   GetPollsResponse,
   GetUserPollVotesResponse,
@@ -11,6 +12,7 @@ import {
 import {enviroment} from '../../../constants/enviroment';
 import axios from 'axios';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
+import {getUserTotalPoints} from '../auth/auth.thunk';
 
 export const getAllPolls = createAsyncThunk(
   'polls/getAllPolls',
@@ -99,6 +101,7 @@ export const postPollVote = createAsyncThunk(
       if (response.status === 201) {
         dispatch(getPollVote(id));
         dispatch(getUserPollsVotes());
+        dispatch(getUserTotalPoints());
       }
 
       return response.data;
@@ -132,6 +135,7 @@ export const deletePollVote = createAsyncThunk(
       if (response.status === 204) {
         dispatch(getPollVote(id));
         dispatch(getUserPollsVotes());
+        dispatch(getUserTotalPoints());
       }
 
       return response.data;
@@ -147,6 +151,21 @@ export const getPollResults = createAsyncThunk(
     try {
       const response = await axios.get<GetPollResultsResponse>(
         `${enviroment.API_BASE_URL}/polls/${id}/results/`,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getPollsPoints = createAsyncThunk(
+  'polls/getPollsPoints',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetPollPointsResponse[]>(
+        `${enviroment.API_BASE_URL}/polls/points/`,
       );
 
       return response.data;

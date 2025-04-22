@@ -9,15 +9,21 @@ import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {
   CheckSessionValidation,
   GetUserData,
+  getUserTotalPoints,
 } from '../../../store/thunks/auth/auth.thunk';
 import {User} from '../../../store/thunks/auth/auth.types';
-import {getTasks} from '../../../store/thunks/tasks/tasks.thunk';
+import {
+  getCompletedTaskCount,
+  getTasks,
+  getTasksPoints,
+} from '../../../store/thunks/tasks/tasks.thunk';
 import {requestNotificationsPermission} from '../../../services/notifications/notificationPermissions';
 import {notificationHandler} from '../../../services/notifications/notificationHandler';
 import {getUniqueId} from 'react-native-device-info';
 import {changeDeviceId} from '../../../store/slices/auth/auth.slice';
 import {
   getAllPolls,
+  getPollsPoints,
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
 import Logo from '../../../assets/icons/DzalaLogo.svg';
@@ -27,9 +33,13 @@ import {LAYOUT} from '../../../constants';
 function LoadingScreen() {
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);
 
-  const {isAuth, user, account} = useAppSelector(state => state.auth);
-  const {tasks} = useAppSelector(state => state.tasks);
-  const {polls} = useAppSelector(state => state.polls);
+  const {isAuth, user, account, userTotalPoints} = useAppSelector(
+    state => state.auth,
+  );
+  const {tasks, completedTasksCount, tasksPoints} = useAppSelector(
+    state => state.tasks,
+  );
+  const {polls, pollsPoints} = useAppSelector(state => state.polls);
 
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useAppDispatch();
@@ -77,8 +87,12 @@ function LoadingScreen() {
 
       if (session_user && session_token && access_token) {
         dispatch(getTasks());
+        dispatch(getTasksPoints());
+        dispatch(getCompletedTaskCount());
         dispatch(GetUserData());
+        dispatch(getUserTotalPoints());
         dispatch(getAllPolls());
+        dispatch(getPollsPoints());
         dispatch(getUserPollsVotes());
       } else {
         if (isFirstLaunched) {
@@ -93,10 +107,34 @@ function LoadingScreen() {
   useEffect(() => {
     requestNotificationsPermission();
     notificationHandler(dispatch);
-    if (isFocused && isAuth && user && account && tasks && polls) {
+    if (
+      isFocused &&
+      isAuth &&
+      user &&
+      account &&
+      tasks &&
+      tasksPoints &&
+      completedTasksCount >= 0 &&
+      userTotalPoints >= 0 &&
+      polls &&
+      pollsPoints
+    ) {
       navigation.navigate('Home');
     }
-  }, [tasks, isAuth, user, polls, account, navigation, isFocused, dispatch]);
+  }, [
+    tasks,
+    tasksPoints,
+    completedTasksCount,
+    isAuth,
+    user,
+    userTotalPoints,
+    polls,
+    pollsPoints,
+    account,
+    navigation,
+    isFocused,
+    dispatch,
+  ]);
 
   return (
     <View style={styles.container}>

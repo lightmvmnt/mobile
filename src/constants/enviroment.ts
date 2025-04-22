@@ -1,5 +1,5 @@
 export const enviroment = {
-  API_BASE_URL: 'https://solar-bolt-445009-p8.lm.r.appspot.com',
+  API_BASE_URL: 'https://dev-dot-solar-bolt-445009-p8.lm.r.appspot.com',
   CLIENT_ID:
     '813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com',
   IOS_CLIENT_ID:

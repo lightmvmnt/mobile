@@ -6,7 +6,12 @@ import {styles} from './PollsDepartment.styles';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 
-const PollsDepartment = ({polls, user_polls_votes}: Props) => {
+const PollsDepartment = ({
+  polls,
+  polls_points,
+  user_polls_votes,
+  poll_points_loading,
+}: Props) => {
   const navigation = useNavigation<NavigationProps>();
 
   const isPollVoted = (id: number) => {
@@ -30,7 +35,13 @@ const PollsDepartment = ({polls, user_polls_votes}: Props) => {
       </View>
       <View style={styles.tasksContainer}>
         {polls.map((poll, i) => (
-          <PollCard isPollVoted={isPollVoted} key={+i} poll={poll} />
+          <PollCard
+            polls_points={polls_points}
+            points_loading={poll_points_loading}
+            isPollVoted={isPollVoted}
+            key={+i}
+            poll={poll}
+          />
         ))}
       </View>
     </View>
