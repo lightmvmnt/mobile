@@ -1,16 +1,23 @@
 export interface PollsInitialState {
   loading: boolean;
   polls: Poll[];
-  in_progress_polls: Poll[];
-  completed_polls: Poll[];
-  poll_details: Poll | null;
-  poll_details_loading: boolean;
-  user_polls_votes_loading: boolean;
-  user_polls_votes: UserPollVotes[];
-  poll_votes_loading: boolean;
-  poll_votes: PollVote[];
-  poll_results: PollResults | null;
-  poll_results_loading: boolean;
+  inProgressPolls: Poll[];
+  completedPolls: Poll[];
+  pollDetails: Poll | null;
+  pollDetailsLoading: boolean;
+  userPollsVotesLoading: boolean;
+  userPollsVotes: UserPollVotes[];
+  pollVotesLoading: boolean;
+  pollVotes: PollVote[];
+  pollResults: PollResults | null;
+  pollResultsLoading: boolean;
+  pollsPoints: PollPoints[];
+  pollPointsLoading: boolean;
+}
+
+export interface PollPoints {
+  poll_id: number;
+  points: number;
 }
 
 export interface Poll {

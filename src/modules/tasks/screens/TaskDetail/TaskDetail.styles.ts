@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     width: LAYOUT.WIDTH,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 25,
   },
   detailTaskContainer: {
-    flex: 0.9,
+    flex: 1,
     width: LAYOUT.WIDTH - 30,
     justifyContent: 'flex-start',
     alignItems: 'center',

@@ -7,12 +7,16 @@ export const styles = StyleSheet.create({
     width: LAYOUT.WIDTH,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 10,
+    paddingTop: 25,
   },
   detailTaskContainer: {
-    flex: 0.9,
+    flex: 1,
     position: 'relative',
     justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  detailTaskScrollView: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
   confirmButtonContainer: {
@@ -25,5 +29,7 @@ export const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: COLORS.GRAY,
     paddingTop: 10,
+    backgroundColor: COLORS.LIGHT,
+    zIndex: 10,
   },
 });

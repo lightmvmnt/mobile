@@ -9,7 +9,12 @@ import {styles} from './PollsDepartment.styles';
 import PollCard from '../../../polls/components/PollCard';
 
 
-const PollsDepartment = ({polls, user_polls_votes}: Props) => {
+const PollsDepartment = ({
+  polls,
+  polls_points,
+  user_polls_votes,
+  poll_points_loading,
+}: Props) => {
   
   const navigation = useAppNavigation();
 
@@ -27,7 +32,7 @@ const PollsDepartment = ({polls, user_polls_votes}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>გამოკითხვები</Text>
+        <Text style={styles.headerText}>არჩევანი</Text>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={navToPollsScreen}>
@@ -36,7 +41,13 @@ const PollsDepartment = ({polls, user_polls_votes}: Props) => {
       </View>
       <View style={styles.tasksContainer}>
         {polls.map((poll, i) => (
-          <PollCard isPollVoted={isPollVoted} key={+i} poll={poll} />
+          <PollCard
+            polls_points={polls_points}
+            points_loading={poll_points_loading}
+            isPollVoted={isPollVoted}
+            key={+i}
+            poll={poll}
+          />
         ))}
       </View>
     </View>

@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     width: LAYOUT.WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 25,
   },
   pollsContainer: {
-    flex: 0.9,
+    flex: 1,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

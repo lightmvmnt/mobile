@@ -11,13 +11,19 @@ export interface Task {
   is_completed: boolean;
 }
 
-export interface UpdatedTask {
-  is_completed: boolean;
+export interface TaskPoints {
+  mission_id: number;
+  points: number;
 }
 
 export interface TasksInitialState {
   tasks: Task[];
   loading: boolean;
-  task_details: Task | null;
-  task_details_loading: boolean;
+  taskDetails: Task | null;
+  taskDetailsLoading: boolean;
+  isTaskSuggestionModalVisible: boolean;
+  completedTasksCount: number;
+  completedTasksCountLoading: boolean;
+  tasksPoints: TaskPoints[];
+  tasksPointsLoading: boolean;
 }

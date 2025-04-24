@@ -1,77 +1,44 @@
-import React, {useEffect, useState} from 'react';
-import {Linking, ScrollView, Text, View} from 'react-native';
+import React from 'react';
+import {ScrollView, Text, View} from 'react-native';
 import SupportLogo from '../../../../assets/icons/supportLogo.svg';
 import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
 import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
-import {SimpleButton} from '../../../../globalComponents';
+import {
+  CountIndicator,
+  PointIndicator,
+  SimpleButton,
+} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
-import UserIcon from '../../../../assets/icons/userIcon.svg';
 import UrlIcon from '../../../../assets/icons/LinkIcon.svg';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
-import {useAppDispatch} from '../../../../store/store';
-import {updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
-import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
 import {Props} from '../TaskDetailCard/TaskDetailCard.types';
 import {styles} from './TaskDetailCard.styles';
-import {UpdatedTask} from '../../../../store/slices/tasks/tasks.types';
-import {changeModalState} from '../../../../store/slices/app/app.slice';
-import {ActivityIndicator} from 'react-native-paper';
+import {useTaskDetail} from './TaskDetailCard.hook';
 
 function TaskDetailCard({task, task_loading}: Props) {
-  const [completedCount, setCompletedCount] = useState(0);
-  const [countLoading, setCountLoading] = useState(true);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    setCountLoading(true);
-    const getCount = async () => {
-      const {count} = await getTaskComplitionCount(task ? task.mission.id : 0);
-
-      setCountLoading(false);
-      setCompletedCount(count);
-    };
-
-    getCount();
-  }, [task]);
-
-  const onTaskUpdate = (updatedTask: UpdatedTask) => {
-    if (task) {
-      dispatch(updateTask({task_id: task.id, updated_task: updatedTask}));
-    }
-  };
-
-  const onLinkButtonPress = () => {
-    if (!task) {
-      return;
-    }
-
-    onTaskUpdate({is_completed: true});
-    Linking.openURL(task.mission.target_url);
-  };
-
-  const onDoneButtonPress = () => {
-    if (!task) {
-      return;
-    }
-
-    if (task.is_completed) {
-      onTaskUpdate({is_completed: false});
-    } else {
-      dispatch(
-        changeModalState({
-          isModalOpen: true,
-          modalDescription:
-            'მისიის შესასრულებლად გადადი მოცემულ ბმულზე და შეასრულე დავალება',
-          modalButtonHandler: () => {},
-          secondaryButtonTitle: 'გასაგებია',
-        }),
-      );
-    }
-  };
+  const {
+    completedCount,
+    countLoading,
+    taskPoint,
+    tasksPointsLoading,
+    onDoneButtonPress,
+    onLinkButtonPress,
+    onLocationButtonPress,
+    onMobilizationComingButtonPress,
+    handleTaskDescriptionHeight,
+  } = useTaskDetail(task);
 
   return (
     <View style={styles.card}>
+      <View style={styles.taskInfoContainer}>
+        <CountIndicator loading={countLoading} count={completedCount} />
+        {taskPoint !== null ? (
+          <View style={styles.taskInfoWrapper}>
+            <PointIndicator loading={tasksPointsLoading} point={taskPoint} />
+          </View>
+        ) : null}
+      </View>
+
       <View style={styles.cardTopSide}>
         {task?.mission.category === 1 && <SupportLogo width={50} height={50} />}
         {task?.mission.category === 2 && (
@@ -83,7 +50,13 @@ function TaskDetailCard({task, task_loading}: Props) {
         </View>
       </View>
 
-      <View style={styles.cardDescriptionContainer}>
+      <View
+        style={[
+          styles.cardDescriptionContainer,
+          {
+            height: handleTaskDescriptionHeight(),
+          },
+        ]}>
         <ScrollView contentContainerStyle={styles.cardDescriptionScrollView}>
           <Text style={styles.cardDescriptionText} selectable={true}>
             {task?.mission.description}
@@ -91,12 +64,12 @@ function TaskDetailCard({task, task_loading}: Props) {
         </ScrollView>
       </View>
 
-      <View style={styles.completedButtonContainer}>
+      <View style={styles.buttonContainer}>
         <SimpleButton
           variant="contained"
           text={'ლინკზე გადასვლა'}
           Icon={UrlIcon}
-          onPress={() => onLinkButtonPress()}
+          onPress={onLinkButtonPress}
           width={320}
           height={40}
           buttonColor={COLORS.MAIN}
@@ -104,30 +77,45 @@ function TaskDetailCard({task, task_loading}: Props) {
         />
       </View>
 
-      <View style={styles.cardBottomSide}>
-        <View style={styles.viewerIndicator}>
-          {countLoading ? (
-            <ActivityIndicator size={20} color={COLORS.MAIN} />
-          ) : (
-            <>
-              <UserIcon width={15} height={15} />
-              <Text style={styles.viewerIndicatorText}>{completedCount}</Text>
-            </>
-          )}
-        </View>
+      {task?.mission.category === 2 ? (
+        <View style={styles.buttonContainer}>
+          <SimpleButton
+            variant="contained"
+            text={'ვუერთდები'}
+            onPress={onMobilizationComingButtonPress}
+            width={155}
+            height={40}
+            buttonColor={COLORS.GRAY}
+            textColor={COLORS.DARK}
+          />
 
+          <View style={styles.buttonWrapper}>
+            <SimpleButton
+              variant="contained"
+              text={'ლოკაცია'}
+              onPress={onLocationButtonPress}
+              width={155}
+              height={40}
+              buttonColor={COLORS.GRAY}
+              textColor={COLORS.DARK}
+            />
+          </View>
+        </View>
+      ) : null}
+
+      <View style={styles.cardBottomSide}>
         <SimpleButton
           variant="contained"
           buttonColor={task?.is_completed ? COLORS.GRAY : COLORS.MAIN}
           textColor={task?.is_completed ? COLORS.DARK : COLORS.LIGHT}
-          onPress={() => onDoneButtonPress()}
+          onPress={onDoneButtonPress}
           text={
             task_loading === false && task?.is_completed
               ? 'შესრულებულია'
               : 'შევასრულე'
           }
           Icon={task?.is_completed ? CompletedIcon : undefined}
-          width={250}
+          width={320}
           height={40}
           buttonLoading={task_loading}
         />

@@ -5,12 +5,21 @@ import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 export const styles = StyleSheet.create({
   card: {
     width: '100%',
-    height: 150,
+    height: 200,
     padding: 16,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: COLORS.BORDER,
     marginBottom: 16,
+  },
+  taskInfoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  taskInfoWrapper: {
+    marginLeft: 10,
   },
   cardTopSide: {
     flexDirection: 'row',
@@ -50,23 +59,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 15,
-  },
-  viewerIndicator: {
-    width: 60,
-    height: 40,
-    marginRight: 10,
-    backgroundColor: COLORS.SECONDARY_BG_COLOR,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 25,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  viewerIndicatorText: {
-    fontSize: FontSizeGenerator(14),
-    fontFamily: FONTS.GEO_SEMIBOLD,
-    color: COLORS.DARK,
-    marginLeft: 5,
   },
 });

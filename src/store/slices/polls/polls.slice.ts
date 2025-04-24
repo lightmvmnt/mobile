@@ -5,6 +5,7 @@ import {
   getAllPolls,
   getPoll,
   getPollResults,
+  getPollsPoints,
   getPollVote,
   getUserPollsVotes,
   postPollVote,
@@ -12,17 +13,19 @@ import {
 
 const initialState: PollsInitialState = {
   polls: [],
-  in_progress_polls: [],
-  completed_polls: [],
-  user_polls_votes: [],
-  poll_votes: [],
-  poll_details: null,
-  poll_results: null,
+  inProgressPolls: [],
+  completedPolls: [],
+  userPollsVotes: [],
+  pollVotes: [],
+  pollsPoints: [],
+  pollDetails: null,
+  pollResults: null,
   loading: false,
-  poll_details_loading: false,
-  user_polls_votes_loading: false,
-  poll_votes_loading: false,
-  poll_results_loading: false,
+  pollDetailsLoading: false,
+  userPollsVotesLoading: false,
+  pollVotesLoading: false,
+  pollResultsLoading: false,
+  pollPointsLoading: false,
 };
 
 export const PollsSlice = createSlice({
@@ -36,64 +39,75 @@ export const PollsSlice = createSlice({
       })
       .addCase(getAllPolls.fulfilled, (state, action) => {
         state.polls = action.payload;
-        state.in_progress_polls = action.payload.filter(poll => poll.is_active);
-        state.completed_polls = action.payload.filter(poll => !poll.is_active);
+        state.inProgressPolls = action.payload.filter(poll => poll.is_active);
+        state.completedPolls = action.payload.filter(poll => !poll.is_active);
         state.loading = false;
       })
       .addCase(getAllPolls.rejected, state => {
         state.loading = false;
       })
       .addCase(getPoll.pending, state => {
-        state.poll_details_loading = true;
+        state.pollDetailsLoading = true;
       })
       .addCase(getPoll.fulfilled, (state, action) => {
-        state.poll_details = action.payload;
-        state.poll_details_loading = false;
+        state.pollDetails = action.payload;
+        state.pollDetailsLoading = false;
       })
       .addCase(getPoll.rejected, state => {
-        state.poll_details_loading = false;
+        state.pollDetailsLoading = false;
       })
       .addCase(getUserPollsVotes.pending, state => {
-        state.user_polls_votes_loading = true;
+        state.userPollsVotesLoading = true;
       })
       .addCase(getUserPollsVotes.fulfilled, (state, action) => {
-        state.user_polls_votes = action.payload;
-        state.user_polls_votes_loading = false;
+        state.userPollsVotes = action.payload;
+        state.userPollsVotesLoading = false;
       })
       .addCase(getUserPollsVotes.rejected, state => {
-        state.user_polls_votes_loading = false;
+        state.userPollsVotesLoading = false;
       })
       .addCase(getPollVote.pending, state => {
-        state.poll_votes_loading = true;
+        state.pollVotesLoading = true;
       })
       .addCase(getPollVote.fulfilled, (state, action) => {
-        state.poll_votes = action.payload;
-        state.poll_votes_loading = false;
+        state.pollVotes = action.payload;
+        state.pollVotesLoading = false;
       })
       .addCase(getPollVote.rejected, state => {
-        state.poll_votes_loading = false;
+        state.pollVotesLoading = false;
       })
       .addCase(postPollVote.pending, state => {
-        state.poll_votes_loading = true;
+        state.pollVotesLoading = true;
       })
       .addCase(postPollVote.rejected, state => {
-        state.poll_votes_loading = false;
+        state.pollVotesLoading = false;
       })
       .addCase(deletePollVote.pending, state => {
-        state.poll_votes_loading = true;
+        state.pollVotesLoading = true;
       })
       .addCase(deletePollVote.rejected, state => {
-        state.poll_votes_loading = false;
+        state.pollVotesLoading = false;
       })
       .addCase(getPollResults.pending, state => {
-        state.poll_results_loading = true;
+        state.pollResultsLoading = true;
       })
       .addCase(getPollResults.fulfilled, (state, action) => {
-        state.poll_results = action.payload;
-        state.poll_results_loading = false;
+        state.pollResults = action.payload;
+        state.pollResultsLoading = false;
       })
       .addCase(getPollResults.rejected, state => {
-        state.poll_results_loading = false;
+        state.pollResultsLoading = false;
+      })
+      .addCase(getPollsPoints.pending, state => {
+        state.pollPointsLoading = true;
+      })
+      .addCase(getPollsPoints.fulfilled, (state, action) => {
+        state.pollsPoints = action.payload;
+        state.pollPointsLoading = false;
+      })
+      .addCase(getPollsPoints.rejected, state => {
+        state.pollsPoints = [];
+        state.pollPointsLoading = false;
       });
   },
 });

@@ -6,3 +6,5 @@ export {default as ScreenHeader} from './ScreenHeader';
 export {default as SimpleIndicator} from './SimpleIndicator';
 export {default as SafeAreaBackground} from './SafeAreaBackground';
 export {default as SafeAreaBackgroundWithHeader} from './SafeAreaBackgroundWithHeader';
+export {default as CountIndicator} from './CountIndicator';
+export {default as PointIndicator} from './PointIndicator';

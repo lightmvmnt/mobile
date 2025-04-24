@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {styles} from './PollDetailsCard.styles';
 import PollStatusIndicator from '../PollStatusIndicator';
-import {SimpleIndicator} from '../../../../globalComponents';
+import {PointIndicator, SimpleIndicator} from '../../../../globalComponents';
 import TimeIcon from '../../../../assets/icons/timeIcon.svg';
 import {Props} from './PollDetailsCard.types';
 import {TimeCalculator} from '../../../../utils/timeCalculator.util';
@@ -16,21 +16,33 @@ const PollDetailsCard = ({
   poll,
   votes,
   results,
+  points,
   votes_loading,
   results_loading,
+  points_loading,
   isOptionSelected,
   handleVoteSelect,
 }: Props) => {
   const {difference} = TimeCalculator(poll?.due_date);
 
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        {marginBottom: poll?.is_active && poll?.type === 'multi' ? 60 : 16},
+      ]}>
       <View style={styles.indicatorsContainer}>
         <PollStatusIndicator pollStatus={poll ? poll.is_active : false} />
 
         <View style={styles.secondaryIndicatorsContainer}>
           {difference && poll?.is_active ? (
             <SimpleIndicator Icon={TimeIcon} text={difference} />
+          ) : null}
+
+          {points && poll?.is_active ? (
+            <View style={styles.indicatorWrapper}>
+              <PointIndicator loading={points_loading} point={points} />
+            </View>
           ) : null}
 
           {poll?.is_active ? (
@@ -44,40 +56,60 @@ const PollDetailsCard = ({
         </View>
       </View>
 
-      <View style={styles.infoContainer}>
+      <View
+        style={[
+          styles.infoContainer,
+          {
+            maxHeight: poll?.is_active
+              ? null
+              : poll?.type === 'multi'
+              ? 230
+              : 280,
+          },
+        ]}>
         <Text style={styles.infoTitle}>{poll?.title}</Text>
-        <ScrollView contentContainerStyle={styles.infoDescScrollView}>
-          <Text style={styles.infoDesc} selectable={true}>
-            {poll?.full_description}
-          </Text>
-        </ScrollView>
-      </View>
+        {poll?.is_active ? (
+          <>
+            <Text
+              style={[styles.infoDesc, {marginBottom: 15}]}
+              selectable={true}>
+              {poll?.full_description}
+            </Text>
 
-      <View style={styles.actionButtonContainer}>
-        {poll?.is_active && poll?.type === 'multi' ? (
-          <PollVotesSelector
-            options={poll.options}
-            isOptionSelected={isOptionSelected}
-            handleVoteSelect={handleVoteSelect}
-            loading={votes_loading}
-          />
-        ) : null}
+            {poll?.type === 'single' ? (
+              <>
+                {poll?.options.map((option, index) => (
+                  <PollVoteButton
+                    key={index}
+                    poll_id={poll.id}
+                    option={option}
+                    votes={votes}
+                    loading={votes_loading}
+                  />
+                ))}
+              </>
+            ) : null}
 
-        {poll?.is_active && poll.type === 'single' ? (
-          <ScrollView>
-            {poll?.options.map((option, index) => (
-              <PollVoteButton
-                key={index}
-                poll_id={poll.id}
-                option={option}
-                votes={votes}
+            {poll?.type === 'multi' ? (
+              <PollVotesSelector
+                options={poll.options}
+                isOptionSelected={isOptionSelected}
+                handleVoteSelect={handleVoteSelect}
                 loading={votes_loading}
               />
-            ))}
+            ) : null}
+          </>
+        ) : (
+          <ScrollView contentContainerStyle={styles.infoDescScrollView}>
+            <Text style={styles.infoDesc} selectable={true}>
+              {poll?.full_description}
+            </Text>
           </ScrollView>
-        ) : null}
+        )}
+      </View>
 
-        {!poll?.is_active && results ? (
+      {!poll?.is_active && results ? (
+        <View style={styles.actionButtonContainer}>
           <ScrollView>
             {poll?.options.map((option, i) => (
               <PollResult
@@ -91,8 +123,8 @@ const PollDetailsCard = ({
               />
             ))}
           </ScrollView>
-        ) : null}
-      </View>
+        </View>
+      ) : null}
     </View>
   );
 };

@@ -4,9 +4,9 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-naviga
 
 import HomeScreen from "@modules/home/screens";
 import PollsScreen from "@modules/polls/screens/Polls";
-import ProfileScreen from "@modules/profile/screens";
 import TasksScreen from "@modules/tasks/screens/Tasks";
 import TabBarComponent from "./TabBarComponent";
+import ProfileScreen from "modules/profile/screens/Profile";
 
 
 export type BottomTabStackNavigatorParamList = {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {ScrollView} from 'react-native';
 import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Home.styles';
@@ -11,15 +12,29 @@ import {
   getUserPollsVotes,
 } from '../../../store/thunks/polls/polls.thunk';
 import { HomeScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
+import {GetStorageObject} from '../../../utils/asyncStore.util';
+import {sendReferrerId} from '../../../store/thunks/referral/referral.thunk';
+import UserProgressInfo from '../components/UserProgressInfo';
 
 const  HomeScreen: React.FC<HomeScreenParams> = ({}) => {
   
   const {tasks} = useAppSelector(state => state.tasks);
-  const {in_progress_polls, user_polls_votes} = useAppSelector(
-    state => state.polls,
-  );
+  const {inProgressPolls, userPollsVotes, pollsPoints, pollPointsLoading} =
+    useAppSelector(state => state.polls);
 
   const dispatch = useAppDispatch();
+
+  const getReffererId = async () => {
+    const id = await GetStorageObject('refferer_id');
+
+    if (id) {
+      dispatch(sendReferrerId(id));
+    }
+  };
+
+  useEffect(() => {
+    getReffererId();
+  }, []);
 
   useEffect(() => {
     dispatch(getTasks());
@@ -30,11 +45,18 @@ const  HomeScreen: React.FC<HomeScreenParams> = ({}) => {
  
   return (
     <SafeAreaBackgroundWithHeader>
-      <ScrollView contentContainerStyle={styles.screen}>
+      <ScrollView
+        contentContainerStyle={styles.screen}
+        bounces={false}
+        overScrollMode={'never'}>
+        <UserProgressInfo />
+        {/* <TaskSuggestionCard /> */}
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment
-          polls={in_progress_polls.slice(0, 3)}
-          user_polls_votes={user_polls_votes}
+          polls_points={pollsPoints}
+          poll_points_loading={pollPointsLoading}
+          polls={inProgressPolls.slice(0, 3)}
+          user_polls_votes={userPollsVotes}
         />
       </ScrollView>
     </SafeAreaBackgroundWithHeader>

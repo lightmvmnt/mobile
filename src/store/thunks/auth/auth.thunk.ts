@@ -1,5 +1,11 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {Account, CreateUser, SigninResponse} from './auth.types';
+import {
+  Account,
+  CreateUser,
+  GetUserTotalPointsResponse,
+  SigninResponse,
+  UpdateUserPayload,
+} from './auth.types';
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
@@ -19,6 +25,7 @@ import {
 } from '../../../services/notifications/notificationHandler';
 import {Platform} from 'react-native';
 import appleAuth from '@invertase/react-native-apple-authentication';
+import appsFlyer from 'react-native-appsflyer';
 
 GoogleSignin.configure({
   webClientId: enviroment.CLIENT_ID,
@@ -154,15 +161,15 @@ export const authentication = createAsyncThunk(
           token,
         };
 
-        console.log(NotificationSubscription);
-
         if (Platform.OS === 'android') {
           dispatch(sendAndroidDeviceIdForTasks(NotificationSubscription));
         } else {
           dispatch(sendIosDeviceIdForTasks(NotificationSubscription));
         }
 
-        // navigation.navigate('Loading');
+        appsFlyer.setCustomerUserId(String(response.data.data.user.id));
+
+        navigation.navigate('Loading');
       }
       console.log('response.data loginnnn', response.data);
       return response.data;
@@ -268,6 +275,61 @@ export const AccountDeletion = createAsyncThunk(
       if (response.status === 204) {
         dispatch(Logout(navigation));
       }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (
+    {
+      updated_user,
+      navigation,
+    }: {updated_user: UpdateUserPayload; navigation: NavigationProps},
+    {rejectWithValue},
+  ) => {
+    try {
+      const session_token = await GetStorageObject('session_token');
+      const access_token = await GetStorageObject('access_token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-Token': session_token,
+          Authorization: `Bearer ${access_token}`,
+        },
+      };
+
+      const body = JSON.stringify(updated_user);
+
+      const response = await axios.patch<Account>(
+        `${enviroment.API_BASE_URL}/users/me/`,
+        body,
+        config,
+      );
+
+      if (response.status === 200) {
+        navigation.navigate('Profile');
+      }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getUserTotalPoints = createAsyncThunk(
+  'auth/getUserTotalPoints',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetUserTotalPointsResponse>(
+        `${enviroment.API_BASE_URL}/users/me/points/`,
+      );
 
       return response.data;
     } catch (error) {

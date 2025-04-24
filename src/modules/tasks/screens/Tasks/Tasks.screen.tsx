@@ -4,10 +4,7 @@ import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {styles} from './Tasks.styles';
 import {TaskCard} from '../../components';
 import {getTasks} from '../../../../store/thunks/tasks/tasks.thunk';
-import {
-  ScreenHeader,
-  SafeAreaBackgroundWithHeader,
-} from '../../../../globalComponents';
+import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import { TasksScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
 const TasksScreen: React.FC<TasksScreenParams>  = () =>  {
@@ -22,7 +19,6 @@ const TasksScreen: React.FC<TasksScreenParams>  = () =>  {
   return (
     <SafeAreaBackgroundWithHeader>
       <View style={styles.screen}>
-        <ScreenHeader title="მისიები" />
         <View style={styles.tasksContainer}>
           <FlatList
             refreshing={loading}
