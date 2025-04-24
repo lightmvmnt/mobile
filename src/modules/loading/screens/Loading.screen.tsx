@@ -30,7 +30,9 @@ import Logo from '../../../assets/icons/DzalaLogo.svg';
 import BackImg from '../../../assets/icons/back_img.svg';
 import {LAYOUT} from '../../../constants';
 
+
 function LoadingScreen() {
+
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);
 
   const {isAuth, user, account, userTotalPoints} = useAppSelector(
@@ -45,39 +47,39 @@ function LoadingScreen() {
   const dispatch = useAppDispatch();
   const isFocused = useIsFocused();
 
-  useEffect(() => {
-    const getIsFirstLaunch = async () => {
-      const is_first_launched = await GetStorageObject('IS_FIRST_LAUNCH');
+  // useEffect(() => {
+  //   const getIsFirstLaunch = async () => {
+  //     const is_first_launched = await GetStorageObject('IS_FIRST_LAUNCH');
 
-      if (!is_first_launched) {
-        navigation.navigate('Introduction');
-      } else {
-        setIsFirstLaunched(is_first_launched);
-      }
-    };
+  //     if (!is_first_launched) {
+  //       navigation.navigate('Introduction');
+  //     } else {
+  //       setIsFirstLaunched(is_first_launched);
+  //     }
+  //   };
 
-    getIsFirstLaunch();
-  }, [navigation]);
+  //   getIsFirstLaunch();
+  // }, [navigation]);
 
-  useEffect(() => {
-    const getSessionToken = async () => {
-      const session_token = await GetStorageObject('session_token');
+  // useEffect(() => {
+  //   const getSessionToken = async () => {
+  //     const session_token = await GetStorageObject('session_token');
 
-      if (session_token) {
-        dispatch(CheckSessionValidation({session_token, navigation}));
-      } else {
-        if (isFirstLaunched) {
-          navigation.navigate('Signin');
-        }
-      }
-    };
+  //     if (session_token) {
+  //       dispatch(CheckSessionValidation({session_token, navigation}));
+  //     } else {
+  //       if (isFirstLaunched) {
+  //         navigation.navigate('Signin');
+  //       }
+  //     }
+  //   };
 
-    getSessionToken();
+  //   getSessionToken();
 
-    getUniqueId().then(id => {
-      dispatch(changeDeviceId(id));
-    });
-  }, [dispatch, navigation, isFirstLaunched]);
+  //   getUniqueId().then(id => {
+  //     dispatch(changeDeviceId(id));
+  //   });
+  // }, [dispatch, navigation, isFirstLaunched]);
 
   useEffect(() => {
     const getImportantInfo = async () => {

@@ -10,8 +10,9 @@ import {useProfile} from './Profile.hooks';
 import CompletedMissions from '../../../../assets/icons/completedMissions.svg';
 import Scores from '../../../../assets/icons/scores.svg';
 import {COLORS} from '../../../../constants';
+import { ProfileScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-function ProfileScreen() {
+const ProfileScreen: React.FC<ProfileScreenParams> = () => {
   const {
     referralLink,
     generateReferralLinkLoading,

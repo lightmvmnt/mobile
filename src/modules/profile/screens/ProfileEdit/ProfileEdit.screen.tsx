@@ -7,8 +7,9 @@ import {UpdateUserPayload} from '../../../../store/thunks/auth/auth.types';
 import {updateUser} from '../../../../store/thunks/auth/auth.thunk';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+import { ProfileEditScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-const ProfileEditScreen = () => {
+const ProfileEditScreen: React.FC<ProfileEditScreenParams> = () => {
   const {account, loading} = useAppSelector(state => state.auth);
 
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();

@@ -18,8 +18,9 @@ import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import TrashcanIcon from '../../../../assets/icons/trashCanIcon.svg';
 import ExitIcon from '../../../../assets/icons/exitIcon.svg';
+import { ProfileSettingsScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-const ProfileSettingsScreen = () => {
+const ProfileSettingsScreen: React.FC<ProfileSettingsScreenParams> = () => {
   const {loading} = useAppSelector(state => state.auth);
 
   const navigation = useNavigation<NavigationProps>();

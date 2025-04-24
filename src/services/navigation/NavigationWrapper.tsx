@@ -28,7 +28,7 @@ const NavigationWrapper = () => {
     const [stackType, setStackType] = useState<'authStack' | 'bottomStack'>('authStack');
     const [isFirstLaunched, setIsFirstLaunched] = useState(false);
 
-    const {isAuth, user, account, sessionToken, accessToken} = useAppSelector(state => state.auth);
+    const {isAuth, user, account, sessionToken, accessToken, } = useAppSelector(state => state.auth);
     const {tasks} = useAppSelector(state => state.tasks);
     const {polls} = useAppSelector(state => state.polls);
     

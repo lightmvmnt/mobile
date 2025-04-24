@@ -1,11 +1,10 @@
 import {useEffect, useState} from 'react';
 import {Task} from '../../../../store/slices/tasks/tasks.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
 import {UpdatedTaskPayload} from '../../../../store/thunks/tasks/tasks.types';
 import {getTask, updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
+import { useAppNavigation } from 'services/navigation/NavigationUtils/UseAppNavigation';
 
 export const useTask = (task: Task | null) => {
   const [completedCount, setCompletedCount] = useState(0);
@@ -16,7 +15,7 @@ export const useTask = (task: Task | null) => {
     state => state.tasks,
   );
 
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -54,7 +53,7 @@ export const useTask = (task: Task | null) => {
   const getToTaskDetailScreen = () => {
     if (task) {
       dispatch(getTask(task.id));
-      navigation.navigate('TaskDetail');
+      navigation.navigate('GlobalStack', {screen: 'TaskDetail'});
     }
   };
 

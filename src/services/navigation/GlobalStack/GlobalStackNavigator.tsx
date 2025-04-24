@@ -4,6 +4,7 @@ import {createNativeStackNavigator,} from '@react-navigation/native-stack';
 import TaskDetailScreen from 'modules/tasks/screens/TaskDetail';
 import PollDetailsScreen from 'modules/polls/screens/PollDetails';
 
+
 export type GlobalStackParamList = {
   TaskDetail: undefined;
   PollDetails: undefined;

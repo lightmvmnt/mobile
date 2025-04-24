@@ -13,11 +13,11 @@ function ProfileForm() {
   const navigation = useAppNavigation();
 
   const profileEditButtonHandler = () => {
-    navigation.navigate('ProfileEdit');
+    navigation.navigate('BottomTabsStack', {screen: 'ProfileEditScreen'});
   };
 
   const profileSettingsButtonHandler = () => {
-    navigation.navigate('ProfileSettings');
+    navigation.navigate('BottomTabsStack', {screen: 'ProfileSettingsScreen'});
   };
 
   return (
