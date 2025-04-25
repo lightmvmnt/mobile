@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Dzala</string>
+    <string name="facebook_app_id">1615036889157754</string>
+    <string name="facebook_client_token">51f9dbba7819d7ef9531037f688fe171</string>
 </resources>

@@ -1,5 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+  SafeAreaBackgroundWithHeader,
+  SimpleButton,
+} from '../../../../globalComponents';
 import ProfileEditForm from '../../components/ProfileEditForm';
 import {FormValues} from './ProfileEdit.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
@@ -7,11 +10,19 @@ import {UpdateUserPayload} from '../../../../store/thunks/auth/auth.types';
 import {updateUser} from '../../../../store/thunks/auth/auth.thunk';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+import {COLORS, LAYOUT} from '../../../../constants';
+import {ScrollView, View} from 'react-native';
+import {styles} from './ProfileEdit.styles';
+import {SocialsEditForm} from '../../components';
 
 const ProfileEditScreen = () => {
   const {account, loading} = useAppSelector(state => state.auth);
 
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();
+  const [updatedAccount, setUpdatedAccount] = useState<{
+    isValid: boolean;
+    values: FormValues;
+  }>();
 
   const dispatch = useAppDispatch();
   const navigation = useNavigation<NavigationProps>();
@@ -28,29 +39,45 @@ const ProfileEditScreen = () => {
     });
   }, [account]);
 
-  const onFormSubmit = (values: FormValues) => {
-    const updatedUser: UpdateUserPayload = {
-      first_name: values.firstName,
-      last_name: values.lastName,
-    };
+  const handleFormChange = useCallback(
+    (isValid: boolean, values: FormValues) => {
+      setUpdatedAccount({isValid, values});
+    },
+    [],
+  );
 
-    if (
-      account?.first_name === updatedUser.first_name &&
-      account.last_name === updatedUser.last_name
-    ) {
-      return;
+  const onProfileEditSubmit = () => {
+    if (updatedAccount && updatedAccount.isValid) {
+      const updatedUser: UpdateUserPayload = {
+        first_name: updatedAccount.values.firstName,
+        last_name: updatedAccount.values.lastName,
+      };
+
+      dispatch(updateUser({navigation, updated_user: updatedUser}));
     }
-
-    dispatch(updateUser({navigation, updated_user: updatedUser}));
   };
 
   return (
     <SafeAreaBackgroundWithHeader>
-      <ProfileEditForm
-        formSubmitLoading={loading}
-        account={editFormAccount}
-        onFormSubmit={onFormSubmit}
-      />
+      <ScrollView>
+        <ProfileEditForm
+          account={editFormAccount}
+          onChange={handleFormChange}
+        />
+        <SocialsEditForm />
+      </ScrollView>
+      <View style={styles.saveButtonContainer}>
+        <SimpleButton
+          variant="contained"
+          text="დამახსოვრება"
+          width={LAYOUT.WIDTH - 30}
+          height={45}
+          buttonColor={COLORS.NEW_MAIN}
+          textColor={COLORS.LIGHT}
+          buttonLoading={loading}
+          onPress={onProfileEditSubmit}
+        />
+      </View>
     </SafeAreaBackgroundWithHeader>
   );
 };

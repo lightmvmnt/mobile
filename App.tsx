@@ -11,6 +11,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import appsFlyer, {InitSDKOptions} from 'react-native-appsflyer';
 import {TaskSuggestionModal} from './src/modules/tasks/components';
 import {SetStorageObjectValue} from './src/utils/asyncStore.util';
+import {Settings} from 'react-native-fbsdk-next';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,
@@ -28,6 +29,10 @@ const appsFlyerOptions: InitSDKOptions = {
 configureNativeComponents();
 
 function App() {
+  useEffect(() => {
+    Settings.initializeSDK();
+  }, []);
+
   useEffect(() => {
     appsFlyer.initSdk(
       appsFlyerOptions,

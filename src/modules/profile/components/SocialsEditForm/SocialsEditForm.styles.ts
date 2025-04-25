@@ -27,28 +27,16 @@ export const styles = StyleSheet.create({
     flex: 0.85,
     marginTop: 15,
   },
-  inputContainer: {
-    height: 50,
-  },
   input: {
     width: LAYOUT.WIDTH - 30,
     backgroundColor: COLORS.LIGHT,
     color: COLORS.DARK,
-    height: 50,
-  },
-  inputLabel: {
-    color: COLORS.DARK,
-    fontWeight: 500,
-  },
-  disabledInputLabel: {
-    color: COLORS.BORDER,
-    fontWeight: 500,
-  },
-  inputOutline: {
+    paddingHorizontal: 12,
+    paddingVertical: 15,
+    justifyContent: 'center',
     borderRadius: 8,
     borderWidth: 2,
-  },
-  error: {
-    color: COLORS.NEW_MAIN,
+    borderColor: COLORS.BORDER,
+    marginBottom: 25,
   },
 });

@@ -6,26 +6,30 @@ import {
   profileEditFormValidationSchema,
 } from './ProfileEditForm.utils';
 import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
-import {SimpleButton} from '../../../../globalComponents';
-import {COLORS, LAYOUT} from '../../../../constants';
 import EditFormInput from './EditFormInput';
 import {styles} from './ProfileEditForm.styles';
 
 const ProfileEditForm = ({
   account,
-  onFormSubmit,
-  formSubmitLoading,
+  onChange,
 }: {
   account: ProfileEditFormInitialValues | undefined;
-  onFormSubmit: (values: ProfileEditFormInitialValues) => void;
-  formSubmitLoading: boolean;
+  onChange: (isValid: boolean, values: ProfileEditFormInitialValues) => void;
 }) => {
-  const {values, errors, touched, handleSubmit, handleChange, setValues} =
-    useFormik({
-      initialValues: profileEditFormInitialValues,
-      validationSchema: profileEditFormValidationSchema,
-      onSubmit: onFormSubmit,
-    });
+  const {
+    values,
+    dirty,
+    errors,
+    touched,
+    handleChange,
+    setValues,
+    setFieldTouched,
+  } = useFormik({
+    initialValues: profileEditFormInitialValues,
+    validationSchema: profileEditFormValidationSchema,
+    onSubmit: () => {},
+  });
+  const isValid = dirty && !Object.keys(errors).length;
 
   useEffect(() => {
     if (!account) {
@@ -34,6 +38,10 @@ const ProfileEditForm = ({
 
     setValues(account);
   }, [account, setValues]);
+
+  useEffect(() => {
+    onChange(isValid, values);
+  }, [isValid, values, onChange]);
 
   return (
     <View style={styles.formContainer}>
@@ -47,6 +55,7 @@ const ProfileEditForm = ({
           error={errors.firstName}
           touched={touched.firstName}
           name="firstName"
+          setFieldTouched={setFieldTouched}
           handleChange={handleChange}
         />
 
@@ -56,6 +65,7 @@ const ProfileEditForm = ({
           error={errors.lastName}
           touched={touched.lastName}
           name="lastName"
+          setFieldTouched={setFieldTouched}
           handleChange={handleChange}
         />
 
@@ -66,20 +76,8 @@ const ProfileEditForm = ({
           touched={touched.email}
           name="email"
           disabled={true}
+          setFieldTouched={setFieldTouched}
           handleChange={handleChange}
-        />
-      </View>
-
-      <View style={styles.saveButtonContainer}>
-        <SimpleButton
-          variant="contained"
-          text="დამახსოვრება"
-          width={LAYOUT.WIDTH - 30}
-          height={45}
-          buttonColor={COLORS.NEW_MAIN}
-          textColor={COLORS.LIGHT}
-          buttonLoading={formSubmitLoading}
-          onPress={handleSubmit}
         />
       </View>
     </View>

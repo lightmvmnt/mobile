@@ -3,6 +3,8 @@ import React, {ChangeEvent, useState} from 'react';
 import {HelperText, TextInput} from 'react-native-paper';
 import {styles} from './ProfileEditForm.styles';
 import {COLORS} from '../../../../constants';
+import {FormikErrors} from 'formik';
+import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
 
 interface Props {
   value: string;
@@ -18,6 +20,11 @@ interface Props {
       ? void
       : (e: string | React.ChangeEvent<any>) => void;
   };
+  setFieldTouched: (
+    field: string,
+    touched?: boolean,
+    shouldValidate?: boolean,
+  ) => Promise<void> | Promise<FormikErrors<ProfileEditFormInitialValues>>;
   disabled?: boolean;
 }
 
@@ -29,11 +36,17 @@ const EditFormInput = ({
   disabled,
   name,
   handleChange,
+  setFieldTouched,
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
 
+  const onInputFocus = () => {
+    setIsFocused(true);
+    setFieldTouched(name, true);
+  };
+
   return (
-    <View style={{marginBottom: error ? 15 : 0}}>
+    <View style={[styles.inputContainer, {marginBottom: error ? 40 : 25}]}>
       <TextInput
         style={styles.input}
         mode="outlined"
@@ -42,7 +55,7 @@ const EditFormInput = ({
         value={value}
         disabled={disabled}
         onChangeText={handleChange(name)}
-        onFocus={() => setIsFocused(true)}
+        onFocus={onInputFocus}
         onBlur={() => setIsFocused(false)}
         outlineStyle={[
           styles.inputOutline,
@@ -57,7 +70,6 @@ const EditFormInput = ({
       />
       <HelperText
         style={styles.error}
-        padding="none"
         type="error"
         visible={error && touched ? true : false}>
         {error}
