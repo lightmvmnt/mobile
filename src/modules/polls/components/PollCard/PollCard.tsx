@@ -48,7 +48,7 @@ const PollCard = ({poll, polls_points, points_loading, isPollVoted}: Props) => {
     if (!poll.is_active) {
       dispatch(getPollResults(poll.id));
     }
-    navigation.navigate('GlobalStack', {screen: 'PollDetails'});
+    navigation.navigate('BottomTabsStack', {screen: 'PollDetailsScreen'});
   };
 
   return (

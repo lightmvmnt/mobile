@@ -6,8 +6,9 @@ import {ActivityIndicator} from 'react-native-paper';
 import {COLORS} from '../../../../constants';
 import {TaskDetailCard} from '../../components';
 import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
+import { TaskDetailScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-function TaskDetailScreen() {
+const  TaskDetailScreen: React.FC<TaskDetailScreenParams> = ({}) => {
   const {taskDetails, taskDetailsLoading, loading} = useAppSelector(
     state => state.tasks,
   );

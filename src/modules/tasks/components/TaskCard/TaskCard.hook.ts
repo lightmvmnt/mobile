@@ -53,7 +53,7 @@ export const useTask = (task: Task | null) => {
   const getToTaskDetailScreen = () => {
     if (task) {
       dispatch(getTask(task.id));
-      navigation.navigate('GlobalStack', {screen: 'TaskDetail'});
+      navigation.navigate('BottomTabsStack', {screen: 'TaskDetailScreen'});
     }
   };
 

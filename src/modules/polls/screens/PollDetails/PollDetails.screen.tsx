@@ -9,8 +9,9 @@ import PollDetailsCard from '../../components/PollDetailsCard';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 
 import {usePollDetails} from './PollDetails.hook';
+import { PollDetailsScreenParams } from 'services/navigation/BottomTabStack/BottomTabStackNavigator';
 
-const PollDetailsScreen = () => {
+const PollDetailsScreen: React.FC<PollDetailsScreenParams> = ({}) => {
   const {
     pollDetails,
     pollVotes,
