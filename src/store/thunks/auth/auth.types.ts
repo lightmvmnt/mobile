@@ -3,7 +3,8 @@ export interface CreateUser {
   process: string;
   token: {
     client_id: string;
-    id_token: string;
+    id_token?: string;
+    access_token?: string;
   };
 }
 
