@@ -21,7 +21,7 @@ export const useSignin = () => {
   const navigation = useAppNavigation();
 
   const sheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['25%', '90%'], []);
+  const snapPoints = useMemo(() => ['60%', '90%'], []);
   const dispatch = useAppDispatch();
 
   const handleSheetChange = useCallback(() => {}, []);
