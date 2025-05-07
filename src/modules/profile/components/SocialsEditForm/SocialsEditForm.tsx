@@ -1,68 +1,26 @@
-import {View, Text, Platform} from 'react-native';
+import {View, Text} from 'react-native';
 import React from 'react';
 import {styles} from './SocialsEditForm.styles';
 import SocialsButton from './SocialsButton';
-import {
-  AccessToken,
-  AuthenticationToken,
-  GraphRequest,
-  GraphRequestManager,
-  LoginManager,
-} from 'react-native-fbsdk-next';
-import {useAppDispatch} from '../../../../store/store';
-import {authentication} from '../../../../store/thunks/auth/auth.thunk';
-import {CreateUser} from '../../../../store/thunks/auth/auth.types';
-import {GetStorageObject} from '../../../../utils/asyncStore.util';
+import {LoginManager, Profile} from 'react-native-fbsdk-next';
 
 const SocialsEditForm = () => {
-  const dispatch = useAppDispatch();
-
   const onFaceBookConnect = async () => {
-    try {
-      const result = await LoginManager.logInWithPermissions([
-        'public_profile',
-        'user_link',
-      ]);
+    const result = await LoginManager.logInWithPermissions(
+      ['public_profile', 'user_link'],
+      'limited',
+    );
 
-      if (result.isCancelled) {
-        console.log('Facebook login cancelled');
-        return;
-      }
-
-      console.log(result);
-
-      const data = await AccessToken.getCurrentAccessToken();
-
-      if (!data) {
-        console.log('Something went wrong getting access token');
-        return;
-      }
-
-      const session_token = await GetStorageObject('session_token');
-
-      console.log(session_token);
-
-      console.log(data);
-
-      const infoRequest = new GraphRequest(
-        '/me',
-        {
-          accessToken: data.accessToken.toString(),
-          parameters: {
-            fields: {
-              string: 'email,name,first_name,middle_name,last_name,user_link',
-            },
-          },
-        },
-        async (error, res) => {
-          console.log(res);
-        },
-      );
-
-      new GraphRequestManager().addRequest(infoRequest).start();
-    } catch (error) {
-      console.error('Facebook login error', error);
+    if (result.isCancelled) {
+      console.log('Facebook login cancelled');
+      return;
     }
+
+    console.log(result);
+
+    const currentProfile = await Profile.getCurrentProfile();
+
+    console.log(currentProfile);
   };
 
   return (
