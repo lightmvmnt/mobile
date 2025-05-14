@@ -6,7 +6,6 @@ import {
   SigninResponse,
   UpdateUserPayload,
 } from './auth.types';
-import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
   GetStorageObject,
@@ -35,7 +34,7 @@ GoogleSignin.configure({
 export const GoogleSignIn = createAsyncThunk(
   'auth/GoogleSignIn',
   async (
-    {navigation, device_id}: {navigation: NavigationProps; device_id: string},
+    {navigation, device_id}: {navigation: any; device_id: string},
     {rejectWithValue, dispatch},
   ) => {
     try {
@@ -80,7 +79,7 @@ export const GoogleSignIn = createAsyncThunk(
 export const IosSignIn = createAsyncThunk(
   'auth/IosSignIn',
   async (
-    {navigation, device_id}: {navigation: NavigationProps; device_id: string},
+    {navigation, device_id}: {navigation: any; device_id: string},
     {rejectWithValue, dispatch},
   ) => {
     try {
@@ -123,11 +122,10 @@ export const authentication = createAsyncThunk(
   'auth/authentication',
   async (
     {
-      navigation,
       user,
       device_id,
     }: {
-      navigation: NavigationProps;
+      navigation?: any;
       user: CreateUser;
       device_id: string;
     },
@@ -169,7 +167,7 @@ export const authentication = createAsyncThunk(
 
         appsFlyer.setCustomerUserId(String(response.data.data.user.id));
 
-        navigation.navigate('Loading');
+        // navigation.navigate('Loading');
       }
       console.log('response.data loginnnn', response.data);
       return response.data;
@@ -198,13 +196,7 @@ export const GetUserData = createAsyncThunk(
 
 export const CheckSessionValidation = createAsyncThunk(
   'auth/CheckSessionValidation',
-  async (
-    {
-      session_token,
-      navigation,
-    }: {session_token: string; navigation: NavigationProps},
-    {rejectWithValue},
-  ) => {
+  async ({session_token}: {session_token: string}, {rejectWithValue}) => {
     try {
       const config = {
         headers: {
@@ -238,7 +230,7 @@ export const CheckSessionValidation = createAsyncThunk(
 
 export const Logout = createAsyncThunk(
   'auth/Logout',
-  async (navigation: NavigationProps, {rejectWithValue}) => {
+  async (navigation: any, {rejectWithValue}) => {
     try {
       await GoogleSignin.signOut();
       await RemoveStorageValue('session_token');
@@ -254,7 +246,7 @@ export const Logout = createAsyncThunk(
 
 export const AccountDeletion = createAsyncThunk(
   'auth/AccountDeletion',
-  async (navigation: NavigationProps, {rejectWithValue, dispatch}) => {
+  async (navigation: any, {rejectWithValue, dispatch}) => {
     try {
       const session_token = await GetStorageObject('session_token');
       const access_token = await GetStorageObject('access_token');
@@ -289,7 +281,7 @@ export const updateUser = createAsyncThunk(
     {
       updated_user,
       navigation,
-    }: {updated_user: UpdateUserPayload; navigation: NavigationProps},
+    }: {updated_user: UpdateUserPayload; navigation: any},
     {rejectWithValue},
   ) => {
     try {
