@@ -1,10 +1,8 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {
-  Account,
   CreateUser,
   GetUserTotalPointsResponse,
   SigninResponse,
-  UpdateUserPayload,
 } from './auth.types';
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {createAsyncThunk} from '@reduxjs/toolkit';
@@ -147,6 +145,7 @@ export const authentication = createAsyncThunk(
       );
 
       if (response.status === 200) {
+        console.log(response.data);
         SetStorageObjectValue('access_token', response.data.meta.access_token);
         SetStorageObjectValue(
           'session_token',
@@ -176,21 +175,6 @@ export const authentication = createAsyncThunk(
     } catch (error) {
       await GoogleSignin.signOut();
 
-      return rejectWithValue(error);
-    }
-  },
-);
-
-export const GetUserData = createAsyncThunk(
-  'auth/getUserData',
-  async (_, {rejectWithValue}) => {
-    try {
-      const response = await axios.get<Account>(
-        `${enviroment.API_BASE_URL}/users/me/`,
-      );
-
-      return response.data;
-    } catch (error) {
       return rejectWithValue(error);
     }
   },
@@ -274,46 +258,6 @@ export const AccountDeletion = createAsyncThunk(
 
       if (response.status === 204) {
         dispatch(Logout(navigation));
-      }
-
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
-
-export const updateUser = createAsyncThunk(
-  'auth/updateUser',
-  async (
-    {
-      updated_user,
-      navigation,
-    }: {updated_user: UpdateUserPayload; navigation: NavigationProps},
-    {rejectWithValue},
-  ) => {
-    try {
-      const session_token = await GetStorageObject('session_token');
-      const access_token = await GetStorageObject('access_token');
-
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Session-Token': session_token,
-          Authorization: `Bearer ${access_token}`,
-        },
-      };
-
-      const body = JSON.stringify(updated_user);
-
-      const response = await axios.patch<Account>(
-        `${enviroment.API_BASE_URL}/users/me/`,
-        body,
-        config,
-      );
-
-      if (response.status === 200) {
-        navigation.navigate('Profile');
       }
 
       return response.data;

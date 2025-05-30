@@ -1,4 +1,4 @@
-import {Account, User} from '../../thunks/auth/auth.types';
+import {User} from '../../thunks/auth/auth.types';
 
 export interface AuthInitialState {
   sessionToken: string;
@@ -7,7 +7,6 @@ export interface AuthInitialState {
   isAuth: boolean;
   user: User | null;
   deviceId: string;
-  account: Account | null;
   userTotalPoints: number;
   userTotalPointsLoading: boolean;
 }

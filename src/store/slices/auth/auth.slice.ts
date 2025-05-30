@@ -4,8 +4,6 @@ import {
   CheckSessionValidation,
   authentication,
   Logout,
-  GetUserData,
-  updateUser,
   getUserTotalPoints,
 } from '../../thunks/auth/auth.thunk';
 
@@ -15,7 +13,6 @@ const initialState: AuthInitialState = {
   loading: false,
   isAuth: false,
   user: null,
-  account: null,
   deviceId: '',
   userTotalPoints: 0,
   userTotalPointsLoading: false,
@@ -80,22 +77,6 @@ export const authSlice = createSlice({
         state.loading = false;
         state.sessionToken = '';
         state.user = null;
-      })
-      .addCase(GetUserData.rejected, state => {
-        state.account = null;
-      })
-      .addCase(GetUserData.fulfilled, (state, action) => {
-        state.account = action.payload;
-      })
-      .addCase(updateUser.pending, state => {
-        state.loading = true;
-      })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.account = action.payload;
-        state.loading = false;
-      })
-      .addCase(updateUser.rejected, state => {
-        state.loading = false;
       })
       .addCase(getUserTotalPoints.pending, state => {
         state.userTotalPointsLoading = true;

@@ -8,7 +8,6 @@ import {useAppDispatch, useAppSelector} from '../../../store/store';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {
   CheckSessionValidation,
-  GetUserData,
   getUserTotalPoints,
 } from '../../../store/thunks/auth/auth.thunk';
 import {User} from '../../../store/thunks/auth/auth.types';
@@ -29,13 +28,13 @@ import {
 import Logo from '../../../assets/icons/DzalaLogo.svg';
 import BackImg from '../../../assets/icons/back_img.svg';
 import {LAYOUT} from '../../../constants';
+import {GetAccountData} from '../../../store/thunks/profile/profile.thunk';
 
 function LoadingScreen() {
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);
 
-  const {isAuth, user, account, userTotalPoints} = useAppSelector(
-    state => state.auth,
-  );
+  const {isAuth, user, userTotalPoints} = useAppSelector(state => state.auth);
+  const {account} = useAppSelector(state => state.profile);
   const {tasks, completedTasksCount, tasksPoints} = useAppSelector(
     state => state.tasks,
   );
@@ -89,7 +88,7 @@ function LoadingScreen() {
         dispatch(getTasks());
         dispatch(getTasksPoints());
         dispatch(getCompletedTaskCount());
-        dispatch(GetUserData());
+        dispatch(GetAccountData());
         dispatch(getUserTotalPoints());
         dispatch(getAllPolls());
         dispatch(getPollsPoints());

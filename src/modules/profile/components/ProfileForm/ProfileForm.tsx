@@ -8,7 +8,7 @@ import GoBackIcon from '../../../../assets/icons/goBackBtn.svg';
 import FormInput from './FormInput';
 
 function ProfileForm() {
-  const {account} = useAppSelector(state => state.auth);
+  const {account} = useAppSelector(state => state.profile);
 
   const navigation = useNavigation<NavigationProps>();
 

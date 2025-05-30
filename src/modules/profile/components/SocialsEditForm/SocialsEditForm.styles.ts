@@ -39,4 +39,13 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.BORDER,
     marginBottom: 25,
   },
+  connectedButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  connectedButtonText: {
+    marginLeft: 12,
+    fontFamily: FONTS.GEO_MEDIUM,
+    fontSize: FontSizeGenerator(14),
+  },
 });

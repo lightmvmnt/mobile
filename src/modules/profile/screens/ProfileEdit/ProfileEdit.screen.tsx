@@ -6,17 +6,17 @@ import {
 import ProfileEditForm from '../../components/ProfileEditForm';
 import {FormValues} from './ProfileEdit.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {UpdateUserPayload} from '../../../../store/thunks/auth/auth.types';
-import {updateUser} from '../../../../store/thunks/auth/auth.thunk';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {COLORS, LAYOUT} from '../../../../constants';
 import {ScrollView, View} from 'react-native';
 import {styles} from './ProfileEdit.styles';
 import {SocialsEditForm} from '../../components';
+import {UpdateAccountPayload} from '../../../../store/thunks/profile/profile.types';
+import {updateAccount} from '../../../../store/thunks/profile/profile.thunk';
 
 const ProfileEditScreen = () => {
-  const {account, loading} = useAppSelector(state => state.auth);
+  const {account, loading} = useAppSelector(state => state.profile);
 
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();
   const [updatedAccount, setUpdatedAccount] = useState<{
@@ -48,12 +48,12 @@ const ProfileEditScreen = () => {
 
   const onProfileEditSubmit = () => {
     if (updatedAccount && updatedAccount.isValid) {
-      const updatedUser: UpdateUserPayload = {
+      const updated_account: UpdateAccountPayload = {
         first_name: updatedAccount.values.firstName,
         last_name: updatedAccount.values.lastName,
       };
 
-      dispatch(updateUser({navigation, updated_user: updatedUser}));
+      dispatch(updateAccount({navigation, updated_account}));
     }
   };
 

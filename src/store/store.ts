@@ -3,16 +3,18 @@ import authReducer from './slices/auth/auth.slice';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import tasksReducer from './slices/tasks/tasks.slice';
 import appReducer from './slices/app/app.slice';
-import PollsReducer from './slices/polls/polls.slice';
+import pollsReducer from './slices/polls/polls.slice';
 import referralReducer from './slices/referral/referral.slice';
+import profileRecucer from './slices/profile/profile.slice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     tasks: tasksReducer,
     app: appReducer,
-    polls: PollsReducer,
+    polls: pollsReducer,
     referral: referralReducer,
+    profile: profileRecucer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({serializableCheck: false}),
