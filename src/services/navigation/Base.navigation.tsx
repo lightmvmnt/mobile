@@ -17,6 +17,7 @@ import LoadingScreen from '../../modules/loading/screens';
 import UpdateScreen from '../../modules/update/screens/Update.screen';
 import ProfileEditScreen from '../../modules/profile/screens/ProfileEdit';
 import ProfileSettingsScreen from '../../modules/profile/screens/ProfileSettings';
+import RepresentativeScreen from '../../modules/representative/screens';
 
 export type RootStackParamList = {
   Loading: undefined;
@@ -31,6 +32,7 @@ export type RootStackParamList = {
   Profile: undefined;
   ProfileEdit: undefined;
   ProfileSettings: undefined;
+  Representative: undefined;
 };
 export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
@@ -55,6 +57,7 @@ function Routing() {
           name="ProfileSettings"
           component={ProfileSettingsScreen}
         />
+        <Stack.Screen name="Representative" component={RepresentativeScreen} />
       </Stack.Navigator>
       <BaseInterceptor />
     </NavigationContainer>
