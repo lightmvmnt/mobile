@@ -5,7 +5,7 @@ import {FontSizeGenerator} from '../../utils/fontSizeGenerator.util';
 export const styles = StyleSheet.create({
   indicator: {
     borderRadius: 100,
-    padding: 8,
+    padding: 6,
     backgroundColor: COLORS.GRAY,
     flexDirection: 'row',
     justifyContent: 'center',

@@ -7,8 +7,16 @@ import {COLORS} from '../../../../constants';
 import UncheckedHeartIcon from '../../../../assets/icons/uncheckedHeart.svg';
 import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 
 const RepresentativeCard = () => {
+  const navigation = useNavigation<NavigationProps>();
+
+  const handleRepresentativeDetailsButton = () => {
+    navigation.navigate('RepresentativeDetails');
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.cardTop}>
@@ -22,7 +30,9 @@ const RepresentativeCard = () => {
             <CountIndicator count={142} loading={false} />
           </View>
         </View>
-        <TouchableOpacity activeOpacity={0.4}>
+        <TouchableOpacity
+          activeOpacity={0.4}
+          onPress={handleRepresentativeDetailsButton}>
           <OpenIcon width={15} height={15} />
         </TouchableOpacity>
       </View>
