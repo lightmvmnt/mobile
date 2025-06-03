@@ -1,35 +1,37 @@
-import {View, Text, Linking} from 'react-native';
+import {View, Text, Linking, Platform} from 'react-native';
 import React from 'react';
 import {styles} from './SocialsEditForm.styles';
 import SocialsButton from './SocialsButton';
-import {LoginManager, Profile} from 'react-native-fbsdk-next';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {connectUserSocial} from '../../../../store/thunks/profile/profile.thunk';
+import {
+  AccessToken,
+  AuthenticationToken,
+  LoginManager,
+} from 'react-native-fbsdk-next';
+import {useAppSelector} from '../../../../store/store';
+import {GetStorageObject} from '../../../../utils/asyncStore.util';
 
 const SocialsEditForm = () => {
   const {socialAccounts, account} = useAppSelector(state => state.profile);
 
-  const dispatch = useAppDispatch();
-
   const onFaceBookConnect = async () => {
-    const result = await LoginManager.logInWithPermissions(
-      ['public_profile', 'user_link'],
-      'limited',
-    );
+    const result = await LoginManager.logInWithPermissions(['public_profile']);
 
     if (result.isCancelled) {
       console.log('Facebook login cancelled');
       return;
     }
 
-    const currentProfile = await Profile.getCurrentProfile();
+    const accessTokenObj =
+      Platform.OS === 'ios'
+        ? await AuthenticationToken.getAuthenticationTokenIOS()
+        : await AccessToken.getCurrentAccessToken();
 
-    dispatch(
-      connectUserSocial({
-        account_url: currentProfile?.linkURL ? currentProfile.linkURL : '',
-        social_type: 1,
-      }),
-    );
+    console.log(await GetStorageObject('session_token'));
+    console.log(accessTokenObj);
+
+    // if (accessTokenObj) {
+    //   dispatch(connectFacebookProfile(accessTokenObj.authenticationToken));
+    // }
   };
 
   const facebookButtonHandler = () => {

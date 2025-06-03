@@ -6,6 +6,9 @@ import {
   UserSocialsResponse,
   SocialTypes,
   UpdateAccountPayload,
+  FacebookConnectPayload,
+  FacebookConnectResponse,
+  connectFacebookProfileParams,
 } from './profile.types';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
@@ -94,6 +97,49 @@ export const connectUserSocial = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const connectFacebookProfile = createAsyncThunk(
+  'profile/connectFacebookProfile',
+  async (
+    {access_token, id_token}: connectFacebookProfileParams,
+    {rejectWithValue},
+  ) => {
+    try {
+      const session_token = await GetStorageObject('session_token');
+
+      const facebookProfile: FacebookConnectPayload = {
+        provider: 'facebook',
+        process: 'connect',
+        token: {
+          client_id: enviroment.FACEBOOK_CLIENT_ID,
+          access_token,
+          id_token,
+        },
+      };
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-Token': session_token,
+        },
+      };
+      const body = JSON.stringify(facebookProfile);
+
+      const response = await axios.post<FacebookConnectResponse>(
+        `${enviroment.API_BASE_URL}/users/_allauth/app/v1/auth/provider/token`,
+        body,
+        config,
+      );
+
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   },
