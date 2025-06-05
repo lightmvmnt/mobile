@@ -6,6 +6,7 @@ import appReducer from './slices/app/app.slice';
 import pollsReducer from './slices/polls/polls.slice';
 import referralReducer from './slices/referral/referral.slice';
 import profileRecucer from './slices/profile/profile.slice';
+import representativesReducer from './slices/representatives/representatives.slice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     polls: pollsReducer,
     referral: referralReducer,
     profile: profileRecucer,
+    representatives: representativesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({serializableCheck: false}),

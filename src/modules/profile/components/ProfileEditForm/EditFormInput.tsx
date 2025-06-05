@@ -50,7 +50,7 @@ const EditFormInput = ({
       <TextInput
         style={styles.input}
         mode="outlined"
-        textColor={disabled ? COLORS.BORDER : COLORS.DARK}
+        textColor={disabled ? COLORS.DEACTIVE : COLORS.DARK}
         cursorColor={COLORS.DARK}
         value={value}
         disabled={disabled}

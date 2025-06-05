@@ -4,7 +4,7 @@ import {
   SafeAreaBackgroundWithHeader,
 } from '../../../../globalComponents';
 import {styles} from './Profile.styles';
-import {ProfileForm} from '../../components';
+import {ProfileForm, RepresentativeSwitch} from '../../components';
 import ReferalInupt from '../../components/ReferralInput';
 import {useProfile} from './Profile.hooks';
 import CompletedMissions from '../../../../assets/icons/completedMissions.svg';
@@ -53,6 +53,7 @@ function ProfileScreen() {
             link={referralLink ? referralLink : ''}
             generateReferralLink={generateReferralLink}
           />
+          <RepresentativeSwitch />
           <ProfileForm />
         </View>
       </View>

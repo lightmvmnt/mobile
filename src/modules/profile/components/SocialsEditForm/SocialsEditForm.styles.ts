@@ -4,7 +4,7 @@ import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 
 export const styles = StyleSheet.create({
   formContainer: {
-    flex: 0.45,
+    flex: 0.5,
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: LAYOUT.WIDTH - 30,

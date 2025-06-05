@@ -9,10 +9,12 @@ export const profileEditFormValidationSchema = Yup.object({
     .required('გთხოვთ მიუთითოთ გვარი')
     .max(20, 'გვარის მაქსიმალური სიმბოლო არ უნდა აღემატებოდეს 20 სიმბოლოს'),
   email: Yup.string(),
+  abouMe: Yup.string(),
 });
 
 export const profileEditFormInitialValues: ProfileEditFormInitialValues = {
   firstName: '',
   lastName: '',
   email: '',
+  aboutMe: '',
 };

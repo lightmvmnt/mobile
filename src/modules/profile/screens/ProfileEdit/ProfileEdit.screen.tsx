@@ -14,9 +14,15 @@ import {styles} from './ProfileEdit.styles';
 import {SocialsEditForm} from '../../components';
 import {UpdateAccountPayload} from '../../../../store/thunks/profile/profile.types';
 import {updateAccount} from '../../../../store/thunks/profile/profile.thunk';
+import {updateRepresentativeDetails} from '../../../../store/thunks/representatives/representatives.thunk';
 
 const ProfileEditScreen = () => {
   const {account, loading} = useAppSelector(state => state.profile);
+  const {is_rep_details_updating} = useAppSelector(
+    state => state.representatives,
+  );
+
+  console.log(account);
 
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();
   const [updatedAccount, setUpdatedAccount] = useState<{
@@ -36,6 +42,7 @@ const ProfileEditScreen = () => {
       firstName: account.first_name,
       lastName: account.last_name,
       email: account.email,
+      aboutMe: account.leader_details ? account.leader_details.about_me : '',
     });
   }, [account]);
 
@@ -54,18 +61,29 @@ const ProfileEditScreen = () => {
       };
 
       dispatch(updateAccount({navigation, updated_account}));
+
+      if (account?.leader_details && account.leader_details.is_approved) {
+        dispatch(updateRepresentativeDetails(updatedAccount.values.aboutMe));
+      }
     }
   };
 
   return (
     <SafeAreaBackgroundWithHeader>
-      <ScrollView>
-        <ProfileEditForm
-          account={editFormAccount}
-          onChange={handleFormChange}
-        />
-        <SocialsEditForm />
-      </ScrollView>
+      <View style={styles.formsContainer}>
+        <ScrollView>
+          <ProfileEditForm
+            account={editFormAccount}
+            onChange={handleFormChange}
+            isRepresentative={
+              account?.leader_details
+                ? account.leader_details.is_approved
+                : false
+            }
+          />
+          <SocialsEditForm />
+        </ScrollView>
+      </View>
       <View style={styles.saveButtonContainer}>
         <SimpleButton
           variant="contained"
@@ -74,7 +92,7 @@ const ProfileEditScreen = () => {
           height={45}
           buttonColor={COLORS.NEW_MAIN}
           textColor={COLORS.LIGHT}
-          buttonLoading={loading}
+          buttonLoading={loading || is_rep_details_updating}
           onPress={onProfileEditSubmit}
         />
       </View>

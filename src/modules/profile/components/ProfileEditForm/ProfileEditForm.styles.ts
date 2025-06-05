@@ -4,7 +4,7 @@ import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 
 export const styles = StyleSheet.create({
   formContainer: {
-    flex: 0.45,
+    flex: 0.5,
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: LAYOUT.WIDTH - 30,
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
   },
   disabledInputLabel: {
-    color: COLORS.BORDER,
+    color: COLORS.DEACTIVE,
     fontWeight: 500,
   },
   inputOutline: {
@@ -50,5 +50,15 @@ export const styles = StyleSheet.create({
   },
   error: {
     color: COLORS.NEW_MAIN,
+  },
+  textFieldInput: {
+    borderWidth: 2,
+    borderRadius: 8,
+    borderColor: COLORS.BORDER,
+    height: 100,
+    padding: 12,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    color: COLORS.DARK,
   },
 });

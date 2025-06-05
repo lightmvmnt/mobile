@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native';
+import {Text, TextInput, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useFormik} from 'formik';
 import {
@@ -8,13 +8,16 @@ import {
 import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
 import EditFormInput from './EditFormInput';
 import {styles} from './ProfileEditForm.styles';
+import {COLORS} from '../../../../constants';
 
 const ProfileEditForm = ({
   account,
   onChange,
+  isRepresentative,
 }: {
   account: ProfileEditFormInitialValues | undefined;
   onChange: (isValid: boolean, values: ProfileEditFormInitialValues) => void;
+  isRepresentative: boolean;
 }) => {
   const {
     values,
@@ -55,6 +58,7 @@ const ProfileEditForm = ({
           error={errors.firstName}
           touched={touched.firstName}
           name="firstName"
+          disabled={isRepresentative}
           setFieldTouched={setFieldTouched}
           handleChange={handleChange}
         />
@@ -64,6 +68,7 @@ const ProfileEditForm = ({
           value={values.lastName}
           error={errors.lastName}
           touched={touched.lastName}
+          disabled={isRepresentative}
           name="lastName"
           setFieldTouched={setFieldTouched}
           handleChange={handleChange}
@@ -79,6 +84,18 @@ const ProfileEditForm = ({
           setFieldTouched={setFieldTouched}
           handleChange={handleChange}
         />
+
+        {isRepresentative ? (
+          <TextInput
+            placeholder="ჩემს შესახებ"
+            placeholderTextColor={COLORS.DARK}
+            multiline
+            textAlignVertical="top"
+            style={styles.textFieldInput}
+            value={values.aboutMe}
+            onChangeText={handleChange('aboutMe')}
+          />
+        ) : null}
       </View>
     </View>
   );

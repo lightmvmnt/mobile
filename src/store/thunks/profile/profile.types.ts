@@ -4,6 +4,11 @@ export interface Account {
   first_name: string;
   last_name: string;
   email: string;
+  leader_details: {
+    is_approved: boolean;
+    about_me: string;
+    facebook_profile: string;
+  };
 }
 
 export interface UpdateAccountPayload {

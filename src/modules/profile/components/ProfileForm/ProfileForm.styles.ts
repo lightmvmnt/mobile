@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   formContainer: {
     width: LAYOUT.WIDTH - 30,
     borderRadius: 12,
+    flex: 1,
   },
   header: {
     justifyContent: 'space-between',
