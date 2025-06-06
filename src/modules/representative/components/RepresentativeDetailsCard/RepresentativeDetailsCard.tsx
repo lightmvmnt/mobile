@@ -1,11 +1,7 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {styles} from './RepresentativeDetailsCard.styles';
-import {
-  CountIndicator,
-  SimpleIndicator,
-  SocialAccountsContainer,
-} from '../../../../globalComponents';
+import {CountIndicator, SimpleIndicator} from '../../../../globalComponents';
 import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
 
 const RepresentativeDetailsCard = () => {
@@ -36,7 +32,7 @@ const RepresentativeDetailsCard = () => {
       </View>
 
       <View style={styles.socialAccountsContainerWrapper}>
-        <SocialAccountsContainer />
+        {/* <SocialAccountsContainer /> */}
       </View>
     </View>
   );

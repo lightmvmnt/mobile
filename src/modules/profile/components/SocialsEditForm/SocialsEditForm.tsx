@@ -1,4 +1,4 @@
-import {View, Text, Linking, Platform} from 'react-native';
+import {View, Text, Platform} from 'react-native';
 import React from 'react';
 import {styles} from './SocialsEditForm.styles';
 import SocialsButton from './SocialsButton';
@@ -9,6 +9,7 @@ import {
 } from 'react-native-fbsdk-next';
 import {useAppSelector} from '../../../../store/store';
 import {GetStorageObject} from '../../../../utils/asyncStore.util';
+import FacebookButton from './FacebookButton';
 
 const SocialsEditForm = () => {
   const {socialAccounts, account} = useAppSelector(state => state.profile);
@@ -35,12 +36,8 @@ const SocialsEditForm = () => {
   };
 
   const facebookButtonHandler = () => {
-    const facebookAccount = socialAccounts.find(
-      socialAccount => socialAccount.type_id === 1,
-    );
-
-    if (facebookAccount) {
-      Linking.openURL(facebookAccount.social_account);
+    if (account?.leader_details) {
+      console.log('is connected');
     } else {
       onFaceBookConnect();
     }
@@ -58,25 +55,26 @@ const SocialsEditForm = () => {
         <Text style={styles.headerTitle}>სოციალური ქსელები</Text>
       </View>
       <View style={styles.form}>
-        <SocialsButton
-          socialAccount={findSocialAccount(1)}
+        <FacebookButton
           account={account}
-          name="ფეისბუქი"
           onButtonPress={facebookButtonHandler}
         />
         <SocialsButton
+          socialAccount={findSocialAccount(2)}
           account={account}
-          name="ლინკდინი"
+          socialAccountType="LDIN"
           onButtonPress={() => {}}
         />
         <SocialsButton
+          socialAccount={findSocialAccount(3)}
           account={account}
-          name="ტიკტოკი"
+          socialAccountType="TT"
           onButtonPress={() => {}}
         />
         <SocialsButton
+          socialAccount={findSocialAccount(4)}
           account={account}
-          name="იუთუბი"
+          socialAccountType="YT"
           onButtonPress={() => {}}
         />
       </View>

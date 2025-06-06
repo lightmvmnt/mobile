@@ -11,7 +11,10 @@ export interface Account {
   leader_details: {
     is_approved: boolean;
     about_me: string;
-    facebook_profile: string;
+    facebook_profile: {
+      link: string;
+      photo: string;
+    };
   };
 }
 

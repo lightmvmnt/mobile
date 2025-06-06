@@ -22,8 +22,6 @@ const ProfileEditScreen = () => {
     state => state.representatives,
   );
 
-  console.log(account);
-
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();
   const [updatedAccount, setUpdatedAccount] = useState<{
     isValid: boolean;
