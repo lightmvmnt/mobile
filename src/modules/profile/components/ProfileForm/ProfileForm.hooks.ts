@@ -39,6 +39,8 @@ export const useProfileForm = () => {
   useEffect(() => {
     let connectedSocialAccount: ConnectedSocialAccount;
 
+    console.log(account);
+
     if (socialAccounts.length) {
       socialAccounts.map(socialAccount => {
         connectedSocialAccount = {
@@ -58,6 +60,12 @@ export const useProfileForm = () => {
         type: 'FB',
         link: account.leader_details.facebook_profile.link,
       };
+
+      console.log(connectedSocialAccount);
+
+      setConnectedSocialAccounts(prev =>
+        prev.filter(socialAccount => socialAccount.type !== 'FB'),
+      );
 
       setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
     } else {
