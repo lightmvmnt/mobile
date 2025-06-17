@@ -145,7 +145,6 @@ export const authentication = createAsyncThunk(
       );
 
       if (response.status === 200) {
-        console.log(response.data);
         SetStorageObjectValue('access_token', response.data.meta.access_token);
         SetStorageObjectValue(
           'session_token',

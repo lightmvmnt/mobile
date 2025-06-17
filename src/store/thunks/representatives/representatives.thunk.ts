@@ -83,7 +83,6 @@ export const updateRepresentativeDetails = createAsyncThunk(
         dispatch(GetAccountData());
       }
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error);
     }
   },

@@ -39,8 +39,6 @@ export const useProfileForm = () => {
   useEffect(() => {
     let connectedSocialAccount: ConnectedSocialAccount;
 
-    console.log(account);
-
     if (socialAccounts.length) {
       socialAccounts.map(socialAccount => {
         connectedSocialAccount = {
