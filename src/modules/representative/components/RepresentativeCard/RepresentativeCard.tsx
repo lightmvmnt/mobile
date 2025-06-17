@@ -5,20 +5,34 @@ import {CountIndicator, SimpleButton} from '../../../../globalComponents';
 import OpenIcon from '../../../../assets/icons/open.svg';
 import {COLORS} from '../../../../constants';
 import UncheckedHeartIcon from '../../../../assets/icons/uncheckedHeart.svg';
+import CheckedHeartIcon from '../../../../assets/icons/checkHeart.svg';
 import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+import {Representative} from '../../../../store/slices/representatives/representatives.types';
+import {useRepresentativeCard} from './RepresentativeCard.hook';
 
-const RepresentativeCard = () => {
-  const navigation = useNavigation<NavigationProps>();
-
-  const handleRepresentativeDetailsButton = () => {
-    navigation.navigate('RepresentativeDetails');
-  };
+const RepresentativeCard = ({
+  representative,
+  loading,
+}: {
+  representative: Representative;
+  loading: boolean;
+}) => {
+  const {
+    isChosen,
+    pressed_representative_id,
+    choose_representative_loading,
+    onChooseButtonPress,
+    onLikeButtonPress,
+    handleRepresentativeDetailsButton,
+  } = useRepresentativeCard(representative);
 
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        {borderColor: isChosen ? COLORS.DARK : COLORS.BORDER},
+      ]}>
       <View style={styles.cardTop}>
         <View style={styles.cardInfoContainer}>
           <Image
@@ -26,8 +40,13 @@ const RepresentativeCard = () => {
             source={require('../../../../assets/icons/zviad.png')}
           />
           <View style={styles.cardInfo}>
-            <Text style={styles.cardInfoText}>ზვიად გამსახურდია</Text>
-            <CountIndicator count={142} loading={false} />
+            <Text style={styles.cardInfoText}>
+              {representative.first_name} {representative.last_name}
+            </Text>
+            <CountIndicator
+              count={representative.leader_details.votes_count}
+              loading={loading}
+            />
           </View>
         </View>
         <TouchableOpacity
@@ -44,20 +63,28 @@ const RepresentativeCard = () => {
           variant="contained"
           textColor={COLORS.DARK}
           buttonColor={COLORS.SECONDARY_BG_COLOR}
-          onPress={() => {}}
+          onPress={onLikeButtonPress}
           fontSize={FontSizeGenerator(14)}
           Icon={UncheckedHeartIcon}
         />
         <SimpleButton
           width={230}
           height={40}
-          text="არჩევა"
+          text={isChosen ? 'არჩეული' : 'არჩევა'}
           variant="contained"
-          textColor={COLORS.DARK}
-          buttonColor={COLORS.SECONDARY_BG_COLOR}
-          onPress={() => {}}
+          textColor={isChosen ? COLORS.LIGHT : COLORS.DARK}
+          buttonColor={isChosen ? COLORS.DARK : COLORS.SECONDARY_BG_COLOR}
+          onPress={() => onChooseButtonPress(representative.leader_details.id)}
           fontSize={FontSizeGenerator(14)}
-          Icon={UncheckedIcon}
+          Icon={isChosen ? CheckedHeartIcon : UncheckedIcon}
+          disabled={
+            pressed_representative_id !== representative.leader_details.id &&
+            choose_representative_loading
+          }
+          buttonLoading={
+            pressed_representative_id === representative.leader_details.id &&
+            choose_representative_loading
+          }
         />
       </View>
     </View>

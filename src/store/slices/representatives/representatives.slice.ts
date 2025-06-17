@@ -1,6 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RepresentativesInitialState} from './representatives.types';
 import {
+  chooseRepresentative,
+  getChosenRepresentativeId,
+  getRepresentatives,
+  removeChosenRepresentative,
   removeRepresentativeStatus,
   sentRepresentativeRequest,
   updateRepresentativeDetails,
@@ -9,12 +13,21 @@ import {
 const representativesInitialState: RepresentativesInitialState = {
   rep_switch_loading: false,
   is_rep_details_updating: false,
+  get_representatives_loading: false,
+  choose_representative_loading: false,
+  chosen_representative_id: 0,
+  pressed_representative_id: 0,
+  representatives: [],
 };
 
 export const representativesSlice = createSlice({
   name: 'representatives',
   initialState: representativesInitialState,
-  reducers: {},
+  reducers: {
+    changePressedRepresentativeId: (state, action: {payload: number}) => {
+      state.pressed_representative_id = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(sentRepresentativeRequest.pending, state => {
@@ -43,8 +56,52 @@ export const representativesSlice = createSlice({
       })
       .addCase(updateRepresentativeDetails.rejected, state => {
         state.is_rep_details_updating = false;
+      })
+      .addCase(getRepresentatives.pending, state => {
+        state.get_representatives_loading = true;
+      })
+      .addCase(getRepresentatives.fulfilled, (state, action) => {
+        state.get_representatives_loading = false;
+        state.representatives = action.payload;
+      })
+      .addCase(getRepresentatives.rejected, state => {
+        state.get_representatives_loading = false;
+        state.representatives = [];
+      })
+      .addCase(chooseRepresentative.pending, state => {
+        state.choose_representative_loading = true;
+      })
+      .addCase(chooseRepresentative.fulfilled, (state, action) => {
+        state.chosen_representative_id = action.payload.leader_user_id;
+        state.choose_representative_loading = false;
+      })
+      .addCase(chooseRepresentative.rejected, state => {
+        state.choose_representative_loading = false;
+      })
+      .addCase(getChosenRepresentativeId.pending, state => {
+        state.get_representatives_loading = true;
+      })
+      .addCase(getChosenRepresentativeId.fulfilled, (state, action) => {
+        state.chosen_representative_id = action.payload.leader_user_id;
+        state.get_representatives_loading = false;
+      })
+      .addCase(getChosenRepresentativeId.rejected, state => {
+        state.chosen_representative_id = 0;
+        state.get_representatives_loading = false;
+      })
+      .addCase(removeChosenRepresentative.pending, state => {
+        state.choose_representative_loading = true;
+      })
+      .addCase(removeChosenRepresentative.fulfilled, state => {
+        state.chosen_representative_id = 0;
+        state.choose_representative_loading = false;
+      })
+      .addCase(removeChosenRepresentative.rejected, state => {
+        state.choose_representative_loading = false;
       });
   },
 });
+
+export const {changePressedRepresentativeId} = representativesSlice.actions;
 
 export default representativesSlice.reducer;
