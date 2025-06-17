@@ -107,7 +107,7 @@ export const connectUserSocial = createAsyncThunk(
 export const connectFacebookProfile = createAsyncThunk(
   'profile/connectFacebookProfile',
   async (
-    {id_token, navigation}: connectFacebookProfileParams,
+    {id_token, access_token, navigation}: connectFacebookProfileParams,
     {rejectWithValue},
   ) => {
     try {
@@ -119,6 +119,7 @@ export const connectFacebookProfile = createAsyncThunk(
         token: {
           client_id: enviroment.FACEBOOK_CLIENT_ID,
           id_token,
+          access_token,
         },
       };
 

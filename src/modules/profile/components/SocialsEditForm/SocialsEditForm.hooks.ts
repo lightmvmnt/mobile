@@ -1,6 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {AuthenticationToken, LoginManager} from 'react-native-fbsdk-next';
+import {
+  AccessToken,
+  AuthenticationToken,
+  LoginManager,
+} from 'react-native-fbsdk-next';
 import {
   connectFacebookProfile,
   removeConnectedProvider,
@@ -8,6 +12,7 @@ import {
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {ConnectedProvider} from '../../../../store/slices/profile/profile.types';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
+import {Platform} from 'react-native';
 
 export const useSocialsEditForm = () => {
   const {socialAccounts, account, connectedProviders} = useAppSelector(
@@ -28,16 +33,28 @@ export const useSocialsEditForm = () => {
       return;
     }
 
-    const accessTokenObj =
-      await AuthenticationToken.getAuthenticationTokenIOS();
+    if (Platform.OS === 'ios') {
+      const idTokenObj = await AuthenticationToken.getAuthenticationTokenIOS();
 
-    if (accessTokenObj) {
-      dispatch(
-        connectFacebookProfile({
-          id_token: accessTokenObj.authenticationToken,
-          navigation,
-        }),
-      );
+      if (idTokenObj) {
+        dispatch(
+          connectFacebookProfile({
+            id_token: idTokenObj.authenticationToken,
+            navigation,
+          }),
+        );
+      }
+    } else if (Platform.OS === 'android') {
+      const accessTokenObj = await AccessToken.getCurrentAccessToken();
+
+      if (accessTokenObj) {
+        dispatch(
+          connectFacebookProfile({
+            access_token: accessTokenObj.accessToken,
+            navigation,
+          }),
+        );
+      }
     }
   };
 
