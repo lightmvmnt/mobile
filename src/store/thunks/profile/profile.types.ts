@@ -2,6 +2,7 @@ import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {User} from '../auth/auth.types';
 
 export interface Account {
+  id: number;
   first_name: string;
   last_name: string;
   email: string;

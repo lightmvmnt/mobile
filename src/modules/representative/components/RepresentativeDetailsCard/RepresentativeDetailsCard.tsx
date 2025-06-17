@@ -3,8 +3,14 @@ import React from 'react';
 import {styles} from './RepresentativeDetailsCard.styles';
 import {CountIndicator, SimpleIndicator} from '../../../../globalComponents';
 import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
+import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
 
-const RepresentativeDetailsCard = () => {
+const RepresentativeDetailsCard = ({
+  representative,
+}: {
+  representative: RepresentativeDetails | null;
+}) => {
+  console.log(representative);
   return (
     <View style={styles.detailsCard}>
       <View style={styles.detailsCardInfoContainer}>
@@ -13,7 +19,7 @@ const RepresentativeDetailsCard = () => {
           source={require('../../../../assets/icons/zviad.png')}
         />
         <View style={styles.detailsCardInfo}>
-          <Text style={styles.DetailsCardInfoText}>ზვიად გამსახურდია</Text>
+          <Text style={styles.DetailsCardInfoText}></Text>
           <View style={styles.detailsCardIndicatorsContainer}>
             <CountIndicator count={142} loading={false} />
             <View style={styles.detailsCardIndicatorWrapper}>

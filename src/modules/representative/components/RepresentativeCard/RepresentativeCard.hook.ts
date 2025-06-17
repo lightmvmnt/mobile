@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import Toast from 'react-native-toast-message';
 import {
   chooseRepresentative,
+  getRepresentativeDetails,
   removeChosenRepresentative,
 } from '../../../../store/thunks/representatives/representatives.thunk';
 import {changePressedRepresentativeId} from '../../../../store/slices/representatives/representatives.slice';
@@ -45,6 +46,7 @@ export const useRepresentativeCard = (representative: Representative) => {
   }, [representative, chosen_representative_id]);
 
   const handleRepresentativeDetailsButton = () => {
+    dispatch(getRepresentativeDetails(representative.id));
     navigation.navigate('RepresentativeDetails');
   };
 

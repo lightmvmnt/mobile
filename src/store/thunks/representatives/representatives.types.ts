@@ -1,4 +1,5 @@
-export interface GetRepresentativeResponse {
+export interface GetRepresentativesResponse {
+  id: number;
   first_name: string;
   last_name: string;
   email: string;
@@ -20,4 +21,15 @@ export interface ChooseRepresentativeResponse {
 
 export interface GetChosenRepresentativeIdResponse {
   leader_user_id: number;
+}
+
+export interface GetRepresentativeDetailsResponse {
+  id: number;
+  is_approved: boolean;
+  about_me: string;
+  facebook_profile: {
+    link: string;
+    photo: string;
+  };
+  votes_count: number;
 }

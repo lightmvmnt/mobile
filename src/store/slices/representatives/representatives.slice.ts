@@ -3,6 +3,7 @@ import {RepresentativesInitialState} from './representatives.types';
 import {
   chooseRepresentative,
   getChosenRepresentativeId,
+  getRepresentativeDetails,
   getRepresentatives,
   removeChosenRepresentative,
   removeRepresentativeStatus,
@@ -15,6 +16,8 @@ const representativesInitialState: RepresentativesInitialState = {
   is_rep_details_updating: false,
   get_representatives_loading: false,
   choose_representative_loading: false,
+  get_representative_details_loading: false,
+  representative_details: null,
   chosen_representative_id: 0,
   pressed_representative_id: 0,
   representatives: [],
@@ -66,7 +69,6 @@ export const representativesSlice = createSlice({
       })
       .addCase(getRepresentatives.rejected, state => {
         state.get_representatives_loading = false;
-        state.representatives = [];
       })
       .addCase(chooseRepresentative.pending, state => {
         state.choose_representative_loading = true;
@@ -86,7 +88,6 @@ export const representativesSlice = createSlice({
         state.get_representatives_loading = false;
       })
       .addCase(getChosenRepresentativeId.rejected, state => {
-        state.chosen_representative_id = 0;
         state.get_representatives_loading = false;
       })
       .addCase(removeChosenRepresentative.pending, state => {
@@ -98,6 +99,16 @@ export const representativesSlice = createSlice({
       })
       .addCase(removeChosenRepresentative.rejected, state => {
         state.choose_representative_loading = false;
+      })
+      .addCase(getRepresentativeDetails.pending, state => {
+        state.get_representative_details_loading = true;
+      })
+      .addCase(getRepresentativeDetails.fulfilled, (state, action) => {
+        state.representative_details = action.payload;
+        state.get_representative_details_loading = false;
+      })
+      .addCase(getRepresentativeDetails.rejected, state => {
+        state.get_representative_details_loading = false;
       });
   },
 });

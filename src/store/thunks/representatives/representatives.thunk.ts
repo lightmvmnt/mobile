@@ -6,16 +6,36 @@ import {GetAccountData} from '../profile/profile.thunk';
 import {
   ChooseRepresentativeResponse,
   GetChosenRepresentativeIdResponse,
-  GetRepresentativeResponse,
+  GetRepresentativeDetailsResponse,
+  GetRepresentativesResponse,
 } from './representatives.types';
 
 export const getRepresentatives = createAsyncThunk(
   'representatives/getRepresentatives',
   async (_, {rejectWithValue}) => {
     try {
-      const response = await axios.get<GetRepresentativeResponse[]>(
+      const response = await axios.get<GetRepresentativesResponse[]>(
         `${enviroment.API_BASE_URL}/users/leaders/`,
       );
+
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getRepresentativeDetails = createAsyncThunk(
+  'representatives/getRepresentativeDetails',
+  async (id: number, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<GetRepresentativeDetailsResponse>(
+        `${enviroment.API_BASE_URL}/users/leader/${id}`,
+      );
+
+      console.log(response);
 
       return response.data;
     } catch (error) {
