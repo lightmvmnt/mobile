@@ -1,14 +1,19 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {styles} from './SocialsEditForm.styles';
-import {Account} from '../../../../store/slices/profile/profile.types';
+import {
+  Account,
+  ConnectedProvider,
+} from '../../../../store/slices/profile/profile.types';
 import FbIcon from '../../../../assets/icons/fbIcon.svg';
 
 const FacebookButton = ({
   account,
+  provider,
   onButtonPress,
 }: {
   account: Account | null;
+  provider: ConnectedProvider | undefined;
   onButtonPress: () => void;
 }) => {
   return (
@@ -16,7 +21,7 @@ const FacebookButton = ({
       activeOpacity={0.6}
       style={styles.input}
       onPress={onButtonPress}>
-      {account?.leader_details ? (
+      {provider ? (
         <View style={styles.connectedButton}>
           <FbIcon width={25} height={25} />
           <Text style={styles.connectedButtonText}>

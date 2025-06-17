@@ -1,3 +1,4 @@
+import {NavigationProps} from '../../../services/navigation/Base.navigation';
 import {User} from '../auth/auth.types';
 
 export interface Account {
@@ -7,7 +8,10 @@ export interface Account {
   leader_details: {
     is_approved: boolean;
     about_me: string;
-    facebook_profile: string;
+    facebook_profile: {
+      link: string;
+      photo: string;
+    };
   };
 }
 
@@ -26,6 +30,7 @@ export interface UserSocialsResponse {
 export interface connectFacebookProfileParams {
   access_token?: string;
   id_token?: string;
+  navigation: NavigationProps;
 }
 
 export interface FacebookConnectPayload {
@@ -36,6 +41,11 @@ export interface FacebookConnectPayload {
     access_token?: string;
     id_token?: string;
   };
+}
+
+export interface removeConnectedProviderPayload {
+  provider: string;
+  account: string;
 }
 
 export interface FacebookConnectResponse {
@@ -54,4 +64,22 @@ export interface FacebookConnectResponse {
     access_token: string;
   };
   status: number;
+}
+
+export interface GetconnectedProvidersResponse {
+  status: number;
+  data: connectedProvidersData[];
+}
+
+interface connectedProvidersData {
+  uid: string;
+  display: string;
+  provider: connectedProvider;
+}
+
+interface connectedProvider {
+  id: string;
+  name: string;
+  client_id: string;
+  flows: string[];
 }

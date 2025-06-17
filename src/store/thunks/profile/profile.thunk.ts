@@ -9,6 +9,8 @@ import {
   FacebookConnectPayload,
   FacebookConnectResponse,
   connectFacebookProfileParams,
+  GetconnectedProvidersResponse,
+  removeConnectedProviderPayload,
 } from './profile.types';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
@@ -105,7 +107,7 @@ export const connectUserSocial = createAsyncThunk(
 export const connectFacebookProfile = createAsyncThunk(
   'profile/connectFacebookProfile',
   async (
-    {access_token, id_token}: connectFacebookProfileParams,
+    {id_token, navigation}: connectFacebookProfileParams,
     {rejectWithValue},
   ) => {
     try {
@@ -116,7 +118,6 @@ export const connectFacebookProfile = createAsyncThunk(
         process: 'connect',
         token: {
           client_id: enviroment.FACEBOOK_CLIENT_ID,
-          access_token,
           id_token,
         },
       };
@@ -135,7 +136,9 @@ export const connectFacebookProfile = createAsyncThunk(
         config,
       );
 
-      console.log(response.data);
+      if (response.status === 200) {
+        navigation.navigate('Profile');
+      }
 
       return response.data;
     } catch (error) {
@@ -152,6 +155,69 @@ export const getUserSocials = createAsyncThunk(
       const response = await axios.get<UserSocialsResponse[]>(
         `${enviroment.API_BASE_URL}/users/me/social-account/`,
       );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getConnectedProviders = createAsyncThunk(
+  'profile/getConnectedProviders',
+  async (_, {rejectWithValue}) => {
+    try {
+      const session_token = await GetStorageObject('session_token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-Token': session_token,
+        },
+      };
+
+      const response = await axios.get<GetconnectedProvidersResponse>(
+        `${enviroment.API_BASE_URL}/users/_allauth/app/v1/account/providers`,
+        config,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const removeConnectedProvider = createAsyncThunk(
+  'profile/removeConnectedProvider',
+  async (
+    {
+      provider,
+      navigation,
+    }: {provider: removeConnectedProviderPayload; navigation: NavigationProps},
+    {rejectWithValue},
+  ) => {
+    try {
+      const session_token = await GetStorageObject('session_token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-Token': session_token,
+        },
+        data: provider,
+      };
+
+      const response = await axios.delete<GetconnectedProvidersResponse>(
+        `${enviroment.API_BASE_URL}/users/_allauth/app/v1/account/providers`,
+        config,
+      );
+
+      console.log(response.data);
+
+      if (response.data.status === 200) {
+        navigation.navigate('Profile');
+      }
 
       return response.data;
     } catch (error) {

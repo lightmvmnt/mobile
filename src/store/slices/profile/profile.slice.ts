@@ -3,12 +3,15 @@ import {ProfileInitialState} from './profile.types';
 import {
   connectUserSocial,
   GetAccountData,
+  getConnectedProviders,
   updateAccount,
 } from '../../thunks/profile/profile.thunk';
 
 const initialState: ProfileInitialState = {
   socialAccounts: [],
+  connectedProviders: [],
   loading: false,
+  getConnectedProvidersLoading: false,
   account: null,
 };
 
@@ -43,6 +46,17 @@ export const profileSlice = createSlice({
       })
       .addCase(connectUserSocial.rejected, state => {
         state.loading = false;
+      })
+      .addCase(getConnectedProviders.pending, state => {
+        state.getConnectedProvidersLoading = true;
+      })
+      .addCase(getConnectedProviders.fulfilled, (state, action) => {
+        state.getConnectedProvidersLoading = false;
+        state.connectedProviders = action.payload.data;
+      })
+      .addCase(getConnectedProviders.rejected, state => {
+        state.getConnectedProvidersLoading = false;
+        state.connectedProviders = [];
       });
   },
 });

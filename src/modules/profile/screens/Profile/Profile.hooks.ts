@@ -6,6 +6,10 @@ import {
 } from '../../../../store/slices/referral/referral.slice';
 import {getUserReferralCount} from '../../../../store/thunks/referral/referral.thunk';
 import {useEffect} from 'react';
+import {
+  GetAccountData,
+  getConnectedProviders,
+} from '../../../../store/thunks/profile/profile.thunk';
 
 export const useProfile = () => {
   const {user, userTotalPoints, userTotalPointsLoading} = useAppSelector(
@@ -25,7 +29,9 @@ export const useProfile = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(GetAccountData());
     dispatch(getUserReferralCount());
+    dispatch(getConnectedProviders());
   }, [dispatch]);
 
   const generateReferralLink = () => {

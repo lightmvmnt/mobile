@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {
   InfoContainer,
   SafeAreaBackgroundWithHeader,
@@ -46,15 +46,17 @@ function ProfileScreen() {
               loading={userTotalPointsLoading}
             />
           </View>
-          <ReferalInupt
-            generateLinkLoading={generateReferralLinkLoading}
-            count={referralCount}
-            getCountLoading={getReferralCountLoading}
-            link={referralLink ? referralLink : ''}
-            generateReferralLink={generateReferralLink}
-          />
-          <RepresentativeSwitch />
-          <ProfileForm />
+          <ScrollView>
+            <ReferalInupt
+              generateLinkLoading={generateReferralLinkLoading}
+              count={referralCount}
+              getCountLoading={getReferralCountLoading}
+              link={referralLink ? referralLink : ''}
+              generateReferralLink={generateReferralLink}
+            />
+            <RepresentativeSwitch />
+            <ProfileForm />
+          </ScrollView>
         </View>
       </View>
     </SafeAreaBackgroundWithHeader>
