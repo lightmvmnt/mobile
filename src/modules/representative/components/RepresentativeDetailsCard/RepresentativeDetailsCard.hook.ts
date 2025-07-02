@@ -18,6 +18,7 @@ export const useRepresentativeDetailsCard = (
     }
 
     const socialAccounts = representative.leader_details.social_accounts;
+    const facebookProfile = representative.leader_details.facebook_profile;
 
     if (socialAccounts.length) {
       socialAccounts.map(socialAccount => {
@@ -28,6 +29,23 @@ export const useRepresentativeDetailsCard = (
 
         setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
       });
+    }
+
+    if (facebookProfile.link) {
+      connectedSocialAccount = {
+        type: 'FB',
+        link: facebookProfile.link,
+      };
+
+      setConnectedSocialAccounts(prev =>
+        prev.filter(socialAccount => socialAccount.type !== 'FB'),
+      );
+
+      setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
+    } else {
+      setConnectedSocialAccounts(prev =>
+        prev.filter(socialAccount => socialAccount.type !== 'FB'),
+      );
     }
   }, [representative]);
 

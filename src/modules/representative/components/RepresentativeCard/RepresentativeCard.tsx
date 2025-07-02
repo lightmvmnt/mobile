@@ -39,7 +39,11 @@ const RepresentativeCard = ({
         <View style={styles.cardInfoContainer}>
           <Image
             style={styles.cardImg}
-            source={require('../../../../assets/icons/zviad.png')}
+            source={
+              representative?.leader_details.facebook_profile.photo
+                ? representative?.leader_details.facebook_profile.photo
+                : require('../../../../assets/icons/zviad.png')
+            }
           />
           <View style={styles.cardInfo}>
             <Text style={styles.cardInfoText}>
