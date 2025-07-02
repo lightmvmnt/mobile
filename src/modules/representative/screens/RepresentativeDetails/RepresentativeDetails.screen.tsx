@@ -5,6 +5,7 @@ import {ActivityIndicator, View} from 'react-native';
 import {styles} from './RepresentativeDetails.styles';
 import {useRepresentativeDetails} from './RepresentativeDetails.hook';
 import {COLORS} from '../../../../constants';
+import RepresentativeDetailsButtons from '../../components/RepresentativeDetailsButtons';
 
 const RepresentativeDetailsScreen = () => {
   const {representative_details, get_representative_details_loading} =
@@ -15,6 +16,9 @@ const RepresentativeDetailsScreen = () => {
       {!get_representative_details_loading ? (
         <View style={styles.container}>
           <RepresentativeDetailsCard representative={representative_details} />
+          <RepresentativeDetailsButtons
+            representative={representative_details}
+          />
         </View>
       ) : (
         <ActivityIndicator animating={true} size={50} color={COLORS.MAIN} />

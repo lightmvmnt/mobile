@@ -9,5 +9,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
     paddingVertical: 20,
+    position: 'relative',
   },
 });

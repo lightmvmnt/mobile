@@ -3,8 +3,3 @@ import {RepresentativeDetails} from '../../../../store/slices/representatives/re
 export interface Props {
   representative: RepresentativeDetails | null;
 }
-
-export interface ConnectedSocialAccount {
-  type: 'FB' | 'TT' | 'YT' | 'LDIN';
-  link: string;
-}

@@ -28,7 +28,9 @@ const RepresentativeCard = ({
   } = useRepresentativeCard(representative);
 
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={handleRepresentativeDetailsButton}
       style={[
         styles.card,
         {borderColor: isChosen ? COLORS.DARK : COLORS.BORDER},
@@ -74,7 +76,7 @@ const RepresentativeCard = ({
           variant="contained"
           textColor={isChosen ? COLORS.LIGHT : COLORS.DARK}
           buttonColor={isChosen ? COLORS.DARK : COLORS.SECONDARY_BG_COLOR}
-          onPress={() => onChooseButtonPress(representative.leader_details.id)}
+          onPress={onChooseButtonPress}
           fontSize={FontSizeGenerator(14)}
           Icon={isChosen ? CheckedHeartIcon : UncheckedIcon}
           disabled={
@@ -87,7 +89,7 @@ const RepresentativeCard = ({
           }
         />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

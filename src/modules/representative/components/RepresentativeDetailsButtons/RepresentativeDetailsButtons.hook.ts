@@ -1,18 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {Representative} from '../../../../store/slices/representatives/representatives.types';
 import {useEffect, useState} from 'react';
+import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import Toast from 'react-native-toast-message';
 import {
   chooseRepresentative,
-  getRepresentativeDetails,
   removeChosenRepresentative,
   updateChosenRepresentative,
 } from '../../../../store/thunks/representatives/representatives.thunk';
+import Toast from 'react-native-toast-message';
 import {changePressedRepresentativeId} from '../../../../store/slices/representatives/representatives.slice';
 
-export const useRepresentativeCard = (representative: Representative) => {
+export const useRepresentativeDetailsButtons = (
+  representative: RepresentativeDetails | null,
+) => {
   const {account} = useAppSelector(state => state.profile);
   const {
     choose_representative_loading,
@@ -24,11 +23,10 @@ export const useRepresentativeCard = (representative: Representative) => {
   const [isChosen, setIsChosen] = useState(false);
   const [hasChosenElse, setHasChosenElse] = useState(false);
 
-  const navigation = useNavigation<NavigationProps>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!representative && !account) {
+    if (!representative || !account) {
       return;
     }
 
@@ -50,12 +48,11 @@ export const useRepresentativeCard = (representative: Representative) => {
     );
   }, [representative, chosen_representative_id]);
 
-  const handleRepresentativeDetailsButton = () => {
-    dispatch(getRepresentativeDetails(representative.id));
-    navigation.navigate('RepresentativeDetails');
-  };
-
   const onChooseButtonPress = () => {
+    if (!representative) {
+      return;
+    }
+
     if (isThemselves) {
       Toast.show({
         type: 'info',
@@ -99,7 +96,6 @@ export const useRepresentativeCard = (representative: Representative) => {
     isChosen,
     pressed_representative_id,
     choose_representative_loading,
-    handleRepresentativeDetailsButton,
     onChooseButtonPress,
     onLikeButtonPress,
   };

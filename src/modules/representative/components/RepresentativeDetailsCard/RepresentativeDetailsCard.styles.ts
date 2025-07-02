@@ -53,6 +53,7 @@ export const styles = StyleSheet.create({
     fontSize: FontSizeGenerator(15),
     color: COLORS.DARK,
     marginBottom: 8,
+    minHeight: 20,
   },
   aboutMeText: {
     fontFamily: FONTS.GEO_REGULAR,

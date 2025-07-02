@@ -6,14 +6,10 @@ import {
   SocialAccountsContainer,
 } from '../../../../globalComponents';
 // import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
-import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
 import {useRepresentativeDetailsCard} from './RepresentativeDetailsCard.hook';
+import {Props} from './RepresentativeDetailsCard.types';
 
-const RepresentativeDetailsCard = ({
-  representative,
-}: {
-  representative: RepresentativeDetails | null;
-}) => {
+const RepresentativeDetailsCard = ({representative}: Props) => {
   const {connectedSocialAccounts} =
     useRepresentativeDetailsCard(representative);
 
@@ -47,7 +43,7 @@ const RepresentativeDetailsCard = ({
       </View>
 
       <View style={styles.aboutMeContainer}>
-        <Text style={styles.aboutMeTitle}>About Me</Text>
+        <Text style={styles.aboutMeTitle}>ჩემს შესახებ</Text>
         <Text style={styles.aboutMeText}>
           {representative?.leader_details.about_me}
         </Text>
