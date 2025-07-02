@@ -39,6 +39,11 @@ export interface GetRepresentativeDetailsResponse {
       link: string;
       photo: string;
     };
+    social_accounts: {
+      id: number;
+      social_account: string;
+      type_id: number;
+    }[];
     votes_count: number;
   };
 }

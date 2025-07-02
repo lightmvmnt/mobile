@@ -16,13 +16,13 @@ export const NavItems: NavItem[] = [
     label: 'მისია',
   },
   {
-    Icon: PollsIcon,
-    to: 'Polls',
-    label: 'არჩევანი',
-  },
-  {
     Icon: ProfileIcon,
     to: 'Representative',
     label: 'ვინ',
+  },
+  {
+    Icon: PollsIcon,
+    to: 'Polls',
+    label: 'არჩევანი',
   },
 ];

@@ -1,21 +1,35 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {styles} from './RepresentativeDetailsCard.styles';
-import {CountIndicator, SimpleIndicator} from '../../../../globalComponents';
+import {
+  CountIndicator,
+  SimpleIndicator,
+  SocialAccountsContainer,
+} from '../../../../globalComponents';
 import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
 import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
+import {useRepresentativeDetailsCard} from './RepresentativeDetailsCard.hook';
 
 const RepresentativeDetailsCard = ({
   representative,
 }: {
   representative: RepresentativeDetails | null;
 }) => {
+  const {connectedSocialAccounts} =
+    useRepresentativeDetailsCard(representative);
+
+  console.log(representative);
+
   return (
     <View style={styles.detailsCard}>
       <View style={styles.detailsCardInfoContainer}>
         <Image
           style={styles.detailsCardImg}
-          source={require('../../../../assets/icons/zviad.png')}
+          source={
+            representative?.leader_details.facebook_profile.photo
+              ? representative?.leader_details.facebook_profile.photo
+              : require('../../../../assets/icons/zviad.png')
+          }
         />
         <View style={styles.detailsCardInfo}>
           <Text style={styles.DetailsCardInfoText}>
@@ -42,9 +56,11 @@ const RepresentativeDetailsCard = ({
         </Text>
       </View>
 
-      <View style={styles.socialAccountsContainerWrapper}>
-        {/* <SocialAccountsContainer /> */}
-      </View>
+      {connectedSocialAccounts.length ? (
+        <View style={styles.socialAccountsContainerWrapper}>
+          <SocialAccountsContainer socialAccounts={connectedSocialAccounts} />
+        </View>
+      ) : null}
     </View>
   );
 };

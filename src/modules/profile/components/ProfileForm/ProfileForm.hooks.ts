@@ -3,6 +3,7 @@ import {useAppSelector} from '../../../../store/store';
 import {ConnectedSocialAccount} from './ProfileForm.types';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {useNavigation} from '@react-navigation/native';
+import {socialAccountType} from '../../../../utils/socialAccounts.util';
 
 export const useProfileForm = () => {
   const {socialAccounts, account} = useAppSelector(state => state.profile);
@@ -12,29 +13,6 @@ export const useProfileForm = () => {
   >([]);
 
   const navigation = useNavigation<NavigationProps>();
-
-  const socialAccountType = (type_id: number) => {
-    let type: 'FB' | 'TT' | 'YT' | 'LDIN' = 'FB';
-
-    switch (type_id) {
-      case 1:
-        type = 'FB';
-        break;
-      case 2:
-        type = 'LDIN';
-        break;
-      case 3:
-        type = 'TT';
-        break;
-      case 4:
-        type = 'YT';
-        break;
-      default:
-        break;
-    }
-
-    return type;
-  };
 
   useEffect(() => {
     let connectedSocialAccount: ConnectedSocialAccount;
