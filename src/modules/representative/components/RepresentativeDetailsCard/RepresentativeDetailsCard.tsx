@@ -3,10 +3,9 @@ import React from 'react';
 import {styles} from './RepresentativeDetailsCard.styles';
 import {
   CountIndicator,
-  SimpleIndicator,
   SocialAccountsContainer,
 } from '../../../../globalComponents';
-import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
+// import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
 import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
 import {useRepresentativeDetailsCard} from './RepresentativeDetailsCard.hook';
 
@@ -17,8 +16,6 @@ const RepresentativeDetailsCard = ({
 }) => {
   const {connectedSocialAccounts} =
     useRepresentativeDetailsCard(representative);
-
-  console.log(representative);
 
   return (
     <View style={styles.detailsCard}>
@@ -42,9 +39,9 @@ const RepresentativeDetailsCard = ({
               }
               loading={false}
             />
-            <View style={styles.detailsCardIndicatorWrapper}>
+            {/* <View style={styles.detailsCardIndicatorWrapper}>
               <SimpleIndicator text="142" Icon={FilledHeartIcon} />
-            </View>
+            </View> */}
           </View>
         </View>
       </View>
