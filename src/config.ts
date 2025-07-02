@@ -23,6 +23,6 @@ export const NavItems: NavItem[] = [
   {
     Icon: ProfileIcon,
     to: 'Representative',
-    label: 'წარმომადგენელი',
+    label: 'ვინ',
   },
 ];

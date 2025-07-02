@@ -8,6 +8,7 @@ import {
   chooseRepresentative,
   getRepresentativeDetails,
   removeChosenRepresentative,
+  updateChosenRepresentative,
 } from '../../../../store/thunks/representatives/representatives.thunk';
 import {changePressedRepresentativeId} from '../../../../store/slices/representatives/representatives.slice';
 
@@ -21,6 +22,7 @@ export const useRepresentativeCard = (representative: Representative) => {
 
   const [isThemselves, setIsThemselves] = useState(false);
   const [isChosen, setIsChosen] = useState(false);
+  const [hasChosenElse, setHasChosenElse] = useState(false);
 
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useAppDispatch();
@@ -43,6 +45,9 @@ export const useRepresentativeCard = (representative: Representative) => {
     }
 
     setIsChosen(representative.leader_details.id === chosen_representative_id);
+    setHasChosenElse(
+      representative.leader_details.id !== chosen_representative_id,
+    );
   }, [representative, chosen_representative_id]);
 
   const handleRepresentativeDetailsButton = () => {
@@ -58,13 +63,24 @@ export const useRepresentativeCard = (representative: Representative) => {
         text2: 'საკუთარ თავის არჩევა არ შეგიძლიათ',
         visibilityTime: 3000,
       });
-    } else {
-      dispatch(changePressedRepresentativeId(id));
-      if (isChosen) {
-        dispatch(removeChosenRepresentative());
-      } else {
-        dispatch(chooseRepresentative(representative.leader_details.id));
-      }
+      return;
+    }
+
+    dispatch(changePressedRepresentativeId(id));
+
+    if (!isChosen && !hasChosenElse) {
+      dispatch(chooseRepresentative(representative.leader_details.id));
+      return;
+    }
+
+    if (!isChosen && hasChosenElse) {
+      dispatch(updateChosenRepresentative(representative.leader_details.id));
+      return;
+    }
+
+    if (isChosen) {
+      dispatch(removeChosenRepresentative());
+      return;
     }
   };
 

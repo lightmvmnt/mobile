@@ -13,12 +13,12 @@ export const useRepresentative = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getRepresentatives());
+    dispatch(getRepresentatives(''));
     dispatch(getChosenRepresentativeId());
   }, [dispatch]);
 
   const onRefresh = () => {
-    dispatch(getRepresentatives());
+    dispatch(getRepresentatives(''));
     dispatch(getChosenRepresentativeId());
   };
 

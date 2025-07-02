@@ -3,15 +3,19 @@ import React, {useEffect, useState} from 'react';
 import {styles} from './RepresentativeSearchbar.styles';
 import {COLORS} from '../../../../constants';
 import useDebounce from '../../../../hooks/debounce';
+import {useAppDispatch} from '../../../../store/store';
+import {getRepresentatives} from '../../../../store/thunks/representatives/representatives.thunk';
 
 const RepresentativeSearchbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const debouncedSearchQuery = useDebounce({value: searchQuery});
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    console.log(debouncedSearchQuery);
-  }, [debouncedSearchQuery]);
+    dispatch(getRepresentatives(debouncedSearchQuery));
+  }, [debouncedSearchQuery, dispatch]);
 
   return (
     <View style={styles.container}>

@@ -28,12 +28,17 @@ export interface Representative {
 }
 
 export interface RepresentativeDetails {
-  id: number;
-  is_approved: boolean;
-  about_me: string;
-  facebook_profile: {
-    link: string;
-    photo: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  leader_details: {
+    id: number;
+    is_approved: boolean;
+    about_me: string;
+    facebook_profile: {
+      link: string;
+      photo: string;
+    };
+    votes_count: number;
   };
-  votes_count: number;
 }

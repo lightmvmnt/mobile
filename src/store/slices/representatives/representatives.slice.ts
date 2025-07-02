@@ -8,6 +8,7 @@ import {
   removeChosenRepresentative,
   removeRepresentativeStatus,
   sentRepresentativeRequest,
+  updateChosenRepresentative,
   updateRepresentativeDetails,
 } from '../../thunks/representatives/representatives.thunk';
 
@@ -78,6 +79,16 @@ export const representativesSlice = createSlice({
         state.choose_representative_loading = false;
       })
       .addCase(chooseRepresentative.rejected, state => {
+        state.choose_representative_loading = false;
+      })
+      .addCase(updateChosenRepresentative.pending, state => {
+        state.choose_representative_loading = true;
+      })
+      .addCase(updateChosenRepresentative.fulfilled, (state, action) => {
+        state.chosen_representative_id = action.payload.leader_user_id;
+        state.choose_representative_loading = false;
+      })
+      .addCase(updateChosenRepresentative.rejected, state => {
         state.choose_representative_loading = false;
       })
       .addCase(getChosenRepresentativeId.pending, state => {

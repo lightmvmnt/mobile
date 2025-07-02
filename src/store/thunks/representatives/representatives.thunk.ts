@@ -8,17 +8,16 @@ import {
   GetChosenRepresentativeIdResponse,
   GetRepresentativeDetailsResponse,
   GetRepresentativesResponse,
+  UpdateChosenRepresentativeResponse,
 } from './representatives.types';
 
 export const getRepresentatives = createAsyncThunk(
   'representatives/getRepresentatives',
-  async (_, {rejectWithValue}) => {
+  async (search_query: string, {rejectWithValue}) => {
     try {
       const response = await axios.get<GetRepresentativesResponse[]>(
-        `${enviroment.API_BASE_URL}/users/leaders/`,
+        `${enviroment.API_BASE_URL}/users/leaders?search=${search_query}`,
       );
-
-      console.log(response.data);
 
       return response.data;
     } catch (error) {
@@ -34,8 +33,6 @@ export const getRepresentativeDetails = createAsyncThunk(
       const response = await axios.get<GetRepresentativeDetailsResponse>(
         `${enviroment.API_BASE_URL}/users/leader/${id}`,
       );
-
-      console.log(response);
 
       return response.data;
     } catch (error) {
@@ -152,7 +149,41 @@ export const chooseRepresentative = createAsyncThunk(
       );
 
       if (response.status === 201) {
-        dispatch(getRepresentatives());
+        dispatch(getRepresentatives(''));
+      }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const updateChosenRepresentative = createAsyncThunk(
+  'representatives/updateChosenRepresentative',
+  async (id: number, {rejectWithValue, dispatch}) => {
+    try {
+      const access_token = await GetStorageObject('access_token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${access_token}`,
+        },
+      };
+
+      const body = JSON.stringify({
+        leader_user_id: id,
+      });
+
+      const response = await axios.put<UpdateChosenRepresentativeResponse>(
+        `${enviroment.API_BASE_URL}/users/leader/vote/`,
+        body,
+        config,
+      );
+
+      if (response.status === 200) {
+        dispatch(getRepresentatives(''));
       }
 
       return response.data;
@@ -181,7 +212,7 @@ export const removeChosenRepresentative = createAsyncThunk(
       );
 
       if (response.status === 204) {
-        dispatch(getRepresentatives());
+        dispatch(getRepresentatives(''));
       }
 
       return response.data;
