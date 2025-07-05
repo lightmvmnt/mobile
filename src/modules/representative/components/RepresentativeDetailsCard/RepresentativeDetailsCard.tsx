@@ -20,7 +20,7 @@ const RepresentativeDetailsCard = ({representative}: Props) => {
           style={styles.detailsCardImg}
           source={
             representative?.leader_details.facebook_profile.photo
-              ? representative?.leader_details.facebook_profile.photo
+              ? {uri: representative?.leader_details.facebook_profile.photo}
               : require('../../../../assets/icons/zviad.png')
           }
         />
