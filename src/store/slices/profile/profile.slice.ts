@@ -4,6 +4,8 @@ import {
   connectUserSocial,
   GetAccountData,
   getConnectedProviders,
+  getUserSocials,
+  removeUserSocial,
   updateAccount,
 } from '../../thunks/profile/profile.thunk';
 
@@ -13,12 +15,27 @@ const initialState: ProfileInitialState = {
   loading: false,
   getConnectedProvidersLoading: false,
   account: null,
+  removeSocialAccountLoading: false,
+  socialAddModalProps: {
+    visible: false,
+    typeId: 0,
+  },
 };
 
 export const profileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {},
+  reducers: {
+    changeSocialAddModalVisibility: (
+      state,
+      action: {payload: {visible: boolean; type_id: number}},
+    ) => {
+      state.socialAddModalProps = {
+        visible: action.payload.visible,
+        typeId: action.payload.type_id,
+      };
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(GetAccountData.rejected, state => {
@@ -26,6 +43,12 @@ export const profileSlice = createSlice({
       })
       .addCase(GetAccountData.fulfilled, (state, action) => {
         state.account = action.payload;
+      })
+      .addCase(getUserSocials.rejected, state => {
+        state.socialAccounts = [];
+      })
+      .addCase(getUserSocials.fulfilled, (state, action) => {
+        state.socialAccounts = action.payload;
       })
       .addCase(updateAccount.pending, state => {
         state.loading = true;
@@ -43,6 +66,22 @@ export const profileSlice = createSlice({
       .addCase(connectUserSocial.fulfilled, (state, action) => {
         state.socialAccounts.push(action.payload);
         state.loading = false;
+        state.socialAddModalProps = {
+          visible: false,
+          typeId: 0,
+        };
+      })
+      .addCase(removeUserSocial.pending, state => {
+        state.removeSocialAccountLoading = true;
+      })
+      .addCase(removeUserSocial.rejected, state => {
+        state.removeSocialAccountLoading = false;
+      })
+      .addCase(removeUserSocial.fulfilled, (state, action) => {
+        state.socialAccounts = state.socialAccounts.filter(
+          socialAccount => socialAccount.id !== action.meta.arg,
+        );
+        state.removeSocialAccountLoading = false;
       })
       .addCase(connectUserSocial.rejected, state => {
         state.loading = false;
@@ -60,5 +99,7 @@ export const profileSlice = createSlice({
       });
   },
 });
+
+export const {changeSocialAddModalVisibility} = profileSlice.actions;
 
 export default profileSlice.reducer;

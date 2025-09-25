@@ -28,7 +28,10 @@ import {
 import Logo from '../../../assets/icons/DzalaLogo.svg';
 import BackImg from '../../../assets/icons/back_img.svg';
 import {LAYOUT} from '../../../constants';
-import {GetAccountData} from '../../../store/thunks/profile/profile.thunk';
+import {
+  GetAccountData,
+  getUserSocials,
+} from '../../../store/thunks/profile/profile.thunk';
 
 function LoadingScreen() {
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);
@@ -89,6 +92,7 @@ function LoadingScreen() {
         dispatch(getTasksPoints());
         dispatch(getCompletedTaskCount());
         dispatch(GetAccountData());
+        dispatch(getUserSocials());
         dispatch(getUserTotalPoints());
         dispatch(getAllPolls());
         dispatch(getPollsPoints());

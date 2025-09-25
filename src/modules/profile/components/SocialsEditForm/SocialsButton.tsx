@@ -15,8 +15,10 @@ const SocialsButton = ({
   socialAccount,
   socialAccountType,
   account,
+  removalLoading,
 }: {
   onButtonPress: () => void;
+  removalLoading: boolean;
   socialAccount?: SocialAccount;
   socialAccountType: 'FB' | 'YT' | 'TT' | 'LDIN';
   account: Account | null;
@@ -46,6 +48,12 @@ const SocialsButton = ({
     <TouchableOpacity
       activeOpacity={0.6}
       style={styles.input}
+      disabled={
+        removalLoading ||
+        (socialAccount &&
+          account?.leader_details &&
+          account?.leader_details.is_approved)
+      }
       onPress={onButtonPress}>
       {socialAccount ? (
         <View style={styles.connectedButton}>

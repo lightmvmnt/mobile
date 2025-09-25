@@ -17,6 +17,7 @@ import {TaskSuggestionModal} from './src/modules/tasks/components';
 import {SetStorageObjectValue} from './src/utils/asyncStore.util';
 import {Settings} from 'react-native-fbsdk-next';
 import {FontSizeGenerator} from './src/utils/fontSizeGenerator.util';
+import {SocialAddModal} from './src/modules/profile/components';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,
@@ -69,6 +70,7 @@ function App() {
             <Routing />
             <SimpleModal />
             <TaskSuggestionModal />
+            <SocialAddModal />
             <Toast config={toastConfig} onPress={() => Toast.hide()} />
           </SafeAreaProvider>
         </PaperProvider>

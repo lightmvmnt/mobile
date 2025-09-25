@@ -4,7 +4,6 @@ import axios from 'axios';
 import {
   Account,
   UserSocialsResponse,
-  SocialTypes,
   UpdateAccountPayload,
   FacebookConnectPayload,
   FacebookConnectResponse,
@@ -73,7 +72,7 @@ export const updateAccount = createAsyncThunk(
 export const connectUserSocial = createAsyncThunk(
   'profile/connectUserSocial',
   async (
-    {account_url, social_type}: {account_url: string; social_type: SocialTypes},
+    {account_url, social_type}: {account_url: string; social_type: number},
     {rejectWithValue},
   ) => {
     try {
@@ -95,6 +94,36 @@ export const connectUserSocial = createAsyncThunk(
         `${enviroment.API_BASE_URL}/users/me/social-account/`,
         body,
         config,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getUserSocials = createAsyncThunk(
+  'profile/getUserSocials',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<UserSocialsResponse[]>(
+        `${enviroment.API_BASE_URL}/users/me/social-account/`,
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const removeUserSocial = createAsyncThunk(
+  'profile/removeUserSocial',
+  async (id: number, {rejectWithValue}) => {
+    try {
+      const response = await axios.delete(
+        `${enviroment.API_BASE_URL}/users/me/social-account/${id}`,
       );
 
       return response.data;
@@ -140,21 +169,6 @@ export const connectFacebookProfile = createAsyncThunk(
       if (response.status === 200) {
         navigation.navigate('Profile');
       }
-
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
-
-export const getUserSocials = createAsyncThunk(
-  'profile/getUserSocials',
-  async (_, {rejectWithValue}) => {
-    try {
-      const response = await axios.get<UserSocialsResponse[]>(
-        `${enviroment.API_BASE_URL}/users/me/social-account/`,
-      );
 
       return response.data;
     } catch (error) {

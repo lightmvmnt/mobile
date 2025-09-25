@@ -6,9 +6,9 @@ import {SimpleButton} from '../../../../globalComponents';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 import {COLORS} from '../../../../constants';
 import {useRepresentativeDetailsButtons} from './RepresentativeDetailsButtons.hook';
-import UncheckedHeartIcon from '../../../../assets/icons/uncheckedHeart.svg';
 import CheckedHeartIcon from '../../../../assets/icons/checkHeart.svg';
 import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
+// import UncheckedHeartIcon from '../../../../assets/icons/uncheckedHeart.svg';
 
 const RepresentativeDetailsButtons = ({representative}: Props) => {
   const {
@@ -16,12 +16,11 @@ const RepresentativeDetailsButtons = ({representative}: Props) => {
     pressed_representative_id,
     choose_representative_loading,
     onChooseButtonPress,
-    onLikeButtonPress,
   } = useRepresentativeDetailsButtons(representative);
 
   return (
     <View style={styles.buttonsContainer}>
-      <SimpleButton
+      {/* <SimpleButton
         width={170}
         height={40}
         text="142"
@@ -31,9 +30,9 @@ const RepresentativeDetailsButtons = ({representative}: Props) => {
         onPress={onLikeButtonPress}
         fontSize={FontSizeGenerator(14)}
         Icon={UncheckedHeartIcon}
-      />
+      /> */}
       <SimpleButton
-        width={170}
+        width={350}
         height={40}
         text={isChosen ? 'არჩეული' : 'არჩევა'}
         variant="contained"

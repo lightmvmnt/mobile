@@ -4,6 +4,11 @@ export interface ProfileInitialState {
   getConnectedProvidersLoading: boolean;
   account: Account | null;
   connectedProviders: ConnectedProvider[];
+  removeSocialAccountLoading: boolean;
+  socialAddModalProps: {
+    visible: boolean;
+    typeId: number;
+  };
 }
 
 export interface Account {

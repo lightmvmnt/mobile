@@ -24,29 +24,33 @@ export const useProfileForm = () => {
           link: socialAccount.social_account,
         };
 
+        setConnectedSocialAccounts(prev =>
+          prev.filter(social => social.link !== socialAccount.social_account),
+        );
+
         setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
       });
     }
 
-    if (
-      account?.leader_details &&
-      account.leader_details.facebook_profile.link
-    ) {
-      connectedSocialAccount = {
-        type: 'FB',
-        link: account.leader_details.facebook_profile.link,
-      };
+    // if (
+    //   account?.leader_details &&
+    //   account.leader_details.facebook_profile.link
+    // ) {
+    //   connectedSocialAccount = {
+    //     type: 'FB',
+    //     link: account.leader_details.facebook_profile.link,
+    //   };
 
-      setConnectedSocialAccounts(prev =>
-        prev.filter(socialAccount => socialAccount.type !== 'FB'),
-      );
+    //   setConnectedSocialAccounts(prev =>
+    //     prev.filter(socialAccount => socialAccount.type !== 'FB'),
+    //   );
 
-      setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
-    } else {
-      setConnectedSocialAccounts(prev =>
-        prev.filter(socialAccount => socialAccount.type !== 'FB'),
-      );
-    }
+    //   setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
+    // } else {
+    //   setConnectedSocialAccounts(prev =>
+    //     prev.filter(socialAccount => socialAccount.type !== 'FB'),
+    //   );
+    // }
   }, [socialAccounts, account]);
 
   const profileEditButtonHandler = () => {

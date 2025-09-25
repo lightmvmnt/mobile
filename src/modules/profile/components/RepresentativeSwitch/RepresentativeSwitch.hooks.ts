@@ -8,7 +8,7 @@ import Toast from 'react-native-toast-message';
 import {changeModalState} from '../../../../store/slices/app/app.slice';
 
 export const useRepresentativeSwitch = () => {
-  const {account, connectedProviders} = useAppSelector(state => state.profile);
+  const {account, socialAccounts} = useAppSelector(state => state.profile);
   const {rep_switch_loading} = useAppSelector(state => state.representatives);
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -33,9 +33,7 @@ export const useRepresentativeSwitch = () => {
   }, [account]);
 
   const isFacebookConnected = () => {
-    return connectedProviders.find(
-      provider => provider.provider.id === 'facebook',
-    );
+    return socialAccounts.find(socialAccount => socialAccount.type_id === 1);
   };
 
   const onToggleSwitch = (value: boolean) => {
