@@ -18,7 +18,7 @@ export const useRepresentativeDetailsCard = (
     }
 
     const socialAccounts = representative.leader_details.social_accounts;
-    const facebookProfile = representative.leader_details.facebook_profile;
+    // const facebookProfile = representative.leader_details.facebook_profile;
 
     if (socialAccounts.length) {
       socialAccounts.map(socialAccount => {
@@ -27,26 +27,30 @@ export const useRepresentativeDetailsCard = (
           link: socialAccount.social_account,
         };
 
+        setConnectedSocialAccounts(prev =>
+          prev.filter(social => social.link !== socialAccount.social_account),
+        );
+
         setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
       });
     }
 
-    if (facebookProfile.link) {
-      connectedSocialAccount = {
-        type: 'FB',
-        link: facebookProfile.link,
-      };
+    // if (facebookProfile.link) {
+    //   connectedSocialAccount = {
+    //     type: 'FB',
+    //     link: facebookProfile.link,
+    //   };
 
-      setConnectedSocialAccounts(prev =>
-        prev.filter(socialAccount => socialAccount.type !== 'FB'),
-      );
+    //   setConnectedSocialAccounts(prev =>
+    //     prev.filter(socialAccount => socialAccount.type !== 'FB'),
+    //   );
 
-      setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
-    } else {
-      setConnectedSocialAccounts(prev =>
-        prev.filter(socialAccount => socialAccount.type !== 'FB'),
-      );
-    }
+    //   setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
+    // } else {
+    //   setConnectedSocialAccounts(prev =>
+    //     prev.filter(socialAccount => socialAccount.type !== 'FB'),
+    //   );
+    // }
   }, [representative]);
 
   return {
