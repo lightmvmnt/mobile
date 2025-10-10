@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === 'ios' ? 30 : 0,
+    paddingTop: Platform.OS === 'ios' ? 30 : 20,
     zIndex: 0,
   },
   headerLeftSide: {
@@ -28,13 +28,21 @@ export const styles = StyleSheet.create({
   },
   profileButton: {
     marginRight: 15,
+    width: 100,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
   },
   profileButtonText: {
+    width: '100%',
+    height: 25,
     color: COLORS.LIGHT,
     textDecorationStyle: 'solid',
     textDecorationLine: 'underline',
     textDecorationColor: COLORS.LIGHT,
-    fontSize: FontSizeGenerator(14),
+    fontSize: FontSizeGenerator(17),
     fontFamily: FONTS.GEO_MEDIUM,
+    textAlign: 'center',
   },
 });

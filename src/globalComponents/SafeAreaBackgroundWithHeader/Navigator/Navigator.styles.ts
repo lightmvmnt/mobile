@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    opacity: 0.3,
+    opacity: 0.5,
   },
   activeButton: {
     opacity: 1,
