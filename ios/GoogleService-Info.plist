@@ -2,20 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>743627465538-funthodvboog060n0c48pofk33vv42c6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.743627465538-funthodvboog060n0c48pofk33vv42c6</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>813935825552-ath187nivnjsjtdgf8o73fslfucsptq9.apps.googleusercontent.com</string>
+	<string>743627465538-ndn67bq035kclhvsljocdmr0khuejfsd.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCQHYvVgOi1y631RNMA4XeyWsR6MZoysDs</string>
+	<string>AIzaSyBaC99khzoB9zsnh-QsxcW0wKBxVzFQVcY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>813935825552</string>
+	<string>743627465538</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>org.solvio.dzala</string>
 	<key>PROJECT_ID</key>
-	<string>solar-bolt-445009-p8</string>
+	<string>dzala-cloud</string>
 	<key>STORAGE_BUCKET</key>
-	<string>solar-bolt-445009-p8.firebasestorage.app</string>
+	<string>dzala-cloud.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -27,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:813935825552:ios:34071f426e4a6d701a3e15</string>
+	<string>1:743627465538:ios:30e423d2ce20466dee9edb</string>
 </dict>
 </plist>

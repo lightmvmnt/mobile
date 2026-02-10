@@ -68,6 +68,7 @@ export const GoogleSignIn = createAsyncThunk(
 
       return;
     } catch (error) {
+      console.error('GoogleSignIn error:', error);
       await GoogleSignin.signOut();
 
       if (axios.isAxiosError(error)) {
@@ -144,7 +145,7 @@ export const authentication = createAsyncThunk(
       const body = JSON.stringify(user);
 
       const response = await axios.post<SigninResponse>(
-        `${environment.API_BASE_URL}/users/_allauth/app/v1/auth/provider/token`,
+        `${environment.API_BASE_URL}/auth/provider/token`,
         body,
       );
 
@@ -200,7 +201,7 @@ export const CheckSessionValidation = createAsyncThunk(
   ) => {
     try {
       const response = await axios.get<SigninResponse>(
-        `${environment.API_BASE_URL}/users/_allauth/app/v1/auth/session`,
+        `${environment.API_BASE_URL}/auth/session`,
       );
 
       if (response.status === 200) {

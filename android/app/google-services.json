@@ -1,112 +1,49 @@
 {
   "project_info": {
-    "project_number": "813935825552",
-    "project_id": "solar-bolt-445009-p8",
-    "storage_bucket": "solar-bolt-445009-p8.firebasestorage.app"
+    "project_number": "743627465538",
+    "project_id": "dzala-cloud",
+    "storage_bucket": "dzala-cloud.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:813935825552:android:a9b24a26b4286c5c1a3e15",
+        "mobilesdk_app_id": "1:743627465538:android:02b19ea8fa0efa50ee9edb",
         "android_client_info": {
           "package_name": "com.dzala"
         }
       },
       "oauth_client": [
         {
-          "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
+          "client_id": "743627465538-ndn67bq035kclhvsljocdmr0khuejfsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dzala",
+            "certificate_hash": "617226e34dadec8729113d33380d2c0d4b50c819"
+          }
+        },
+        {
+          "client_id": "743627465538-m9uinntc27sgfcj3p0ejcv0odb2978f4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAn_Pag7xRX24L81t8Veb_L-PtB3E7lFYQ"
+          "current_key": "AIzaSyCwPpn-UkO0f6agjgi96vUlvOWBXmVziZw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
+              "client_id": "743627465538-m9uinntc27sgfcj3p0ejcv0odb2978f4.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "813935825552-vkh63lpbf942f9jtrlh9r12i15sda5us.apps.googleusercontent.com",
+              "client_id": "743627465538-funthodvboog060n0c48pofk33vv42c6.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "org.solvio.dzala"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:813935825552:android:96ca2f15547148f71a3e15",
-        "android_client_info": {
-          "package_name": "com.dzala.debug"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAn_Pag7xRX24L81t8Veb_L-PtB3E7lFYQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "813935825552-vkh63lpbf942f9jtrlh9r12i15sda5us.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.solvio.dzala"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:813935825552:android:e80491d57bed15551a3e15",
-        "android_client_info": {
-          "package_name": "com.lightmvmnt"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAn_Pag7xRX24L81t8Veb_L-PtB3E7lFYQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "813935825552-gj60ssa1ar4kqnctdlmcldlotcdpholv.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "813935825552-vkh63lpbf942f9jtrlh9r12i15sda5us.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.solvio.dzala"
+                "bundle_id": "org.solvio.dzala",
+                "app_store_id": "6742493689"
               }
             }
           ]

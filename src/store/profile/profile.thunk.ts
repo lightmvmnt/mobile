@@ -146,7 +146,7 @@ export const connectFacebookProfile = createAsyncThunk(
       const body = JSON.stringify(facebookProfile);
 
       const response = await axios.post<FacebookConnectResponse>(
-        `${environment.API_BASE_URL}/users/_allauth/app/v1/auth/provider/token`,
+        `${environment.API_BASE_URL}/auth/provider/token`,
         body,
       );
 
@@ -165,7 +165,7 @@ export const getConnectedProviders = createAsyncThunk(
   async (_, {rejectWithValue}) => {
     try {
       const response = await axios.get<GetconnectedProvidersResponse>(
-        `${environment.API_BASE_URL}/users/_allauth/app/v1/account/providers`,
+        `${environment.API_BASE_URL}/auth/providers`,
       );
 
       return response.data;
@@ -189,7 +189,7 @@ export const removeConnectedProvider = createAsyncThunk(
   ) => {
     try {
       const response = await axios.delete<GetconnectedProvidersResponse>(
-        `${environment.API_BASE_URL}/users/_allauth/app/v1/account/providers`,
+        `${environment.API_BASE_URL}/auth/providers`,
         {data: provider},
       );
 
