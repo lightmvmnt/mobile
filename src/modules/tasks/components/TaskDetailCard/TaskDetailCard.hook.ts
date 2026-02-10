@@ -1,49 +1,17 @@
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {updateTask} from '../../../../store/thunks/tasks/tasks.thunk';
-import {getTaskComplitionCount} from '../../../../services/tasks/getTaskComplitionCount';
-import {Task} from '../../../../store/slices/tasks/tasks.types';
-import {changeModalState} from '../../../../store/slices/app/app.slice';
-import {useEffect, useState} from 'react';
+import {useAppDispatch} from '../../../../store/store';
+import {updateTask} from '@store/tasks/tasks.thunk';
+import {Task} from '@store/tasks/tasks.types';
+import {changeModalState} from '@store/app/app.slice';
 import {Linking} from 'react-native';
 import {heightGenerator} from '../../../../utils/heightGenerator.util';
-import {UpdatedTaskPayload} from '../../../../store/thunks/tasks/tasks.types';
+import {UpdatedTaskPayload} from '@store/tasks/tasks.types';
+import {useTaskMetrics} from '../../../../hooks/useTaskMetrics';
 
 export const useTaskDetail = (task: Task | null) => {
-  const [completedCount, setCompletedCount] = useState(0);
-  const [countLoading, setCountLoading] = useState(true);
-  const [taskPoint, setTaskPoint] = useState<number | null>(null);
-
-  const {tasksPoints, tasksPointsLoading} = useAppSelector(
-    state => state.tasks,
-  );
+  const {completedCount, countLoading, taskPoint, tasksPointsLoading} =
+    useTaskMetrics(task);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    setCountLoading(true);
-    const getCount = async () => {
-      const {count} = await getTaskComplitionCount(task ? task.mission.id : 0);
-
-      setCountLoading(false);
-      setCompletedCount(count);
-    };
-
-    getCount();
-  }, [task]);
-
-  useEffect(() => {
-    if (!tasksPoints.length || !task) {
-      return;
-    }
-
-    const task_point = tasksPoints.find(
-      tasks => tasks.mission_id === task.mission.id,
-    );
-
-    if (task_point) {
-      setTaskPoint(task_point.points);
-    }
-  }, [task, tasksPoints]);
 
   const onTaskUpdate = (updatedTask: UpdatedTaskPayload) => {
     if (task) {
@@ -73,7 +41,6 @@ export const useTaskDetail = (task: Task | null) => {
           isModalOpen: true,
           modalDescription:
             'მისიის შესასრულებლად გადადი მოცემულ ბმულზე და შეასრულე დავალება',
-          modalButtonHandler: () => {},
           secondaryButtonTitle: 'გასაგებია',
         }),
       );
@@ -81,11 +48,11 @@ export const useTaskDetail = (task: Task | null) => {
   };
 
   const onLocationButtonPress = () => {
-    console.log('open location');
+    // TODO: implement location opening
   };
 
   const onMobilizationComingButtonPress = () => {
-    console.log('coming on event');
+    // TODO: implement mobilization event attendance
   };
 
   const handleTaskDescriptionHeight = () => {

@@ -79,4 +79,4 @@ function TaskCard({task}: Props) {
   );
 }
 
-export default TaskCard;
+export default React.memo(TaskCard);

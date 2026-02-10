@@ -1,12 +1,12 @@
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {removeUserSocial} from '../../../../store/thunks/profile/profile.thunk';
-import {changeModalState} from '../../../../store/slices/app/app.slice';
-import {changeSocialAddModalVisibility} from '../../../../store/slices/profile/profile.slice';
+import {selectProfile} from '@store/profile/profile.selectors';
+import {removeUserSocial} from '@store/profile/profile.thunk';
+import {changeModalState} from '@store/app/app.slice';
+import {setModalCallback} from '../../../../store/modalCallback';
+import {changeSocialAddModalVisibility} from '@store/profile/profile.slice';
 
 export const useSocialsEditForm = () => {
-  const {socialAccounts, account, removeSocialAccountLoading} = useAppSelector(
-    state => state.profile,
-  );
+  const {socialAccounts, account, removeSocialAccountLoading} = useAppSelector(selectProfile);
 
   const dispatch = useAppDispatch();
 
@@ -20,13 +20,13 @@ export const useSocialsEditForm = () => {
     const socialAccount = socialAccounts.find(social => social.type_id === id);
 
     if (socialAccount) {
+      setModalCallback(() => {
+        dispatch(removeUserSocial(socialAccount.id));
+      });
       dispatch(
         changeModalState({
           isModalOpen: true,
           modalDescription: 'ნამდვილად გსურთ ანგარიშს მოხსნა?',
-          modalButtonHandler: () => {
-            dispatch(removeUserSocial(socialAccount.id));
-          },
           mainButtonTitle: 'კი',
           secondaryButtonTitle: 'არა',
         }),
@@ -43,79 +43,3 @@ export const useSocialsEditForm = () => {
     onSocialButtonPress,
   };
 };
-
-// const onFaceBookConnect = async () => {
-//   const result = await LoginManager.logInWithPermissions(
-//     ['public_profile'],
-//     'limited',
-//   );
-
-//   if (result.isCancelled) {
-//     console.log('Facebook login cancelled');
-//     return;
-//   }
-
-//   if (Platform.OS === 'ios') {
-//     const idTokenObj = await AuthenticationToken.getAuthenticationTokenIOS();
-
-//     if (idTokenObj) {
-//       dispatch(
-//         connectFacebookProfile({
-//           id_token: idTokenObj.authenticationToken,
-//           navigation,
-//         }),
-//       );
-//     }
-//   } else if (Platform.OS === 'android') {
-//     const accessTokenObj = await AccessToken.getCurrentAccessToken();
-
-//     if (accessTokenObj) {
-//       dispatch(
-//         connectFacebookProfile({
-//           access_token: accessTokenObj.accessToken,
-//           navigation,
-//         }),
-//       );
-//     }
-//   }
-// };
-
-// const onFacebookDisconnect = (provider: ConnectedProvider) => {
-//   const removeConnectedProviderPayload = {
-//     provider: 'facebook',
-//     account: provider.uid,
-//   };
-
-//   dispatch(
-//     changeModalState({
-//       isModalOpen: true,
-//       modalDescription: 'ნამდვილად გსურთ ფეისბუქ ანგარიშს მოხსნა?',
-//       modalButtonHandler: () => {
-//         dispatch(
-//           removeConnectedProvider({
-//             provider: removeConnectedProviderPayload,
-//             navigation,
-//           }),
-//         );
-//       },
-//       mainButtonTitle: 'კი',
-//       secondaryButtonTitle: 'არა',
-//     }),
-//   );
-// };
-
-// const isFacebookConnected = () => {
-//   return connectedProviders.find(
-//     provider => provider.provider.id === 'facebook',
-//   );
-// };
-
-// const facebookButtonHandler = () => {
-//   const facebookProvider = isFacebookConnected();
-
-//   if (facebookProvider) {
-//     onFacebookDisconnect(facebookProvider);
-//   } else {
-//     onFaceBookConnect();
-//   }
-// };

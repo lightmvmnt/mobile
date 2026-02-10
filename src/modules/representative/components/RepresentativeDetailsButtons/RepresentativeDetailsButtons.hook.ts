@@ -1,23 +1,25 @@
 import {useEffect, useState} from 'react';
-import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
+import {RepresentativeDetails} from '@store/representatives/representatives.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectAccount} from '@store/profile/profile.selectors';
+import {selectRepresentatives} from '@store/representatives/representatives.selectors';
 import {
   chooseRepresentative,
   removeChosenRepresentative,
   updateChosenRepresentative,
-} from '../../../../store/thunks/representatives/representatives.thunk';
+} from '@store/representatives/representatives.thunk';
 import Toast from 'react-native-toast-message';
-import {changePressedRepresentativeId} from '../../../../store/slices/representatives/representatives.slice';
+import {changePressedRepresentativeId} from '@store/representatives/representatives.slice';
 
 export const useRepresentativeDetailsButtons = (
   representative: RepresentativeDetails | null,
 ) => {
-  const {account} = useAppSelector(state => state.profile);
+  const account = useAppSelector(selectAccount);
   const {
     choose_representative_loading,
     chosen_representative_id,
     pressed_representative_id,
-  } = useAppSelector(state => state.representatives);
+  } = useAppSelector(selectRepresentatives);
 
   const [isThemselves, setIsThemselves] = useState(false);
   const [isChosen, setIsChosen] = useState(false);
@@ -81,22 +83,10 @@ export const useRepresentativeDetailsButtons = (
     }
   };
 
-  const onLikeButtonPress = () => {
-    if (isThemselves) {
-      Toast.show({
-        type: 'info',
-        text1: 'გაფრთხილება',
-        text2: 'საკუთარ თავის მხარდაჭერა არ შეგიძლიათ',
-        visibilityTime: 3000,
-      });
-    }
-  };
-
   return {
     isChosen,
     pressed_representative_id,
     choose_representative_loading,
     onChooseButtonPress,
-    onLikeButtonPress,
   };
 };

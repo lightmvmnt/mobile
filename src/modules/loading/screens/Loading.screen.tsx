@@ -4,44 +4,43 @@ import {styles} from './Loading.styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../services/navigation/Base.navigation';
-import {useAppDispatch, useAppSelector} from '../../../store/store';
-import {GetStorageObject} from '../../../utils/asyncStore.util';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {selectAuth} from '@store/auth/auth.selectors';
+import {selectAccount} from '@store/profile/profile.selectors';
+import {selectTasks} from '@store/tasks/tasks.selectors';
+import {selectPolls} from '@store/polls/polls.selectors';
+import {GetStorageObject} from '@utils/asyncStore.util';
 import {
   CheckSessionValidation,
   getUserTotalPoints,
-} from '../../../store/thunks/auth/auth.thunk';
-import {User} from '../../../store/thunks/auth/auth.types';
+} from '@store/auth/auth.thunk';
+import {User} from '@store/auth/auth.types';
 import {
   getCompletedTaskCount,
   getTasks,
   getTasksPoints,
-} from '../../../store/thunks/tasks/tasks.thunk';
-import {requestNotificationsPermission} from '../../../services/notifications/notificationPermissions';
-import {notificationHandler} from '../../../services/notifications/notificationHandler';
+} from '@store/tasks/tasks.thunk';
+import {requestNotificationsPermission} from '@services/notifications/notificationPermissions';
+import {notificationHandler} from '@services/notifications/notificationHandler';
 import {getUniqueId} from 'react-native-device-info';
-import {changeDeviceId} from '../../../store/slices/auth/auth.slice';
+import {changeDeviceId} from '@store/auth/auth.slice';
 import {
   getAllPolls,
   getPollsPoints,
   getUserPollsVotes,
-} from '../../../store/thunks/polls/polls.thunk';
-import Logo from '../../../assets/icons/DzalaLogo.svg';
-import BackImg from '../../../assets/icons/back_img.svg';
-import {LAYOUT} from '../../../constants';
-import {
-  GetAccountData,
-  getUserSocials,
-} from '../../../store/thunks/profile/profile.thunk';
+} from '@store/polls/polls.thunk';
+import Logo from '@assets/icons/DzalaLogo.svg';
+import BackImg from '@assets/icons/back_img.svg';
+import {LAYOUT} from '@constants/index';
+import {GetAccountData, getUserSocials} from '@store/profile/profile.thunk';
 
 function LoadingScreen() {
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);
 
-  const {isAuth, user, userTotalPoints} = useAppSelector(state => state.auth);
-  const {account} = useAppSelector(state => state.profile);
-  const {tasks, completedTasksCount, tasksPoints} = useAppSelector(
-    state => state.tasks,
-  );
-  const {polls, pollsPoints} = useAppSelector(state => state.polls);
+  const {isAuth, user, userTotalPoints} = useAppSelector(selectAuth);
+  const account = useAppSelector(selectAccount);
+  const {tasks, completedTasksCount, tasksPoints} = useAppSelector(selectTasks);
+  const {polls, pollsPoints} = useAppSelector(selectPolls);
 
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useAppDispatch();

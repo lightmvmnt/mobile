@@ -4,7 +4,7 @@ import {styles} from './SocialsEditForm.styles';
 import {
   Account,
   SocialAccount,
-} from '../../../../store/slices/profile/profile.types';
+} from '@store/profile/profile.types';
 import FbIcon from '../../../../assets/icons/fbIcon.svg';
 import TiktokIcon from '../../../../assets/icons/tiktokIcon.svg';
 import YoutubeIcon from '../../../../assets/icons/ytIcon.svg';

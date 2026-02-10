@@ -18,11 +18,6 @@ const SocialsEditForm = () => {
         <Text style={styles.headerTitle}>სოციალური ქსელები</Text>
       </View>
       <View style={styles.form}>
-        {/* <FacebookButton
-          account={account}
-          provider={isFacebookConnected()}
-          onButtonPress={facebookButtonHandler}
-        /> */}
         <SocialsButton
           socialAccount={findSocialAccount(1)}
           account={account}

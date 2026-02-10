@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {HelperText, Modal, TextInput} from 'react-native-paper';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {changeTaskSuggestionModalVisibility} from '../../../../store/slices/tasks/tasks.slice';
+import {selectIsTaskSuggestionModalVisible} from '@store/tasks/tasks.selectors';
+import {changeTaskSuggestionModalVisibility} from '@store/tasks/tasks.slice';
 import {styles} from './TaskSuggestionModal.styles';
 import {COLORS} from '../../../../constants';
 import {SimpleButton} from '../../../../globalComponents';
@@ -14,7 +15,7 @@ const TaskSuggestionModal = () => {
     message: '',
   });
 
-  const {isTaskSuggestionModalVisible} = useAppSelector(state => state.tasks);
+  const isTaskSuggestionModalVisible = useAppSelector(selectIsTaskSuggestionModalVisible);
 
   const dispatch = useAppDispatch();
 
@@ -46,7 +47,7 @@ const TaskSuggestionModal = () => {
       suggestedLink.length &&
       suggestedLink.includes('https://www.facebook.com/')
     ) {
-      console.log(suggestedLink);
+      // TODO: dispatch suggestion link to API
     }
   };
 

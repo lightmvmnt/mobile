@@ -1,5 +1,6 @@
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState, useCallback} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectAuth} from '@store/auth/auth.selectors';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {getUniqueId} from 'react-native-device-info';
@@ -10,21 +11,19 @@ import {
 import {
   GoogleSignIn,
   IosSignIn,
-} from '../../../../store/thunks/auth/auth.thunk';
+} from '@store/auth/auth.thunk';
 import BottomSheet from '@gorhom/bottom-sheet';
 
 export const useSignin = () => {
   const [localDeviceId, setLocalDeviceId] = useState('');
   const [signinMethod, setSigninMethod] = useState<'IOS' | 'ANDROID'>();
 
-  const {deviceId, loading} = useAppSelector(state => state.auth);
+  const {deviceId, loading} = useAppSelector(selectAuth);
 
   const navigation = useNavigation<NavigationProps>();
   const sheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['25%', '90%'], []);
   const dispatch = useAppDispatch();
-
-  const handleSheetChange = useCallback(() => {}, []);
 
   const handleSnapPress = useCallback((index: number) => {
     sheetRef.current?.snapToIndex(index);
@@ -75,7 +74,6 @@ export const useSignin = () => {
     sheetRef,
     snapPoints,
     acceptenceButtonHandler,
-    handleSheetChange,
     signinButtonHandler,
   };
 };

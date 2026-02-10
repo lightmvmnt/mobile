@@ -2,7 +2,7 @@ import axios, {AxiosError} from 'axios';
 import {useEffect} from 'react';
 import Toast from 'react-native-toast-message';
 import {useAppDispatch} from '../../store/store';
-import {Logout} from '../../store/thunks/auth/auth.thunk';
+import {Logout} from '@store/auth/auth.thunk';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {GetStorageObject} from '../../utils/asyncStore.util';
@@ -15,8 +15,18 @@ function BaseInterceptor() {
     const requestInterceptor = axios.interceptors.request.use(
       async request => {
         const token = await GetStorageObject('access_token');
+        const sessionToken = await GetStorageObject('session_token');
+
         if (token) {
           request.headers.Authorization = `Bearer ${token}`;
+        }
+
+        if (sessionToken) {
+          request.headers['X-Session-Token'] = sessionToken;
+        }
+
+        if (!request.headers['Content-Type']) {
+          request.headers['Content-Type'] = 'application/json';
         }
 
         return request;
@@ -25,17 +35,13 @@ function BaseInterceptor() {
     );
 
     const responseInterceptor = axios.interceptors.response.use(
-      next => Promise.resolve(next),
-      error => {
-        const res = error.response || {};
-        const status = res.status as number;
+      next => next,
+      (error: AxiosError) => {
+        const status = error.response?.status;
 
-        // ignore requst cancel error
         if (error.code === 'ERR_CANCELED') {
           return Promise.reject(error);
         }
-
-        console.log((error as AxiosError).response?.data);
 
         switch (status) {
           case 401: {
@@ -43,6 +49,13 @@ function BaseInterceptor() {
             break;
           }
           default: {
+            console.log('Axios Error:', {
+              url: error.config?.url,
+              method: error.config?.method,
+              status: error.response?.status,
+              data: error.response?.data,
+              message: error.message,
+            });
             Toast.show({
               type: 'error',
               text1: 'შეფერხება !',

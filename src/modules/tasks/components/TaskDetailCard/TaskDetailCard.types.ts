@@ -1,4 +1,4 @@
-import {Task} from '../../../../store/slices/tasks/tasks.types';
+import {Task} from '@store/tasks/tasks.types';
 
 export interface Props {
   task: Task | null;

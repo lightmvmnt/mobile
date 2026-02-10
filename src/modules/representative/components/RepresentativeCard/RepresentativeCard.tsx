@@ -7,9 +7,8 @@ import {COLORS} from '../../../../constants';
 import CheckedHeartIcon from '../../../../assets/icons/checkHeart.svg';
 import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
-import {Representative} from '../../../../store/slices/representatives/representatives.types';
+import {Representative} from '@store/representatives/representatives.types';
 import {useRepresentativeCard} from './RepresentativeCard.hook';
-// import UncheckedHeartIcon from '../../../../assets/icons/uncheckedHeart.svg';
 
 const RepresentativeCard = ({
   representative,
@@ -61,17 +60,6 @@ const RepresentativeCard = ({
         </TouchableOpacity>
       </View>
       <View style={styles.cardBottom}>
-        {/* <SimpleButton
-          width={80}
-          height={40}
-          text="142"
-          variant="contained"
-          textColor={COLORS.DARK}
-          buttonColor={COLORS.SECONDARY_BG_COLOR}
-          onPress={onLikeButtonPress}
-          fontSize={FontSizeGenerator(14)}
-          Icon={UncheckedHeartIcon}
-        /> */}
         <SimpleButton
           width={320}
           height={40}

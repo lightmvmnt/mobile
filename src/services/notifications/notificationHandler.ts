@@ -3,7 +3,7 @@ import {
   GetStorageObject,
   SetStorageObjectValue,
 } from '../../utils/asyncStore.util';
-import {getTasks} from '../../store/thunks/tasks/tasks.thunk';
+import {getTasks} from '@store/tasks/tasks.thunk';
 import {AppDispatch} from '../../store/store';
 
 export const getFcmToken = async () => {
@@ -17,7 +17,9 @@ export const getFcmToken = async () => {
         checkToken = FcmToken;
         SetStorageObjectValue('FcmToken', FcmToken);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error('Failed to get FCM token:', error);
+    }
   }
 
   return checkToken;
@@ -34,39 +36,31 @@ export const getApnsToken = async () => {
         checkToken = ApnsToken;
         SetStorageObjectValue('ApnsToken', ApnsToken);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error('Failed to get APNS token:', error);
+    }
   }
 
   return checkToken;
 };
 
 export const notificationHandler = (dispatch: AppDispatch) => {
-  messaging().onNotificationOpenedApp(async remoteMessage => {
+  messaging().onNotificationOpenedApp(async () => {
     dispatch(getTasks());
-
-    console.log(
-      'Notification caused app to open from background state:',
-      remoteMessage.notification,
-    );
   });
 
   // Quiet and Background State -> Check whether an initial notification is available
   messaging()
     .getInitialNotification()
-    .then(async remoteMessage => {
+    .then(remoteMessage => {
       if (remoteMessage) {
-        console.log(
-          'Notification caused app to open from quit state:',
-          remoteMessage.notification,
-        );
+        dispatch(getTasks());
       }
     })
-    .catch(error => console.log('failed', error));
+    .catch(() => {});
 
   // Foreground State
-  messaging().onMessage(async remoteMessage => {
+  messaging().onMessage(async () => {
     dispatch(getTasks());
-
-    console.log('foreground', remoteMessage);
   });
 };

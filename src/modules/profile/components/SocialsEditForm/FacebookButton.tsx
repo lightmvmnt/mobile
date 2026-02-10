@@ -4,7 +4,7 @@ import {styles} from './SocialsEditForm.styles';
 import {
   Account,
   ConnectedProvider,
-} from '../../../../store/slices/profile/profile.types';
+} from '@store/profile/profile.types';
 import FbIcon from '../../../../assets/icons/fbIcon.svg';
 
 const FacebookButton = ({

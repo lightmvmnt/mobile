@@ -2,11 +2,12 @@ import {FlatList, View} from 'react-native';
 import {styles} from './Polls.styles';
 import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {useEffect, useState} from 'react';
+import {selectPolls} from '@store/polls/polls.selectors';
+import {useCallback, useEffect, useState} from 'react';
 import {
   getAllPolls,
   getUserPollsVotes,
-} from '../../../../store/thunks/polls/polls.thunk';
+} from '@store/polls/polls.thunk';
 import PollCard from '../../components/PollCard';
 import PollsTabButton from '../../components/PollsTabButton';
 
@@ -19,7 +20,7 @@ function PollsScreen() {
     pollPointsLoading,
     loading,
     userPollsVotesLoading,
-  } = useAppSelector(state => state.polls);
+  } = useAppSelector(selectPolls);
 
   const [activeTab, setActiveTab] = useState<'IN_PROGRESS' | 'COMPLETED'>(
     'IN_PROGRESS',
@@ -32,28 +33,27 @@ function PollsScreen() {
     dispatch(getUserPollsVotes());
   }, [dispatch]);
 
-  useEffect(() => {}, []);
+  const handleTabButtons = useCallback(
+    (chosenTab: 'IN_PROGRESS' | 'COMPLETED') => {
+      dispatch(getAllPolls());
+      dispatch(getUserPollsVotes());
+      setActiveTab(chosenTab);
+    },
+    [dispatch],
+  );
 
-  const handleTabButtons = (chosenTab: 'IN_PROGRESS' | 'COMPLETED') => {
+  const handleRefresh = useCallback(() => {
     dispatch(getAllPolls());
     dispatch(getUserPollsVotes());
-    setActiveTab(chosenTab);
-  };
+  }, [dispatch]);
 
-  const handleRefresh = () => {
-    dispatch(getAllPolls());
-    dispatch(getUserPollsVotes());
-  };
-
-  const isPollVoted = (id: number) => {
-    const poll_votes = userPollsVotes.find(votes => votes.poll_id === id);
-
-    if (poll_votes && poll_votes.votes.length) {
-      return true;
-    }
-
-    return false;
-  };
+  const isPollVoted = useCallback(
+    (id: number) => {
+      const poll_votes = userPollsVotes.find(votes => votes.poll_id === id);
+      return !!(poll_votes && poll_votes.votes.length);
+    },
+    [userPollsVotes],
+  );
 
   return (
     <SafeAreaBackgroundWithHeader>

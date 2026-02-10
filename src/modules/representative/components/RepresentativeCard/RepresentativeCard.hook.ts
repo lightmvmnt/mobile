@@ -1,24 +1,26 @@
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {Representative} from '../../../../store/slices/representatives/representatives.types';
+import {Representative} from '@store/representatives/representatives.types';
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectAccount} from '@store/profile/profile.selectors';
+import {selectRepresentatives} from '@store/representatives/representatives.selectors';
 import Toast from 'react-native-toast-message';
 import {
   chooseRepresentative,
   getRepresentativeDetails,
   removeChosenRepresentative,
   updateChosenRepresentative,
-} from '../../../../store/thunks/representatives/representatives.thunk';
-import {changePressedRepresentativeId} from '../../../../store/slices/representatives/representatives.slice';
+} from '@store/representatives/representatives.thunk';
+import {changePressedRepresentativeId} from '@store/representatives/representatives.slice';
 
 export const useRepresentativeCard = (representative: Representative) => {
-  const {account} = useAppSelector(state => state.profile);
+  const account = useAppSelector(selectAccount);
   const {
     choose_representative_loading,
     chosen_representative_id,
     pressed_representative_id,
-  } = useAppSelector(state => state.representatives);
+  } = useAppSelector(selectRepresentatives);
 
   const [isThemselves, setIsThemselves] = useState(false);
   const [isChosen, setIsChosen] = useState(false);
@@ -84,23 +86,11 @@ export const useRepresentativeCard = (representative: Representative) => {
     }
   };
 
-  const onLikeButtonPress = () => {
-    if (isThemselves) {
-      Toast.show({
-        type: 'info',
-        text1: 'გაფრთხილება',
-        text2: 'საკუთარ თავის მხარდაჭერა არ შეგიძლიათ',
-        visibilityTime: 3000,
-      });
-    }
-  };
-
   return {
     isChosen,
     pressed_representative_id,
     choose_representative_loading,
     handleRepresentativeDetailsButton,
     onChooseButtonPress,
-    onLikeButtonPress,
   };
 };

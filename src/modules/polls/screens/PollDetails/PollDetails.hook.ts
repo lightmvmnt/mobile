@@ -1,14 +1,15 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectPolls} from '@store/polls/polls.selectors';
 import {
   DeletePollVote,
   PostPollVote,
-} from '../../../../store/thunks/polls/polls.types';
-import {PollOption} from '../../../../store/slices/polls/polls.types';
+} from '@store/polls/polls.types';
+import {PollOption} from '@store/polls/polls.types';
 import {
   deletePollVote,
   postPollVote,
-} from '../../../../store/thunks/polls/polls.thunk';
+} from '@store/polls/polls.thunk';
 
 export const usePollDetails = () => {
   const {
@@ -20,7 +21,7 @@ export const usePollDetails = () => {
     pollVotesLoading,
     pollResultsLoading,
     pollPointsLoading,
-  } = useAppSelector(state => state.polls);
+  } = useAppSelector(selectPolls);
 
   const [newVotes, setNewVotes] = useState<PostPollVote[]>([]);
   const [oldVotes, setOldVotes] = useState<DeletePollVote[]>([]);
@@ -40,7 +41,7 @@ export const usePollDetails = () => {
     if (poll_points) {
       setPollPoints(poll_points.points);
     }
-  }, [pollDetails, pollsPoints, pollPoints]);
+  }, [pollDetails, pollsPoints]);
 
   useEffect(() => {
     setNewVotes([]);

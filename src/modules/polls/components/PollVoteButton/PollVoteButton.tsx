@@ -7,8 +7,8 @@ import {useAppDispatch} from '../../../../store/store';
 import {
   deletePollVote,
   postPollVote,
-} from '../../../../store/thunks/polls/polls.thunk';
-import {PostPollVote} from '../../../../store/thunks/polls/polls.types';
+} from '@store/polls/polls.thunk';
+import {PostPollVote} from '@store/polls/polls.types';
 
 const PollVoteButton = ({option, votes, poll_id, loading}: Props) => {
   const dispatch = useAppDispatch();

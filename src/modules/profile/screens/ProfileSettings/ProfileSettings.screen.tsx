@@ -9,28 +9,30 @@ import {styles} from './ProfileSettings.styles';
 import {COLORS, LAYOUT} from '../../../../constants';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {changeModalState} from '../../../../store/slices/app/app.slice';
+import {selectAuthLoading} from '@store/auth/auth.selectors';
+import {changeModalState} from '@store/app/app.slice';
+import {setModalCallback} from '../../../../store/modalCallback';
 import {
   AccountDeletion,
   Logout,
-} from '../../../../store/thunks/auth/auth.thunk';
+} from '@store/auth/auth.thunk';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import TrashcanIcon from '../../../../assets/icons/trashCanIcon.svg';
 import ExitIcon from '../../../../assets/icons/exitIcon.svg';
 
 const ProfileSettingsScreen = () => {
-  const {loading} = useAppSelector(state => state.auth);
+  const loading = useAppSelector(selectAuthLoading);
 
   const navigation = useNavigation<NavigationProps>();
-  const disaptch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const logoutButtonHandler = () => {
-    disaptch(
+    setModalCallback(() => dispatch(Logout(navigation)));
+    dispatch(
       changeModalState({
         isModalOpen: true,
         modalTitle: 'ნამდვილად გსურთ გასვლა?',
-        modalButtonHandler: () => disaptch(Logout(navigation)),
         mainButtonTitle: 'კი',
         secondaryButtonTitle: 'არა',
       }),
@@ -38,13 +40,13 @@ const ProfileSettingsScreen = () => {
   };
 
   const accountDeleteButtonHandler = () => {
-    disaptch(
+    setModalCallback(() => dispatch(AccountDeletion(navigation)));
+    dispatch(
       changeModalState({
         isModalOpen: true,
         modalTitle: 'დარწმუნებული ხართ ?',
         modalDescription:
           'თუ თქვენ წაშლით პროფილს, ვეღარ გექნებათ წვდომა მიმდინარე მისიებზე და მოგიწევთ ხელახლა გააკეთოთ ექაუნთი',
-        modalButtonHandler: () => disaptch(AccountDeletion(navigation)),
         mainButtonTitle: 'კი',
         secondaryButtonTitle: 'არა',
       }),

@@ -1,4 +1,4 @@
-import {PollOption} from '../../../../store/slices/polls/polls.types';
+import {PollOption} from '@store/polls/polls.types';
 
 export interface Props {
   options: PollOption[];

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {enviroment} from '../../constants/enviroment';
+import {environment} from '../../constants/environment';
 
 export const getTaskComplitionCount = async (task_id: number) => {
   try {
     const response = await axios.get<{count: number}>(
-      `${enviroment.API_BASE_URL}/missions/count/${task_id}/`,
+      `${environment.API_BASE_URL}/missions/count/${task_id}/`,
     );
 
     return {count: response.data.count};

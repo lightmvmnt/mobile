@@ -5,11 +5,12 @@ import {BackHandler, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {useAppSelector} from '../../store/store';
+import {selectUser} from '@store/auth/auth.selectors';
 import BackImg from '../../assets/icons/back_img.svg';
 import {LAYOUT} from '../../constants';
 
 function SafeAreaBackground({children}: {children: React.ReactNode}) {
-  const {user} = useAppSelector(state => state.auth);
+  const user = useAppSelector(selectUser);
 
   const navigation = useNavigation<NavigationProps>();
 

@@ -1,30 +1,31 @@
 import appsFlyer from 'react-native-appsflyer';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectAuth} from '@store/auth/auth.selectors';
+import {selectReferral} from '@store/referral/referral.selectors';
+import {selectTasks} from '@store/tasks/tasks.selectors';
 import {
   changeGenerateReferralLinkLoading,
   setReferralLink,
-} from '../../../../store/slices/referral/referral.slice';
-import {getUserReferralCount} from '../../../../store/thunks/referral/referral.thunk';
+} from '@store/referral/referral.slice';
+import {getUserReferralCount} from '@store/referral/referral.thunk';
 import {useEffect} from 'react';
 import {
   GetAccountData,
   getConnectedProviders,
-} from '../../../../store/thunks/profile/profile.thunk';
+} from '@store/profile/profile.thunk';
 
 export const useProfile = () => {
-  const {user, userTotalPoints, userTotalPointsLoading} = useAppSelector(
-    state => state.auth,
-  );
+  const {user, userTotalPoints, userTotalPointsLoading} =
+    useAppSelector(selectAuth);
   const {
     referralLink,
     generateReferralLinkLoading,
     referralCount,
     getReferralCountLoading,
-  } = useAppSelector(state => state.referral);
+  } = useAppSelector(selectReferral);
 
-  const {completedTasksCount, completedTasksCountLoading} = useAppSelector(
-    state => state.tasks,
-  );
+  const {completedTasksCount, completedTasksCountLoading} =
+    useAppSelector(selectTasks);
 
   const dispatch = useAppDispatch();
 
@@ -52,7 +53,7 @@ export const useProfile = () => {
           dispatch(setReferralLink(link));
         }
       },
-      err => console.log(err),
+      () => {},
     );
   };
 

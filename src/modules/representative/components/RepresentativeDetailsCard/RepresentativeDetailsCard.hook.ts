@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {ConnectedSocialAccount} from './RepresentativeDetailsCard.types';
-import {RepresentativeDetails} from '../../../../store/slices/representatives/representatives.types';
+import {RepresentativeDetails} from '@store/representatives/representatives.types';
 import {socialAccountType} from '../../../../utils/socialAccounts.util';
 
 export const useRepresentativeDetailsCard = (
@@ -18,7 +18,6 @@ export const useRepresentativeDetailsCard = (
     }
 
     const socialAccounts = representative.leader_details.social_accounts;
-    // const facebookProfile = representative.leader_details.facebook_profile;
 
     if (socialAccounts.length) {
       socialAccounts.map(socialAccount => {
@@ -35,22 +34,6 @@ export const useRepresentativeDetailsCard = (
       });
     }
 
-    // if (facebookProfile.link) {
-    //   connectedSocialAccount = {
-    //     type: 'FB',
-    //     link: facebookProfile.link,
-    //   };
-
-    //   setConnectedSocialAccounts(prev =>
-    //     prev.filter(socialAccount => socialAccount.type !== 'FB'),
-    //   );
-
-    //   setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
-    // } else {
-    //   setConnectedSocialAccounts(prev =>
-    //     prev.filter(socialAccount => socialAccount.type !== 'FB'),
-    //   );
-    // }
   }, [representative]);
 
   return {

@@ -1,17 +1,14 @@
 export const PercentageCalculator = (count: number, total_count: number) => {
-  if (!count || !total_count) {
+  if (count === 0 || total_count === 0) {
     return 0;
   }
 
-  let num = ((count * 100) / total_count).toString();
+  const percentage = (count * 100) / total_count;
+  const isDecimal = percentage % 1 !== 0;
 
-  const isNumDecimal = num.indexOf('.') !== -1 ? true : false;
-
-  if (isNumDecimal) {
-    num = num.slice(0, num.indexOf('.') + 2);
+  if (isDecimal) {
+    return Number(percentage.toFixed(1));
   }
-
-  const percentage = Number(num);
 
   return percentage;
 };

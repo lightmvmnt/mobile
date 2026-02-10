@@ -5,8 +5,9 @@ import {SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
 import {styles} from './SocialAddModal.styles';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {changeSocialAddModalVisibility} from '../../../../store/slices/profile/profile.slice';
-import {connectUserSocial} from '../../../../store/thunks/profile/profile.thunk';
+import {selectProfile} from '@store/profile/profile.selectors';
+import {changeSocialAddModalVisibility} from '@store/profile/profile.slice';
+import {connectUserSocial} from '@store/profile/profile.thunk';
 
 const SocialAddModal = () => {
   const [socialLink, setSocialLink] = useState('');
@@ -22,7 +23,7 @@ const SocialAddModal = () => {
     mediaLinkType: '',
   });
 
-  const {socialAddModalProps, loading} = useAppSelector(state => state.profile);
+  const {socialAddModalProps, loading} = useAppSelector(selectProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

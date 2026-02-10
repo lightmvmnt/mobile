@@ -17,7 +17,6 @@ function SigninScreen() {
     loading,
     snapPoints,
     sheetRef,
-    handleSheetChange,
     acceptenceButtonHandler,
     signinButtonHandler,
   } = useSignin();
@@ -75,7 +74,6 @@ function SigninScreen() {
         sheetRef={sheetRef}
         snapPoints={snapPoints}
         acceptenceButtonHandler={acceptenceButtonHandler}
-        handleSheetChange={handleSheetChange}
       />
     </SafeAreaBackground>
   );

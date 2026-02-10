@@ -1,19 +1,28 @@
-import React, {useEffect} from 'react';
-import {FlatList, View} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import React, {useEffect, useCallback} from 'react';
+import {FlatList, View, ListRenderItem} from 'react-native';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {selectTasks} from '@store/tasks/tasks.selectors';
 import {styles} from './Tasks.styles';
 import {TaskCard} from '../../components';
-import {getTasks} from '../../../../store/thunks/tasks/tasks.thunk';
+import {getTasks} from '@store/tasks/tasks.thunk';
 import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
+import {Task} from '@store/tasks/tasks.types';
 
 function TasksScreen() {
-  const {tasks, loading} = useAppSelector(state => state.tasks);
+  const {tasks, loading} = useAppSelector(selectTasks);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getTasks());
   }, [dispatch]);
+
+  const renderItem: ListRenderItem<Task> = useCallback(
+    ({item}) => <TaskCard task={item} />,
+    [],
+  );
+
+  const keyExtractor = useCallback((item: Task) => item.id.toString(), []);
 
   return (
     <SafeAreaBackgroundWithHeader>
@@ -25,7 +34,8 @@ function TasksScreen() {
             scrollEnabled
             contentContainerStyle={styles.list}
             data={tasks}
-            renderItem={({item, index}) => <TaskCard key={index} task={item} />}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
           />
         </View>
       </View>

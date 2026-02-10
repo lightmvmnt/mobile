@@ -5,7 +5,15 @@ import FbIcon from '../../assets/icons/fbIcon.svg';
 import TiktokIcon from '../../assets/icons/tiktokIcon.svg';
 import YtIcon from '../../assets/icons/ytIcon.svg';
 import LinkdinIcon from '../../assets/icons/linkdinIcon.svg';
-import {Props} from './SocialAccountsContainer.types';
+import {Props, SocialAccounts} from './SocialAccountsContainer.types';
+import {SvgProps} from 'react-native-svg';
+
+const SOCIAL_ICONS: Record<SocialAccounts['type'], React.FC<SvgProps>> = {
+  FB: FbIcon,
+  YT: YtIcon,
+  TT: TiktokIcon,
+  LDIN: LinkdinIcon,
+};
 
 const SocialAccountsContainer = ({socialAccounts}: Props) => {
   const onSocialButtonPress = (link: string) => {
@@ -17,21 +25,17 @@ const SocialAccountsContainer = ({socialAccounts}: Props) => {
       <Text style={styles.title}>სოციალური ქსელები: </Text>
       <View style={styles.socialAccountsButtonsContainer}>
         {socialAccounts &&
-          socialAccounts.map((socialAccount, i) => (
-            <TouchableOpacity
-              key={+i}
-              style={styles.socialAccountsButton}
-              onPress={() => onSocialButtonPress(socialAccount.link)}>
-              {socialAccount.type === 'FB' && <FbIcon width={28} height={28} />}
-              {socialAccount.type === 'YT' && <YtIcon width={28} height={28} />}
-              {socialAccount.type === 'TT' && (
-                <TiktokIcon width={28} height={28} />
-              )}
-              {socialAccount.type === 'LDIN' && (
-                <LinkdinIcon width={28} height={28} />
-              )}
-            </TouchableOpacity>
-          ))}
+          socialAccounts.map((socialAccount, i) => {
+            const Icon = SOCIAL_ICONS[socialAccount.type];
+            return (
+              <TouchableOpacity
+                key={+i}
+                style={styles.socialAccountsButton}
+                onPress={() => onSocialButtonPress(socialAccount.link)}>
+                {Icon && <Icon width={28} height={28} />}
+              </TouchableOpacity>
+            );
+          })}
       </View>
     </View>
   );

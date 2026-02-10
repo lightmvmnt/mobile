@@ -1,3 +1,3 @@
-import ReferalInupt from './ReferralInupt';
+import ReferralInput from './ReferralInput';
 
-export default ReferalInupt;
+export default ReferralInput;

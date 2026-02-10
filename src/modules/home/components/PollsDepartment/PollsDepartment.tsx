@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import PollCard from '../../../polls/components/PollCard';
 import {Props} from './PollsDepartment.types';
@@ -14,15 +14,14 @@ const PollsDepartment = ({
 }: Props) => {
   const navigation = useNavigation<NavigationProps>();
 
-  const isPollVoted = (id: number) => {
-    const poll_votes = user_polls_votes.find(votes => votes.poll_id === id);
+  const isPollVoted = useCallback(
+    (id: number) => {
+      const poll_votes = user_polls_votes.find(votes => votes.poll_id === id);
+      return !!(poll_votes && poll_votes.votes.length);
+    },
+    [user_polls_votes],
+  );
 
-    if (poll_votes && poll_votes.votes.length) {
-      return true;
-    }
-
-    return false;
-  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>

@@ -10,14 +10,12 @@ import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 interface Props {
   sheetRef: React.RefObject<BottomSheetMethods>;
   snapPoints: string[];
-  handleSheetChange: (index: number) => void;
   acceptenceButtonHandler: () => void;
 }
 
 const TACBottomSheet = ({
   sheetRef,
   snapPoints,
-  handleSheetChange,
   acceptenceButtonHandler,
 }: Props) => {
   return (
@@ -26,8 +24,7 @@ const TACBottomSheet = ({
       index={-1}
       snapPoints={snapPoints}
       enablePanDownToClose={true}
-      enableDynamicSizing={false}
-      onChange={handleSheetChange}>
+      enableDynamicSizing={false}>
       <BottomSheetScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>წესები და პირობები</Text>
         <Text style={styles.text}>

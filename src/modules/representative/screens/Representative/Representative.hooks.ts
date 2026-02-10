@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {
   getChosenRepresentativeId,
   getRepresentatives,
-} from '../../../../store/thunks/representatives/representatives.thunk';
+} from '@store/representatives/representatives.thunk';
 
 export const useRepresentative = () => {
   const {representatives, get_representatives_loading} = useAppSelector(

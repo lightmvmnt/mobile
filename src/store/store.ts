@@ -1,12 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
-import authReducer from './slices/auth/auth.slice';
+import authReducer from './auth/auth.slice';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import tasksReducer from './slices/tasks/tasks.slice';
-import appReducer from './slices/app/app.slice';
-import pollsReducer from './slices/polls/polls.slice';
-import referralReducer from './slices/referral/referral.slice';
-import profileRecucer from './slices/profile/profile.slice';
-import representativesReducer from './slices/representatives/representatives.slice';
+import tasksReducer from './tasks/tasks.slice';
+import appReducer from './app/app.slice';
+import pollsReducer from './polls/polls.slice';
+import referralReducer from './referral/referral.slice';
+import profileReducer from './profile/profile.slice';
+import representativesReducer from './representatives/representatives.slice';
 
 export const store = configureStore({
   reducer: {
@@ -15,11 +15,10 @@ export const store = configureStore({
     app: appReducer,
     polls: pollsReducer,
     referral: referralReducer,
-    profile: profileRecucer,
+    profile: profileReducer,
     representatives: representativesReducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({serializableCheck: false}),
+  middleware: getDefaultMiddleware => getDefaultMiddleware(),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

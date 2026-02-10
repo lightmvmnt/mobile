@@ -4,7 +4,7 @@ import {styles} from './RepresentativeSearchbar.styles';
 import {COLORS} from '../../../../constants';
 import useDebounce from '../../../../hooks/debounce';
 import {useAppDispatch} from '../../../../store/store';
-import {getRepresentatives} from '../../../../store/thunks/representatives/representatives.thunk';
+import {getRepresentatives} from '@store/representatives/representatives.thunk';
 
 const RepresentativeSearchbar = () => {
   const [searchQuery, setSearchQuery] = useState('');

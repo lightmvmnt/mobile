@@ -3,7 +3,7 @@ import {
   PollOption,
   PollResults,
   PollVote,
-} from '../../../../store/slices/polls/polls.types';
+} from '@store/polls/polls.types';
 
 export interface Props {
   poll: Poll | null;

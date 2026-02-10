@@ -5,7 +5,6 @@ import {
   CountIndicator,
   SocialAccountsContainer,
 } from '../../../../globalComponents';
-// import FilledHeartIcon from '../../../../assets/icons/filledHeart.svg';
 import {useRepresentativeDetailsCard} from './RepresentativeDetailsCard.hook';
 import {Props} from './RepresentativeDetailsCard.types';
 
@@ -35,9 +34,6 @@ const RepresentativeDetailsCard = ({representative}: Props) => {
               }
               loading={false}
             />
-            {/* <View style={styles.detailsCardIndicatorWrapper}>
-              <SimpleIndicator text="142" Icon={FilledHeartIcon} />
-            </View> */}
           </View>
         </View>
       </View>

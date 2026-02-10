@@ -8,8 +8,6 @@ import {COLORS} from '../../../../constants';
 import {useRepresentativeDetailsButtons} from './RepresentativeDetailsButtons.hook';
 import CheckedHeartIcon from '../../../../assets/icons/checkHeart.svg';
 import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
-// import UncheckedHeartIcon from '../../../../assets/icons/uncheckedHeart.svg';
-
 const RepresentativeDetailsButtons = ({representative}: Props) => {
   const {
     isChosen,
@@ -20,17 +18,6 @@ const RepresentativeDetailsButtons = ({representative}: Props) => {
 
   return (
     <View style={styles.buttonsContainer}>
-      {/* <SimpleButton
-        width={170}
-        height={40}
-        text="142"
-        variant="contained"
-        textColor={COLORS.DARK}
-        buttonColor={COLORS.SECONDARY_BG_COLOR}
-        onPress={onLikeButtonPress}
-        fontSize={FontSizeGenerator(14)}
-        Icon={UncheckedHeartIcon}
-      /> */}
       <SimpleButton
         width={350}
         height={40}

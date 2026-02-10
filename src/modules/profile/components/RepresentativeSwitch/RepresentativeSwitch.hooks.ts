@@ -1,15 +1,18 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectProfile} from '@store/profile/profile.selectors';
+import {selectRepresentatives} from '@store/representatives/representatives.selectors';
 import {
   removeRepresentativeStatus,
   sentRepresentativeRequest,
-} from '../../../../store/thunks/representatives/representatives.thunk';
+} from '@store/representatives/representatives.thunk';
 import Toast from 'react-native-toast-message';
-import {changeModalState} from '../../../../store/slices/app/app.slice';
+import {changeModalState} from '@store/app/app.slice';
+import {setModalCallback} from '../../../../store/modalCallback';
 
 export const useRepresentativeSwitch = () => {
-  const {account, socialAccounts} = useAppSelector(state => state.profile);
-  const {rep_switch_loading} = useAppSelector(state => state.representatives);
+  const {account, socialAccounts} = useAppSelector(selectProfile);
+  const {rep_switch_loading} = useAppSelector(selectRepresentatives);
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [isSwitchDisabled, setIsSwitchDisabled] = useState(false);
@@ -61,14 +64,14 @@ export const useRepresentativeSwitch = () => {
   };
 
   const repStatusRemoveSwitchHandler = () => {
+    setModalCallback(() => {
+      dispatch(removeRepresentativeStatus());
+      setIsSwitchOn(false);
+    });
     dispatch(
       changeModalState({
         isModalOpen: true,
         modalDescription: 'ნამდვილად გსურთ წარმომადგენლის სტატუსი გაუქმება?',
-        modalButtonHandler: () => {
-          dispatch(removeRepresentativeStatus());
-          setIsSwitchOn(false);
-        },
         mainButtonTitle: 'კი',
         secondaryButtonTitle: 'არა',
       }),

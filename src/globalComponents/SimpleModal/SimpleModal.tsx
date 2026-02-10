@@ -1,7 +1,9 @@
 import React from 'react';
 import {Modal} from 'react-native-paper';
 import {useAppDispatch, useAppSelector} from '../../store/store';
-import {hideModal} from '../../store/slices/app/app.slice';
+import {hideModal} from '@store/app/app.slice';
+import {selectApp} from '@store/app/app.selectors';
+import {getModalCallback, setModalCallback} from '../../store/modalCallback';
 import {styles} from './SimpleModal.styles';
 import {Text, View} from 'react-native';
 import SimpleButton from '../SimpleButton';
@@ -10,19 +12,32 @@ import {COLORS} from '../../constants';
 function SimpleModal() {
   const {
     isModalOpen,
-    modalButtonHandler,
     modalDescription,
     modalTitle,
     mainButtonTitle,
     secondaryButtonTitle,
-  } = useAppSelector(state => state.app);
+  } = useAppSelector(selectApp);
 
   const dispatch = useAppDispatch();
+
+  const handleMainButtonPress = () => {
+    const callback = getModalCallback();
+    if (callback) {
+      callback();
+    }
+    setModalCallback(null);
+    dispatch(hideModal());
+  };
+
+  const handleDismiss = () => {
+    setModalCallback(null);
+    dispatch(hideModal());
+  };
 
   return (
     <Modal
       visible={isModalOpen}
-      onDismiss={() => dispatch(hideModal())}
+      onDismiss={handleDismiss}
       contentContainerStyle={styles.containerStyle}
       style={{justifyContent: 'center', alignItems: 'center'}}>
       <View style={styles.modalTextContainer}>
@@ -52,10 +67,7 @@ function SimpleModal() {
             text={mainButtonTitle}
             width={100}
             height={40}
-            onPress={() => {
-              modalButtonHandler();
-              dispatch(hideModal());
-            }}
+            onPress={handleMainButtonPress}
           />
         ) : null}
 
@@ -67,7 +79,7 @@ function SimpleModal() {
             text={secondaryButtonTitle}
             width={177}
             height={40}
-            onPress={() => dispatch(hideModal())}
+            onPress={handleDismiss}
           />
         ) : null}
       </View>

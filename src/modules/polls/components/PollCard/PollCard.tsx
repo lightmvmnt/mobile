@@ -17,7 +17,7 @@ import {
   getPoll,
   getPollResults,
   getPollVote,
-} from '../../../../store/thunks/polls/polls.thunk';
+} from '@store/polls/polls.thunk';
 import TimeIcon from '../../../../assets/icons/timeIcon.svg';
 import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 import WarningIcon from '../../../../assets/icons/warningIcon.svg';

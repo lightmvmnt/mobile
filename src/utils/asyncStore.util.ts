@@ -5,25 +5,25 @@ export const GetStorageObject = async (key: string) => {
     const value = await AsyncStorage.getItem(key);
 
     return value !== null ? JSON.parse(value) : null;
-  } catch (error) {
-    return error;
+  } catch (error: unknown) {
+    return null;
   }
 };
 
-export const SetStorageObjectValue = (key: string, value: any) => {
+export const SetStorageObjectValue = async (key: string, value: unknown) => {
   try {
     const result_value = JSON.stringify(value);
 
-    AsyncStorage.setItem(key, result_value);
-  } catch (error) {
-    return error;
+    await AsyncStorage.setItem(key, result_value);
+  } catch (error: unknown) {
+    return;
   }
 };
 
-export const RemoveStorageValue = (key: string) => {
+export const RemoveStorageValue = async (key: string) => {
   try {
-    AsyncStorage.removeItem(key);
-  } catch (error) {
-    return error;
+    await AsyncStorage.removeItem(key);
+  } catch (error: unknown) {
+    return;
   }
 };

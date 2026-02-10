@@ -1,6 +1,6 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './TasksDepartment.styles';
-import {Task} from '../../../../store/slices/tasks/tasks.types';
+import {Task} from '@store/tasks/tasks.types';
 import {TaskCard} from '../../../tasks/components';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';

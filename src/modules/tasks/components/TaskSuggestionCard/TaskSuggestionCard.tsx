@@ -5,7 +5,7 @@ import {SimpleButton} from '../../../../globalComponents';
 import {COLORS} from '../../../../constants';
 import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 import {useAppDispatch} from '../../../../store/store';
-import {changeTaskSuggestionModalVisibility} from '../../../../store/slices/tasks/tasks.slice';
+import {changeTaskSuggestionModalVisibility} from '@store/tasks/tasks.slice';
 
 const TaskSuggestionCard = () => {
   const dispatch = useAppDispatch();

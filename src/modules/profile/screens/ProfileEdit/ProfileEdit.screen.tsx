@@ -6,21 +6,21 @@ import {
 import ProfileEditForm from '../../components/ProfileEditForm';
 import {FormValues} from './ProfileEdit.types';
 import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {selectProfile} from '@store/profile/profile.selectors';
+import {selectRepresentatives} from '@store/representatives/representatives.selectors';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {COLORS, LAYOUT} from '../../../../constants';
 import {ScrollView, View} from 'react-native';
 import {styles} from './ProfileEdit.styles';
 import {SocialsEditForm} from '../../components';
-import {UpdateAccountPayload} from '../../../../store/thunks/profile/profile.types';
-import {updateAccount} from '../../../../store/thunks/profile/profile.thunk';
-import {updateRepresentativeDetails} from '../../../../store/thunks/representatives/representatives.thunk';
+import {UpdateAccountPayload} from '@store/profile/profile.types';
+import {updateAccount} from '@store/profile/profile.thunk';
+import {updateRepresentativeDetails} from '@store/representatives/representatives.thunk';
 
 const ProfileEditScreen = () => {
-  const {account, loading} = useAppSelector(state => state.profile);
-  const {is_rep_details_updating} = useAppSelector(
-    state => state.representatives,
-  );
+  const {account, loading} = useAppSelector(selectProfile);
+  const {is_rep_details_updating} = useAppSelector(selectRepresentatives);
 
   const [editFormAccount, setEditFormAccount] = useState<FormValues>();
   const [updatedAccount, setUpdatedAccount] = useState<{

@@ -4,21 +4,20 @@ import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
 import {styles} from './Home.styles';
 import {TasksDepartment} from '../components';
 import {useAppDispatch, useAppSelector} from '../../../store/store';
+import {selectTasksList} from '@store/tasks/tasks.selectors';
+import {selectPolls} from '@store/polls/polls.selectors';
 import PollsDepartment from '../components/PollsDepartment';
 import {useEffect} from 'react';
-import {getTasks} from '../../../store/thunks/tasks/tasks.thunk';
-import {
-  getAllPolls,
-  getUserPollsVotes,
-} from '../../../store/thunks/polls/polls.thunk';
+import {getTasks} from '@store/tasks/tasks.thunk';
+import {getAllPolls, getUserPollsVotes} from '@store/polls/polls.thunk';
 import {GetStorageObject} from '../../../utils/asyncStore.util';
-import {sendReferrerId} from '../../../store/thunks/referral/referral.thunk';
+import {sendReferrerId} from '@store/referral/referral.thunk';
 import UserProgressInfo from '../components/UserProgressInfo';
 
 function HomeScreen() {
-  const {tasks} = useAppSelector(state => state.tasks);
+  const tasks = useAppSelector(selectTasksList);
   const {inProgressPolls, userPollsVotes, pollsPoints, pollPointsLoading} =
-    useAppSelector(state => state.polls);
+    useAppSelector(selectPolls);
 
   const dispatch = useAppDispatch();
 
@@ -47,7 +46,6 @@ function HomeScreen() {
         bounces={false}
         overScrollMode={'never'}>
         <UserProgressInfo />
-        {/* <TaskSuggestionCard /> */}
         <TasksDepartment tasks={tasks.slice(0, 3)} />
         <PollsDepartment
           polls_points={pollsPoints}
