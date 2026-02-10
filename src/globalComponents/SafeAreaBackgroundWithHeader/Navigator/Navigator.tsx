@@ -1,8 +1,9 @@
-import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './Navigator.styles';
-import {NavItem} from '../../../types/types';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {NavigationProps} from '../../../services/navigation/Base.navigation';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {NavItem} from '@types';
+import {Text, TouchableOpacity, View} from 'react-native';
+
+import {styles} from './Navigator.styles';
 
 function Navigator({items}: {items: NavItem[]}) {
   const navigator = useNavigation<NavigationProps>();

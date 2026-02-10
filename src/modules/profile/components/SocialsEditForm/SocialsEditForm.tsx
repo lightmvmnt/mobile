@@ -1,8 +1,9 @@
-import {View, Text} from 'react-native';
 import React from 'react';
-import {styles} from './SocialsEditForm.styles';
+import {Text, View} from 'react-native';
+
 import SocialsButton from './SocialsButton';
 import {useSocialsEditForm} from './SocialsEditForm.hooks';
+import {styles} from './SocialsEditForm.styles';
 
 const SocialsEditForm = () => {
   const {

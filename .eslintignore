@@ -1,0 +1,8 @@
+node_modules/
+vendor/
+ios/
+android/
+.bundle/
+.git/
+.vscode/
+__tests__/

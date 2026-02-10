@@ -1,8 +1,9 @@
+import {COLORS} from '@constants';
 import React from 'react';
 import {Button} from 'react-native-paper';
-import {Props} from './PollsTabButton.types';
+
 import {styles} from './PollsTabButton.styles';
-import {COLORS} from '../../../../constants';
+import {Props} from './PollsTabButton.types';
 
 const PollsTabButton = ({title, onPress, isActive}: Props) => {
   return (

@@ -1,11 +1,13 @@
-import React, {useRef, useState} from 'react';
-import {styles} from './IntroductionSwiper.styles';
-import {View} from 'react-native';
-import Swiper from 'react-native-swiper';
-import Slide from './Slide';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {SetStorageObjectValue} from '../../../../utils/asyncStore.util';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {SetStorageObjectValue} from '@utils/asyncStore.util';
+import React, {useRef, useState} from 'react';
+import {View} from 'react-native';
+// eslint-disable-next-line import/default
+import Swiper from 'react-native-swiper';
+
+import {styles} from './IntroductionSwiper.styles';
+import Slide from './Slide';
 
 function IntroductionInfoSwiper({
   slideIndexHandler,

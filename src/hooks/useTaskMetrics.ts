@@ -1,8 +1,12 @@
-import {useEffect, useState} from 'react';
+import {
+  selectTasksPoints,
+  selectTasksPointsLoading,
+} from '@store/tasks/tasks.selectors';
 import {Task} from '@store/tasks/tasks.types';
-import {useAppSelector} from '../store/store';
-import {selectTasksPoints, selectTasksPointsLoading} from '@store/tasks/tasks.selectors';
+import {useEffect, useState} from 'react';
+
 import {getTaskComplitionCount} from '../services/tasks/getTaskComplitionCount';
+import {useAppSelector} from '../store/store';
 
 export const useTaskMetrics = (task: Task | null) => {
   const [completedCount, setCompletedCount] = useState(0);

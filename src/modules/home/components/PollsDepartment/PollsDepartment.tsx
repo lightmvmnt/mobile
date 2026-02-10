@@ -1,10 +1,11 @@
+import PollCard from '@modules/polls/components/PollCard';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '@services/navigation/Base.navigation';
 import React, {useCallback} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import PollCard from '../../../polls/components/PollCard';
-import {Props} from './PollsDepartment.types';
+
 import {styles} from './PollsDepartment.styles';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+import {Props} from './PollsDepartment.types';
 
 const PollsDepartment = ({
   polls,

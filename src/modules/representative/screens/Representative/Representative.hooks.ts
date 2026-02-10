@@ -1,9 +1,9 @@
-import {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {
   getChosenRepresentativeId,
   getRepresentatives,
 } from '@store/representatives/representatives.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {useEffect} from 'react';
 
 export const useRepresentative = () => {
   const {representatives, get_representatives_loading} = useAppSelector(

@@ -1,11 +1,12 @@
-import {Linking, Platform, Text, View} from 'react-native';
+import CircleLogo from '@assets/icons/circleLogo.svg';
+import {SimpleButton} from '@components';
+import {COLORS} from '@constants';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
 import React from 'react';
+import {Linking, Platform, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
 import {styles} from './Update.styles';
-import CircleLogo from '../../../assets/icons/circleLogo.svg';
-import {SimpleButton} from '../../../globalComponents';
-import {COLORS} from '../../../constants';
-import {FontSizeGenerator} from '../../../utils/fontSizeGenerator.util';
 
 const UpdateScreen = () => {
   const updateButtonHandler = () => {

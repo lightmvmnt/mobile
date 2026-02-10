@@ -1,11 +1,9 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import FbIcon from '@assets/icons/fbIcon.svg';
+import {Account, ConnectedProvider} from '@store/profile/profile.types';
 import React from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
+
 import {styles} from './SocialsEditForm.styles';
-import {
-  Account,
-  ConnectedProvider,
-} from '@store/profile/profile.types';
-import FbIcon from '../../../../assets/icons/fbIcon.svg';
 
 const FacebookButton = ({
   account,

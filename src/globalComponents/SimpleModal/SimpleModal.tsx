@@ -1,13 +1,14 @@
-import React from 'react';
-import {Modal} from 'react-native-paper';
-import {useAppDispatch, useAppSelector} from '../../store/store';
-import {hideModal} from '@store/app/app.slice';
 import {selectApp} from '@store/app/app.selectors';
-import {getModalCallback, setModalCallback} from '../../store/modalCallback';
-import {styles} from './SimpleModal.styles';
+import {hideModal} from '@store/app/app.slice';
+import React from 'react';
 import {Text, View} from 'react-native';
-import SimpleButton from '../SimpleButton';
+import {Modal} from 'react-native-paper';
+
 import {COLORS} from '../../constants';
+import {getModalCallback, setModalCallback} from '../../store/modalCallback';
+import {useAppDispatch, useAppSelector} from '../../store/store';
+import SimpleButton from '../SimpleButton';
+import {styles} from './SimpleModal.styles';
 
 function SimpleModal() {
   const {

@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {HelperText, Modal, TextInput} from 'react-native-paper';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {SimpleButton} from '@components';
+import {COLORS} from '@constants';
+import {useAppDispatch, useAppSelector} from '@store/store';
 import {selectIsTaskSuggestionModalVisible} from '@store/tasks/tasks.selectors';
 import {changeTaskSuggestionModalVisibility} from '@store/tasks/tasks.slice';
-import {styles} from './TaskSuggestionModal.styles';
-import {COLORS} from '../../../../constants';
-import {SimpleButton} from '../../../../globalComponents';
+import React, {useState} from 'react';
 import {View} from 'react-native';
+import {HelperText, Modal, TextInput} from 'react-native-paper';
+
+import {styles} from './TaskSuggestionModal.styles';
 
 const TaskSuggestionModal = () => {
   const [suggestedLink, setSuggestedLink] = useState('');
@@ -15,7 +16,9 @@ const TaskSuggestionModal = () => {
     message: '',
   });
 
-  const isTaskSuggestionModalVisible = useAppSelector(selectIsTaskSuggestionModalVisible);
+  const isTaskSuggestionModalVisible = useAppSelector(
+    selectIsTaskSuggestionModalVisible,
+  );
 
   const dispatch = useAppDispatch();
 

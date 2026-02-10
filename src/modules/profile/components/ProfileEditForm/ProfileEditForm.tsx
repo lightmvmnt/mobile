@@ -1,14 +1,15 @@
-import {Text, TextInput, View} from 'react-native';
-import React, {useEffect} from 'react';
+import {COLORS} from '@constants';
 import {useFormik} from 'formik';
+import React, {useEffect} from 'react';
+import {Text, TextInput, View} from 'react-native';
+
+import EditFormInput from './EditFormInput';
+import {styles} from './ProfileEditForm.styles';
+import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
 import {
   profileEditFormInitialValues,
   profileEditFormValidationSchema,
 } from './ProfileEditForm.utils';
-import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
-import EditFormInput from './EditFormInput';
-import {styles} from './ProfileEditForm.styles';
-import {COLORS} from '../../../../constants';
 
 const ProfileEditForm = ({
   account,

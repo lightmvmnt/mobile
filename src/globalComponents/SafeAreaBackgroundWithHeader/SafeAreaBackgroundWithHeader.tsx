@@ -1,11 +1,12 @@
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {BackHandler, View} from 'react-native';
-import Header from './Header';
-import {styles} from './SafeAreaBackgroundWithHeader.styles';
-import Navigator from './Navigator';
+
 import {NavItems} from '../../config';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import {NavigationProps} from '../../services/navigation/Base.navigation';
+import Header from './Header';
+import Navigator from './Navigator';
+import {styles} from './SafeAreaBackgroundWithHeader.styles';
 
 function SafeAreaBackgroundWithHeader({children}: {children: React.ReactNode}) {
   const navigation = useNavigation<NavigationProps>();

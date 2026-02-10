@@ -1,4 +1,4 @@
-export * from './auth.types';
+export * from './auth.selectors';
 export * from './auth.slice';
 export * from './auth.thunk';
-export * from './auth.selectors';
+export * from './auth.types';

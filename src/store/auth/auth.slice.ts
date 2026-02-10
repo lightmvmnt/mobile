@@ -1,11 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {AuthInitialState} from './auth.types';
+
 import {
-  CheckSessionValidation,
   authentication,
-  Logout,
+  CheckSessionValidation,
   getUserTotalPoints,
+  Logout,
 } from './auth.thunk';
+import {AuthInitialState} from './auth.types';
 
 const initialState: AuthInitialState = {
   sessionToken: '',

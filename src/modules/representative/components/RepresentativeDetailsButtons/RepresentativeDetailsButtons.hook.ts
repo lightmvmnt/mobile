@@ -1,15 +1,15 @@
-import {useEffect, useState} from 'react';
-import {RepresentativeDetails} from '@store/representatives/representatives.types';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {selectAccount} from '@store/profile/profile.selectors';
 import {selectRepresentatives} from '@store/representatives/representatives.selectors';
+import {changePressedRepresentativeId} from '@store/representatives/representatives.slice';
 import {
   chooseRepresentative,
   removeChosenRepresentative,
   updateChosenRepresentative,
 } from '@store/representatives/representatives.thunk';
+import {RepresentativeDetails} from '@store/representatives/representatives.types';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {useEffect, useState} from 'react';
 import Toast from 'react-native-toast-message';
-import {changePressedRepresentativeId} from '@store/representatives/representatives.slice';
 
 export const useRepresentativeDetailsButtons = (
   representative: RepresentativeDetails | null,

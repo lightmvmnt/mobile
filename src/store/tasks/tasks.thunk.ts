@@ -1,6 +1,10 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import {environment} from '../../constants/environment';
+import {GetStorageObject} from '../../utils/asyncStore.util';
+import {getUserTotalPoints} from '../auth/auth.thunk';
+import {User} from '../auth/auth.types';
 import {
   GetCompletedTaskCountResponse,
   GetTaskPointsResponse,
@@ -8,9 +12,6 @@ import {
   TaskResponse,
   UpdateTaskTypes,
 } from './tasks.types';
-import {GetStorageObject} from '../../utils/asyncStore.util';
-import {User} from '../auth/auth.types';
-import {getUserTotalPoints} from '../auth/auth.thunk';
 
 export const getTasks = createAsyncThunk(
   'tasks/getTasks',

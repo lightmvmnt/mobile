@@ -1,7 +1,8 @@
 import React from 'react';
 import {Tooltip} from 'react-native-paper';
-import SimpleIndicator from '../SimpleIndicator';
+
 import {COLORS} from '../../constants';
+import SimpleIndicator from '../SimpleIndicator';
 import {Props} from './InfoTooltip.types';
 
 const InfoTooltip = ({infoText, infoButtonIcon}: Props) => {

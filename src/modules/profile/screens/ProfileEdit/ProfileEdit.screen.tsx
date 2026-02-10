@@ -1,22 +1,20 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-  SafeAreaBackgroundWithHeader,
-  SimpleButton,
-} from '../../../../globalComponents';
-import ProfileEditForm from '../../components/ProfileEditForm';
-import {FormValues} from './ProfileEdit.types';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {selectProfile} from '@store/profile/profile.selectors';
-import {selectRepresentatives} from '@store/representatives/representatives.selectors';
+import {SafeAreaBackgroundWithHeader, SimpleButton} from '@components';
+import {COLORS, LAYOUT} from '@constants';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {COLORS, LAYOUT} from '../../../../constants';
-import {ScrollView, View} from 'react-native';
-import {styles} from './ProfileEdit.styles';
-import {SocialsEditForm} from '../../components';
-import {UpdateAccountPayload} from '@store/profile/profile.types';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {selectProfile} from '@store/profile/profile.selectors';
 import {updateAccount} from '@store/profile/profile.thunk';
+import {UpdateAccountPayload} from '@store/profile/profile.types';
+import {selectRepresentatives} from '@store/representatives/representatives.selectors';
 import {updateRepresentativeDetails} from '@store/representatives/representatives.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import React, {useCallback, useEffect, useState} from 'react';
+import {ScrollView, View} from 'react-native';
+
+import {SocialsEditForm} from '../../components';
+import ProfileEditForm from '../../components/ProfileEditForm';
+import {styles} from './ProfileEdit.styles';
+import {FormValues} from './ProfileEdit.types';
 
 const ProfileEditScreen = () => {
   const {account, loading} = useAppSelector(selectProfile);

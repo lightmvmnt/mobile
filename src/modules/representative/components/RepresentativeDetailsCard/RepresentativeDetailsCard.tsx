@@ -1,11 +1,9 @@
-import {View, Text, Image} from 'react-native';
+import {CountIndicator, SocialAccountsContainer} from '@components';
 import React from 'react';
-import {styles} from './RepresentativeDetailsCard.styles';
-import {
-  CountIndicator,
-  SocialAccountsContainer,
-} from '../../../../globalComponents';
+import {Image, Text, View} from 'react-native';
+
 import {useRepresentativeDetailsCard} from './RepresentativeDetailsCard.hook';
+import {styles} from './RepresentativeDetailsCard.styles';
 import {Props} from './RepresentativeDetailsCard.types';
 
 const RepresentativeDetailsCard = ({representative}: Props) => {
@@ -20,7 +18,7 @@ const RepresentativeDetailsCard = ({representative}: Props) => {
           source={
             representative?.leader_details.facebook_profile.photo
               ? {uri: representative?.leader_details.facebook_profile.photo}
-              : require('../../../../assets/icons/zviad.png')
+              : require('@assets/icons/zviad.png')
           }
         />
         <View style={styles.detailsCardInfo}>

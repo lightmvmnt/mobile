@@ -1,9 +1,10 @@
+import CheckedIcon from '@assets/icons/checked.svg';
+import UncheckedIcon from '@assets/icons/unchecked.svg';
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {Props} from './PollVotesSelector.types';
+
 import {styles} from './PollVotesSelector.styles';
-import CheckedIcon from '../../../../assets/icons/checked.svg';
-import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
+import {Props} from './PollVotesSelector.types';
 
 const PollVotesSelector = ({
   options,

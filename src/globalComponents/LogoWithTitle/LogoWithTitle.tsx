@@ -1,10 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
-import {styles} from './LogoWithTitle.styles';
+
 import Logo from '../../assets/icons/DzalaLogo.svg';
 import TitleOne from '../../assets/icons/slide1Title.svg';
 import TitleTwo from '../../assets/icons/slide2Title.svg';
 import TitleThree from '../../assets/icons/slide3Title.svg';
+import {styles} from './LogoWithTitle.styles';
 
 function LogoWithTitle({slideIndex}: {slideIndex: number}) {
   return (

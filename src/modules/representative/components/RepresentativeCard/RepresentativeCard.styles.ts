@@ -1,6 +1,6 @@
+import {COLORS, FONTS} from '@constants';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
 import {StyleSheet} from 'react-native';
-import {COLORS, FONTS} from '../../../../constants';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
 
 export const styles = StyleSheet.create({
   card: {

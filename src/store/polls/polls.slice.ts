@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {PollsInitialState} from './polls.types';
+
 import {
   deletePollVote,
   getAllPolls,
@@ -10,6 +10,7 @@ import {
   getUserPollsVotes,
   postPollVote,
 } from './polls.thunk';
+import {PollsInitialState} from './polls.types';
 
 const initialState: PollsInitialState = {
   polls: [],

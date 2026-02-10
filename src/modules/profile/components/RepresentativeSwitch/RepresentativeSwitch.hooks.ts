@@ -1,14 +1,14 @@
-import {useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {changeModalState} from '@store/app/app.slice';
+import {setModalCallback} from '@store/modalCallback';
 import {selectProfile} from '@store/profile/profile.selectors';
 import {selectRepresentatives} from '@store/representatives/representatives.selectors';
 import {
   removeRepresentativeStatus,
   sentRepresentativeRequest,
 } from '@store/representatives/representatives.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {useEffect, useState} from 'react';
 import Toast from 'react-native-toast-message';
-import {changeModalState} from '@store/app/app.slice';
-import {setModalCallback} from '../../../../store/modalCallback';
 
 export const useRepresentativeSwitch = () => {
   const {account, socialAccounts} = useAppSelector(selectProfile);

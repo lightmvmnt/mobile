@@ -1,11 +1,12 @@
+import CompletedMissions from '@assets/icons/completedMissions.svg';
+import Scores from '@assets/icons/scores.svg';
+import {InfoContainer} from '@components';
+import {COLORS} from '@constants';
+import {useAppSelector} from '@store/store';
 import React from 'react';
-import {InfoContainer} from '../../../../globalComponents';
-import {COLORS} from '../../../../constants';
-import CompletedMissions from '../../../../assets/icons/completedMissions.svg';
-import Scores from '../../../../assets/icons/scores.svg';
-import {styles} from './UserProgressInfo.styles';
 import {View} from 'react-native';
-import {useAppSelector} from '../../../../store/store';
+
+import {styles} from './UserProgressInfo.styles';
 
 const UserProgressInfo = () => {
   const {completedTasksCount, completedTasksCountLoading} = useAppSelector(

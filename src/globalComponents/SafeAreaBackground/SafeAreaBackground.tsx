@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {styles} from './SafeAreaBackground.styles';
-import {BackHandler, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../services/navigation/Base.navigation';
-import {useAppSelector} from '../../store/store';
 import {selectUser} from '@store/auth/auth.selectors';
+import React, {useEffect} from 'react';
+import {BackHandler, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
 import BackImg from '../../assets/icons/back_img.svg';
 import {LAYOUT} from '../../constants';
+import {NavigationProps} from '../../services/navigation/Base.navigation';
+import {useAppSelector} from '../../store/store';
+import {styles} from './SafeAreaBackground.styles';
 
 function SafeAreaBackground({children}: {children: React.ReactNode}) {
   const user = useAppSelector(selectUser);

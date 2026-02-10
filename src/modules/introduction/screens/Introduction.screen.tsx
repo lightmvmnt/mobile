@@ -1,9 +1,9 @@
+import {LogoWithTitle, SafeAreaBackground} from '@components';
 import React, {useState} from 'react';
-import {LogoWithTitle} from '../../../globalComponents';
-import {SafeAreaBackground} from '../../../globalComponents';
-import {styles} from './Introduction.styles';
 import {View} from 'react-native';
+
 import {IntroductionSwiper} from '../components';
+import {styles} from './Introduction.styles';
 
 function IntroductionScreen() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);

@@ -1,9 +1,10 @@
 import React from 'react';
-import {ActivityIndicator} from 'react-native-paper';
-import {COLORS} from '../../constants';
 import {Text, View} from 'react-native';
-import {styles} from './CountIndicator.styles';
+import {ActivityIndicator} from 'react-native-paper';
+
 import UserIcon from '../../assets/icons/userIcon.svg';
+import {COLORS} from '../../constants';
+import {styles} from './CountIndicator.styles';
 
 const CountIndicator = ({
   loading,

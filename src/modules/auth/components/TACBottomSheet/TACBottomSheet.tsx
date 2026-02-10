@@ -1,11 +1,12 @@
+import {SimpleButton} from '@components';
+import {COLORS, LAYOUT} from '@constants';
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
-import React from 'react';
-import {styles} from './TACBottomSheet.styles';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
+import React from 'react';
 import {Text, View} from 'react-native';
-import {SimpleButton} from '../../../../globalComponents';
-import {COLORS, LAYOUT} from '../../../../constants';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
+
+import {styles} from './TACBottomSheet.styles';
 
 interface Props {
   sheetRef: React.RefObject<BottomSheetMethods>;

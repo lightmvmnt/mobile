@@ -1,14 +1,13 @@
+import CompletedIcon from '@assets/icons/CompletedIcon.svg';
+import {SafeAreaBackgroundWithHeader, SimpleButton} from '@components';
+import {COLORS} from '@constants';
 import React from 'react';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
-import {styles} from './PollDetails.styles';
-import {SimpleButton} from '../../../../globalComponents';
 import {ScrollView, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
-import {COLORS} from '../../../../constants';
-import PollDetailsCard from '../../components/PollDetailsCard';
-import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
 
+import PollDetailsCard from '../../components/PollDetailsCard';
 import {usePollDetails} from './PollDetails.hook';
+import {styles} from './PollDetails.styles';
 
 const PollDetailsScreen = () => {
   const {

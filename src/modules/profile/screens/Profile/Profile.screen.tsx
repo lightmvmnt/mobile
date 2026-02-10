@@ -1,15 +1,13 @@
+import CompletedMissions from '@assets/icons/completedMissions.svg';
+import Scores from '@assets/icons/scores.svg';
+import {InfoContainer, SafeAreaBackgroundWithHeader} from '@components';
+import {COLORS} from '@constants';
 import {ScrollView, View} from 'react-native';
-import {
-  InfoContainer,
-  SafeAreaBackgroundWithHeader,
-} from '../../../../globalComponents';
-import {styles} from './Profile.styles';
+
 import {ProfileForm, RepresentativeSwitch} from '../../components';
-import ReferalInupt from '../../components/ReferralInput';
+import ReferralInput from '../../components/ReferralInput';
 import {useProfile} from './Profile.hooks';
-import CompletedMissions from '../../../../assets/icons/completedMissions.svg';
-import Scores from '../../../../assets/icons/scores.svg';
-import {COLORS} from '../../../../constants';
+import {styles} from './Profile.styles';
 
 function ProfileScreen() {
   const {
@@ -47,7 +45,7 @@ function ProfileScreen() {
             />
           </View>
           <ScrollView>
-            <ReferalInupt
+            <ReferralInput
               generateLinkLoading={generateReferralLinkLoading}
               count={referralCount}
               getCountLoading={getReferralCountLoading}

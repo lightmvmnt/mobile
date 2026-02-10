@@ -1,12 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
-import authReducer from './auth/auth.slice';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import tasksReducer from './tasks/tasks.slice';
+
 import appReducer from './app/app.slice';
+import authReducer from './auth/auth.slice';
 import pollsReducer from './polls/polls.slice';
-import referralReducer from './referral/referral.slice';
 import profileReducer from './profile/profile.slice';
+import referralReducer from './referral/referral.slice';
 import representativesReducer from './representatives/representatives.slice';
+import tasksReducer from './tasks/tasks.slice';
 
 export const store = configureStore({
   reducer: {

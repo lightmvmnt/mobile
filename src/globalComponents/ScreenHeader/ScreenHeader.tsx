@@ -1,8 +1,9 @@
-import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './ScreenHeader.styles';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../services/navigation/Base.navigation';
+import {Text, TouchableOpacity, View} from 'react-native';
+
 import GoBackButton from '../../assets/icons/goBackBtn.svg';
+import {NavigationProps} from '../../services/navigation/Base.navigation';
+import {styles} from './ScreenHeader.styles';
 
 function ScreenHeader({title}: {title: string}) {
   const navigation = useNavigation<NavigationProps>();

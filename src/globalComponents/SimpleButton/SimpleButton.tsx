@@ -1,7 +1,8 @@
 import React from 'react';
-import {Props} from './SimpleButton.types';
 import {Button} from 'react-native-paper';
+
 import {styles} from './SimpleButton.styles';
+import {Props} from './SimpleButton.types';
 
 function SimpleButton({
   variant,

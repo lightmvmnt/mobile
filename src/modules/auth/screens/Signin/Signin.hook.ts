@@ -1,18 +1,12 @@
-import {useEffect, useMemo, useRef, useState, useCallback} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {selectAuth} from '@store/auth/auth.selectors';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {getUniqueId} from 'react-native-device-info';
-import {
-  GetStorageObject,
-  SetStorageObjectValue,
-} from '../../../../utils/asyncStore.util';
-import {
-  GoogleSignIn,
-  IosSignIn,
-} from '@store/auth/auth.thunk';
 import BottomSheet from '@gorhom/bottom-sheet';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {selectAuth} from '@store/auth/auth.selectors';
+import {GoogleSignIn, IosSignIn} from '@store/auth/auth.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {GetStorageObject, SetStorageObjectValue} from '@utils/asyncStore.util';
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {getUniqueId} from 'react-native-device-info';
 
 export const useSignin = () => {
   const [localDeviceId, setLocalDeviceId] = useState('');

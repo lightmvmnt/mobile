@@ -1,19 +1,16 @@
+import CompletedIcon from '@assets/icons/CompletedIcon.svg';
+import DefuseLogo from '@assets/icons/defuseLogo.svg';
+import UrlIcon from '@assets/icons/LinkIcon.svg';
+import MobilizationLogo from '@assets/icons/mobilizationLogo.svg';
+import SupportLogo from '@assets/icons/supportLogo.svg';
+import {CountIndicator, PointIndicator, SimpleButton} from '@components';
+import {COLORS} from '@constants';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import SupportLogo from '../../../../assets/icons/supportLogo.svg';
-import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
-import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
-import {
-  CountIndicator,
-  PointIndicator,
-  SimpleButton,
-} from '../../../../globalComponents';
-import {COLORS} from '../../../../constants';
-import UrlIcon from '../../../../assets/icons/LinkIcon.svg';
-import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
+
 import {Props} from '../TaskDetailCard/TaskDetailCard.types';
-import {styles} from './TaskDetailCard.styles';
 import {useTaskDetail} from './TaskDetailCard.hook';
+import {styles} from './TaskDetailCard.styles';
 
 function TaskDetailCard({task, task_loading}: Props) {
   const {

@@ -1,7 +1,8 @@
 import React from 'react';
-import {Props} from './SimpleIndicator.types';
 import {Text, View} from 'react-native';
+
 import {styles} from './SimpleIndicator.styles';
+import {Props} from './SimpleIndicator.types';
 
 const SimpleIndicator = ({text, Icon}: Props) => {
   return (

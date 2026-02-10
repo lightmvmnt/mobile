@@ -1,6 +1,6 @@
+import {FONTS} from '@constants';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
 import {StyleSheet} from 'react-native';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
-import {FONTS} from '../../../../constants';
 
 export const styles = StyleSheet.create({
   container: {

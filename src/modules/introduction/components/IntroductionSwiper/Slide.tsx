@@ -1,8 +1,9 @@
+import {COLORS, LAYOUT} from '@constants';
 import React from 'react';
 import {Text, View} from 'react-native';
-import {styles} from './IntroductionSwiper.styles';
 import {Button} from 'react-native-paper';
-import {COLORS, LAYOUT} from '../../../../constants';
+
+import {styles} from './IntroductionSwiper.styles';
 
 function Slide({
   slideIndex,

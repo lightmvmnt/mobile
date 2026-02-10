@@ -1,7 +1,8 @@
 import {Text, View} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
+
 import {styles} from './InfoContainer.styles';
 import {Props} from './InfoContainer.types';
-import {ActivityIndicator} from 'react-native-paper';
 
 function InfoContainer({
   count,

@@ -1,12 +1,13 @@
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {selectProfile} from '@store/profile/profile.selectors';
-import {removeUserSocial} from '@store/profile/profile.thunk';
 import {changeModalState} from '@store/app/app.slice';
-import {setModalCallback} from '../../../../store/modalCallback';
+import {setModalCallback} from '@store/modalCallback';
+import {selectProfile} from '@store/profile/profile.selectors';
 import {changeSocialAddModalVisibility} from '@store/profile/profile.slice';
+import {removeUserSocial} from '@store/profile/profile.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
 
 export const useSocialsEditForm = () => {
-  const {socialAccounts, account, removeSocialAccountLoading} = useAppSelector(selectProfile);
+  const {socialAccounts, account, removeSocialAccountLoading} =
+    useAppSelector(selectProfile);
 
   const dispatch = useAppDispatch();
 

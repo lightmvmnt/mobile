@@ -1,18 +1,15 @@
-import React from 'react';
-import {Props} from './TaskCard.types';
+import CompletedIcon from '@assets/icons/CompletedIcon.svg';
+import DefuseLogo from '@assets/icons/defuseLogo.svg';
+import MobilizationLogo from '@assets/icons/mobilizationLogo.svg';
+import SupportLogo from '@assets/icons/supportLogo.svg';
+import {CountIndicator, PointIndicator, SimpleButton} from '@components';
+import {COLORS} from '@constants';
+import React, {memo} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './TaskCard.styles';
-import SupportLogo from '../../../../assets/icons/supportLogo.svg';
-import DefuseLogo from '../../../../assets/icons/defuseLogo.svg';
-import MobilizationLogo from '../../../../assets/icons/mobilizationLogo.svg';
-import {
-  CountIndicator,
-  PointIndicator,
-  SimpleButton,
-} from '../../../../globalComponents';
-import {COLORS} from '../../../../constants';
-import CompletedIcon from '../../../../assets/icons/CompletedIcon.svg';
+
 import {useTask} from './TaskCard.hook';
+import {styles} from './TaskCard.styles';
+import {Props} from './TaskCard.types';
 
 function TaskCard({task}: Props) {
   const {
@@ -79,4 +76,4 @@ function TaskCard({task}: Props) {
   );
 }
 
-export default React.memo(TaskCard);
+export default memo(TaskCard);

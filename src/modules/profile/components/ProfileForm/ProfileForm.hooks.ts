@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
-import {useAppSelector} from '../../../../store/store';
-import {selectProfile} from '@store/profile/profile.selectors';
-import {ConnectedSocialAccount} from './ProfileForm.types';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
 import {useNavigation} from '@react-navigation/native';
-import {socialAccountType} from '../../../../utils/socialAccounts.util';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {selectProfile} from '@store/profile/profile.selectors';
+import {useAppSelector} from '@store/store';
+import {socialAccountType} from '@utils/socialAccounts.util';
+import {useEffect, useState} from 'react';
+
+import {ConnectedSocialAccount} from './ProfileForm.types';
 
 export const useProfileForm = () => {
   const {socialAccounts, account} = useAppSelector(selectProfile);

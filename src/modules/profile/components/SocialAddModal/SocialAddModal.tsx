@@ -1,13 +1,14 @@
-import {View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {HelperText, Modal, TextInput} from 'react-native-paper';
-import {SimpleButton} from '../../../../globalComponents';
-import {COLORS} from '../../../../constants';
-import {styles} from './SocialAddModal.styles';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {SimpleButton} from '@components';
+import {COLORS} from '@constants';
 import {selectProfile} from '@store/profile/profile.selectors';
 import {changeSocialAddModalVisibility} from '@store/profile/profile.slice';
 import {connectUserSocial} from '@store/profile/profile.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
+import {HelperText, Modal, TextInput} from 'react-native-paper';
+
+import {styles} from './SocialAddModal.styles';
 
 const SocialAddModal = () => {
   const [socialLink, setSocialLink] = useState('');

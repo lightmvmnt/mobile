@@ -1,14 +1,15 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
-import {styles} from './RepresentativeCard.styles';
-import {CountIndicator, SimpleButton} from '../../../../globalComponents';
-import OpenIcon from '../../../../assets/icons/open.svg';
-import {COLORS} from '../../../../constants';
-import CheckedHeartIcon from '../../../../assets/icons/checkHeart.svg';
-import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
+import CheckedHeartIcon from '@assets/icons/checkHeart.svg';
+import OpenIcon from '@assets/icons/open.svg';
+import UncheckedIcon from '@assets/icons/unchecked.svg';
+import {CountIndicator, SimpleButton} from '@components';
+import {COLORS} from '@constants';
 import {Representative} from '@store/representatives/representatives.types';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
+import React from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+
 import {useRepresentativeCard} from './RepresentativeCard.hook';
+import {styles} from './RepresentativeCard.styles';
 
 const RepresentativeCard = ({
   representative,
@@ -40,7 +41,7 @@ const RepresentativeCard = ({
             source={
               representative?.leader_details.facebook_profile.photo
                 ? {uri: representative?.leader_details.facebook_profile.photo}
-                : require('../../../../assets/icons/zviad.png')
+                : require('@assets/icons/zviad.png')
             }
           />
           <View style={styles.cardInfo}>

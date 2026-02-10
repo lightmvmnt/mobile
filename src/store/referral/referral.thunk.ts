@@ -1,5 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import {environment} from '../../constants/environment';
 import {getUserReferralCountResponse} from './referral.types';
 
@@ -26,7 +27,7 @@ export const sendReferrerId = createAsyncThunk(
   async (id: string, {rejectWithValue}) => {
     try {
       const body = JSON.stringify({
-        referrer_user: parseInt(id),
+        referrer_user: parseInt(id, 10),
       });
 
       const response = await axios.post(

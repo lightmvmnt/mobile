@@ -1,16 +1,17 @@
+import TimeIcon from '@assets/icons/timeIcon.svg';
+import WarningIcon from '@assets/icons/warningIcon.svg';
+import {PointIndicator, SimpleIndicator} from '@components';
+import InfoTooltip from '@components/InfoTooltip';
+import {TimeCalculator} from '@utils/timeCalculator.util';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {styles} from './PollDetailsCard.styles';
+
+import PollResult from '../PollResult';
 import PollStatusIndicator from '../PollStatusIndicator';
-import {PointIndicator, SimpleIndicator} from '../../../../globalComponents';
-import TimeIcon from '../../../../assets/icons/timeIcon.svg';
-import {Props} from './PollDetailsCard.types';
-import {TimeCalculator} from '../../../../utils/timeCalculator.util';
 import PollVoteButton from '../PollVoteButton';
 import PollVotesSelector from '../PollVotesSelector';
-import PollResult from '../PollResult';
-import InfoTooltip from '../../../../globalComponents/InfoTooltip';
-import WarningIcon from '../../../../assets/icons/warningIcon.svg';
+import {styles} from './PollDetailsCard.styles';
+import {Props} from './PollDetailsCard.types';
 
 const PollDetailsCard = ({
   poll,

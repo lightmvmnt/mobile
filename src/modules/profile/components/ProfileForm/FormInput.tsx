@@ -1,5 +1,6 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Text, View} from 'react-native';
+
 import {styles} from './ProfileForm.styles';
 
 interface Props {

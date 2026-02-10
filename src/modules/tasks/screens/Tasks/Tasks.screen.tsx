@@ -1,12 +1,13 @@
-import React, {useEffect, useCallback} from 'react';
-import {FlatList, View, ListRenderItem} from 'react-native';
+import {SafeAreaBackgroundWithHeader} from '@components';
 import {useAppDispatch, useAppSelector} from '@store/store';
 import {selectTasks} from '@store/tasks/tasks.selectors';
-import {styles} from './Tasks.styles';
-import {TaskCard} from '../../components';
 import {getTasks} from '@store/tasks/tasks.thunk';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
 import {Task} from '@store/tasks/tasks.types';
+import React, {useCallback, useEffect} from 'react';
+import {FlatList, ListRenderItem, View} from 'react-native';
+
+import {TaskCard} from '../../components';
+import {styles} from './Tasks.styles';
 
 function TasksScreen() {
   const {tasks, loading} = useAppSelector(selectTasks);

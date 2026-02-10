@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+
 import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
 
 export const profileEditFormValidationSchema = Yup.object({

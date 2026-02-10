@@ -1,11 +1,12 @@
+import {SafeAreaBackgroundWithHeader} from '@components';
+import {COLORS} from '@constants';
+import {useAppSelector} from '@store/store';
 import React from 'react';
 import {View} from 'react-native';
-import {styles} from './TaskDetail.styles';
-import {useAppSelector} from '../../../../store/store';
 import {ActivityIndicator} from 'react-native-paper';
-import {COLORS} from '../../../../constants';
+
 import {TaskDetailCard} from '../../components';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
+import {styles} from './TaskDetail.styles';
 
 function TaskDetailScreen() {
   const {taskDetails, taskDetailsLoading, loading} = useAppSelector(

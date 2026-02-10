@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react';
-import {ConnectedSocialAccount} from './RepresentativeDetailsCard.types';
 import {RepresentativeDetails} from '@store/representatives/representatives.types';
-import {socialAccountType} from '../../../../utils/socialAccounts.util';
+import {socialAccountType} from '@utils/socialAccounts.util';
+import {useEffect, useState} from 'react';
+
+import {ConnectedSocialAccount} from './RepresentativeDetailsCard.types';
 
 export const useRepresentativeDetailsCard = (
   representative: RepresentativeDetails | null,
@@ -33,7 +34,6 @@ export const useRepresentativeDetailsCard = (
         setConnectedSocialAccounts(prev => [...prev, connectedSocialAccount]);
       });
     }
-
   }, [representative]);
 
   return {

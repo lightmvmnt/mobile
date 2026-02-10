@@ -1,4 +1,5 @@
 import {Platform, StyleSheet} from 'react-native';
+
 import {FONTS, LAYOUT} from '../../constants';
 import {FontSizeGenerator} from '../../utils/fontSizeGenerator.util';
 

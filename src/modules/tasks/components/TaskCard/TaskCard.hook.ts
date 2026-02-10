@@ -1,10 +1,9 @@
-import {Task} from '@store/tasks/tasks.types';
-import {useAppDispatch} from '../../../../store/store';
+import {useTaskMetrics} from '@hooks/useTaskMetrics';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {UpdatedTaskPayload} from '@store/tasks/tasks.types';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {useAppDispatch} from '@store/store';
 import {getTask, updateTask} from '@store/tasks/tasks.thunk';
-import {useTaskMetrics} from '../../../../hooks/useTaskMetrics';
+import {Task, UpdatedTaskPayload} from '@store/tasks/tasks.types';
 
 export const useTask = (task: Task | null) => {
   const {completedCount, countLoading, taskPoint, tasksPointsLoading} =

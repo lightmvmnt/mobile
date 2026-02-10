@@ -1,14 +1,12 @@
+import {COLORS} from '@constants';
+import {deletePollVote, postPollVote} from '@store/polls/polls.thunk';
+import {PostPollVote} from '@store/polls/polls.types';
+import {useAppDispatch} from '@store/store';
 import React from 'react';
 import {Button} from 'react-native-paper';
-import {Props} from './PollVoteButton.types';
+
 import {styles} from './PollVoteButton.styles';
-import {COLORS} from '../../../../constants';
-import {useAppDispatch} from '../../../../store/store';
-import {
-  deletePollVote,
-  postPollVote,
-} from '@store/polls/polls.thunk';
-import {PostPollVote} from '@store/polls/polls.types';
+import {Props} from './PollVoteButton.types';
 
 const PollVoteButton = ({option, votes, poll_id, loading}: Props) => {
   const dispatch = useAppDispatch();

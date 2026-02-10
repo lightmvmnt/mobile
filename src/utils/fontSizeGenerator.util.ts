@@ -1,4 +1,5 @@
 import {PixelRatio, Platform} from 'react-native';
+
 import LAYOUT from '../constants/layout';
 
 export const FontSizeGenerator = (size: number) => {

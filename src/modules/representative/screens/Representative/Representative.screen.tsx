@@ -1,10 +1,11 @@
-import {FlatList, View} from 'react-native';
+import {SafeAreaBackgroundWithHeader} from '@components';
 import React from 'react';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
+import {FlatList, View} from 'react-native';
+
 import RepresentativeCard from '../../components/RepresentativeCard';
-import {styles} from './Representative.styles';
 import RepresentativeSearchbar from '../../components/RepresentativeSearchbar';
 import {useRepresentative} from './Representative.hooks';
+import {styles} from './Representative.styles';
 
 const RepresentativeScreen = () => {
   const {representatives, get_representatives_loading, onRefresh} =

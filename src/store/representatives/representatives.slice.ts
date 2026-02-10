@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RepresentativesInitialState} from './representatives.types';
+
 import {
   chooseRepresentative,
   getChosenRepresentativeId,
@@ -11,6 +11,7 @@ import {
   updateChosenRepresentative,
   updateRepresentativeDetails,
 } from './representatives.thunk';
+import {RepresentativesInitialState} from './representatives.types';
 
 const representativesInitialState: RepresentativesInitialState = {
   rep_switch_loading: false,

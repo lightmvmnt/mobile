@@ -1,13 +1,14 @@
-import {View} from 'react-native';
+import CheckedHeartIcon from '@assets/icons/checkHeart.svg';
+import UncheckedIcon from '@assets/icons/unchecked.svg';
+import {SimpleButton} from '@components';
+import {COLORS} from '@constants';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
 import React from 'react';
-import {Props} from './RepresentativeDetailsButtons.types';
-import {styles} from './RepresentativeDetailsButtons.styles';
-import {SimpleButton} from '../../../../globalComponents';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
-import {COLORS} from '../../../../constants';
+import {View} from 'react-native';
+
 import {useRepresentativeDetailsButtons} from './RepresentativeDetailsButtons.hook';
-import CheckedHeartIcon from '../../../../assets/icons/checkHeart.svg';
-import UncheckedIcon from '../../../../assets/icons/unchecked.svg';
+import {styles} from './RepresentativeDetailsButtons.styles';
+import {Props} from './RepresentativeDetailsButtons.types';
 const RepresentativeDetailsButtons = ({representative}: Props) => {
   const {
     isChosen,

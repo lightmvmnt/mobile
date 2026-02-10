@@ -1,9 +1,10 @@
-import {View, Text} from 'react-native';
+import {COLORS} from '@constants';
 import React from 'react';
-import {styles} from './RepresentativeSwitch.styles';
+import {Text, View} from 'react-native';
 import {Switch} from 'react-native-paper';
-import {COLORS} from '../../../../constants';
+
 import {useRepresentativeSwitch} from './RepresentativeSwitch.hooks';
+import {styles} from './RepresentativeSwitch.styles';
 
 const RepresentativeSwitch = () => {
   const {isSwitchOn, isSwitchDisabled, rep_switch_loading, onToggleSwitch} =

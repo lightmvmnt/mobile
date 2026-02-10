@@ -1,10 +1,11 @@
-import {View, TextInput} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {styles} from './RepresentativeSearchbar.styles';
-import {COLORS} from '../../../../constants';
-import useDebounce from '../../../../hooks/debounce';
-import {useAppDispatch} from '../../../../store/store';
+import {COLORS} from '@constants';
+import useDebounce from '@hooks/debounce';
 import {getRepresentatives} from '@store/representatives/representatives.thunk';
+import {useAppDispatch} from '@store/store';
+import React, {useEffect, useState} from 'react';
+import {TextInput, View} from 'react-native';
+
+import {styles} from './RepresentativeSearchbar.styles';
 
 const RepresentativeSearchbar = () => {
   const [searchQuery, setSearchQuery] = useState('');

@@ -1,9 +1,10 @@
+import {COLORS} from '@constants';
+import {FormikErrors, FormikHandlers} from 'formik';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import React, {ChangeEvent, useState} from 'react';
 import {HelperText, TextInput} from 'react-native-paper';
+
 import {styles} from './ProfileEditForm.styles';
-import {COLORS} from '../../../../constants';
-import {FormikErrors} from 'formik';
 import {ProfileEditFormInitialValues} from './ProfileEditForm.types';
 
 interface Props {
@@ -12,14 +13,7 @@ interface Props {
   label: string;
   name: string;
   touched: boolean | undefined;
-  handleChange: {
-    (e: React.ChangeEvent<any>): void;
-    <T_1 = string | React.ChangeEvent<any>>(
-      field: T_1,
-    ): T_1 extends React.ChangeEvent<any>
-      ? void
-      : (e: string | React.ChangeEvent<any>) => void;
-  };
+  handleChange: FormikHandlers['handleChange'];
   setFieldTouched: (
     field: string,
     touched?: boolean,

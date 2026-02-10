@@ -1,15 +1,12 @@
-import {useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {selectPolls} from '@store/polls/polls.selectors';
+import {deletePollVote, postPollVote} from '@store/polls/polls.thunk';
 import {
   DeletePollVote,
+  PollOption,
   PostPollVote,
 } from '@store/polls/polls.types';
-import {PollOption} from '@store/polls/polls.types';
-import {
-  deletePollVote,
-  postPollVote,
-} from '@store/polls/polls.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {useEffect, useState} from 'react';
 
 export const usePollDetails = () => {
   const {

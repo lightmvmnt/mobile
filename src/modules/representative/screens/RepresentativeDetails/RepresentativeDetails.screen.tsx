@@ -1,11 +1,12 @@
+import {SafeAreaBackgroundWithHeader} from '@components';
+import {COLORS} from '@constants';
 import React from 'react';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
-import RepresentativeDetailsCard from '../../components/RepresentativeDetailsCard';
 import {ActivityIndicator, View} from 'react-native';
-import {styles} from './RepresentativeDetails.styles';
-import {useRepresentativeDetails} from './RepresentativeDetails.hook';
-import {COLORS} from '../../../../constants';
+
 import RepresentativeDetailsButtons from '../../components/RepresentativeDetailsButtons';
+import RepresentativeDetailsCard from '../../components/RepresentativeDetailsCard';
+import {useRepresentativeDetails} from './RepresentativeDetails.hook';
+import {styles} from './RepresentativeDetails.styles';
 
 const RepresentativeDetailsScreen = () => {
   const {representative_details, get_representative_details_loading} =

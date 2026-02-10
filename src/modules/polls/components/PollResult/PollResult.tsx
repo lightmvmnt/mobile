@@ -1,10 +1,11 @@
+import {COLORS} from '@constants';
+import {PercentageCalculator} from '@utils/percentageCalculator.util';
 import React from 'react';
 import {Text, View} from 'react-native';
-import {Props} from './PollResult.types';
-import {styles} from './PollResult.styles';
 import {ActivityIndicator} from 'react-native-paper';
-import {COLORS} from '../../../../constants';
-import {PercentageCalculator} from '../../../../utils/percentageCalculator.util';
+
+import {styles} from './PollResult.styles';
+import {Props} from './PollResult.types';
 
 const PollResult = ({option, result, totalVotesCount, loading}: Props) => {
   return (

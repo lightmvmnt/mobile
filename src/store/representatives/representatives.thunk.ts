@@ -1,13 +1,15 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {environment} from '../../constants/environment';
 import axios from 'axios';
+
+import {environment} from '../../constants/environment';
 import {GetAccountData} from '../profile/profile.thunk';
 import {
   ChooseRepresentativeResponse,
   GetChosenRepresentativeIdResponse,
+  Representative,
+  RepresentativeDetails,
   UpdateChosenRepresentativeResponse,
 } from './representatives.types';
-import {Representative, RepresentativeDetails} from './representatives.types';
 
 export const getRepresentatives = createAsyncThunk(
   'representatives/getRepresentatives',

@@ -1,15 +1,13 @@
-import {FlatList, View} from 'react-native';
-import {styles} from './Polls.styles';
-import {SafeAreaBackgroundWithHeader} from '../../../../globalComponents';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {SafeAreaBackgroundWithHeader} from '@components';
 import {selectPolls} from '@store/polls/polls.selectors';
+import {getAllPolls, getUserPollsVotes} from '@store/polls/polls.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
 import {useCallback, useEffect, useState} from 'react';
-import {
-  getAllPolls,
-  getUserPollsVotes,
-} from '@store/polls/polls.thunk';
+import {FlatList, View} from 'react-native';
+
 import PollCard from '../../components/PollCard';
 import PollsTabButton from '../../components/PollsTabButton';
+import {styles} from './Polls.styles';
 
 function PollsScreen() {
   const {

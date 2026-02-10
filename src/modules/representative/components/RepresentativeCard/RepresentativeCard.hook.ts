@@ -1,18 +1,18 @@
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import {Representative} from '@store/representatives/representatives.types';
-import {useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
+import {NavigationProps} from '@services/navigation/Base.navigation';
 import {selectAccount} from '@store/profile/profile.selectors';
 import {selectRepresentatives} from '@store/representatives/representatives.selectors';
-import Toast from 'react-native-toast-message';
+import {changePressedRepresentativeId} from '@store/representatives/representatives.slice';
 import {
   chooseRepresentative,
   getRepresentativeDetails,
   removeChosenRepresentative,
   updateChosenRepresentative,
 } from '@store/representatives/representatives.thunk';
-import {changePressedRepresentativeId} from '@store/representatives/representatives.slice';
+import {Representative} from '@store/representatives/representatives.types';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {useEffect, useState} from 'react';
+import Toast from 'react-native-toast-message';
 
 export const useRepresentativeCard = (representative: Representative) => {
   const account = useAppSelector(selectAccount);

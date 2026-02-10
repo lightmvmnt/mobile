@@ -1,14 +1,12 @@
-import {Text, TouchableOpacity, View} from 'react-native';
+import FbIcon from '@assets/icons/fbIcon.svg';
+import LinkdinIcon from '@assets/icons/linkdinIcon.svg';
+import TiktokIcon from '@assets/icons/tiktokIcon.svg';
+import YoutubeIcon from '@assets/icons/ytIcon.svg';
+import {Account, SocialAccount} from '@store/profile/profile.types';
 import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
+
 import {styles} from './SocialsEditForm.styles';
-import {
-  Account,
-  SocialAccount,
-} from '@store/profile/profile.types';
-import FbIcon from '../../../../assets/icons/fbIcon.svg';
-import TiktokIcon from '../../../../assets/icons/tiktokIcon.svg';
-import YoutubeIcon from '../../../../assets/icons/ytIcon.svg';
-import LinkdinIcon from '../../../../assets/icons/linkdinIcon.svg';
 
 const SocialsButton = ({
   onButtonPress,

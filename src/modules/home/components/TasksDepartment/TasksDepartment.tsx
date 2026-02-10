@@ -1,9 +1,10 @@
-import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './TasksDepartment.styles';
-import {Task} from '@store/tasks/tasks.types';
-import {TaskCard} from '../../../tasks/components';
+import {TaskCard} from '@modules/tasks/components';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {Task} from '@store/tasks/tasks.types';
+import {Text, TouchableOpacity, View} from 'react-native';
+
+import {styles} from './TasksDepartment.styles';
 
 function TasksDepartment({tasks}: {tasks: Task[]}) {
   const navigation = useNavigation<NavigationProps>();

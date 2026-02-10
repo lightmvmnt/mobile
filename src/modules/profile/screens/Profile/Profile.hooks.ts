@@ -1,18 +1,18 @@
-import appsFlyer from 'react-native-appsflyer';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
 import {selectAuth} from '@store/auth/auth.selectors';
+import {
+  GetAccountData,
+  getConnectedProviders,
+} from '@store/profile/profile.thunk';
 import {selectReferral} from '@store/referral/referral.selectors';
-import {selectTasks} from '@store/tasks/tasks.selectors';
 import {
   changeGenerateReferralLinkLoading,
   setReferralLink,
 } from '@store/referral/referral.slice';
 import {getUserReferralCount} from '@store/referral/referral.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {selectTasks} from '@store/tasks/tasks.selectors';
 import {useEffect} from 'react';
-import {
-  GetAccountData,
-  getConnectedProviders,
-} from '@store/profile/profile.thunk';
+import appsFlyer from 'react-native-appsflyer';
 
 export const useProfile = () => {
   const {user, userTotalPoints, userTotalPointsLoading} =

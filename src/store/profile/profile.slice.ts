@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ProfileInitialState} from './profile.types';
+
 import {
   connectUserSocial,
   GetAccountData,
@@ -8,6 +8,7 @@ import {
   removeUserSocial,
   updateAccount,
 } from './profile.thunk';
+import {ProfileInitialState} from './profile.types';
 
 const initialState: ProfileInitialState = {
   socialAccounts: [],

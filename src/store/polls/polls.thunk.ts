@@ -1,16 +1,16 @@
+import {environment} from '@constants/environment';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
+
+import {getUserTotalPoints} from '../auth/auth.thunk';
 import {
   GetPollPointsResponse,
   GetPollResultsResponse,
   GetPollsResponse,
   GetUserPollVotesResponse,
-  PostPollVote,
   PollVote,
+  PostPollVote,
 } from './polls.types';
-import {GetStorageObject} from '../../utils/asyncStore.util';
-import axios from 'axios';
-import {getUserTotalPoints} from '../auth/auth.thunk';
-import {environment} from '@constants/environment';
 
 export const getAllPolls = createAsyncThunk(
   'polls/getAllPolls',

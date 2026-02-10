@@ -1,12 +1,13 @@
-import {View, Text, TouchableOpacity, Linking} from 'react-native';
 import React from 'react';
-import {styles} from './SocialAccountsContainer.styles';
+import {Linking, Text, TouchableOpacity, View} from 'react-native';
+import {SvgProps} from 'react-native-svg';
+
 import FbIcon from '../../assets/icons/fbIcon.svg';
+import LinkdinIcon from '../../assets/icons/linkdinIcon.svg';
 import TiktokIcon from '../../assets/icons/tiktokIcon.svg';
 import YtIcon from '../../assets/icons/ytIcon.svg';
-import LinkdinIcon from '../../assets/icons/linkdinIcon.svg';
+import {styles} from './SocialAccountsContainer.styles';
 import {Props, SocialAccounts} from './SocialAccountsContainer.types';
-import {SvgProps} from 'react-native-svg';
 
 const SOCIAL_ICONS: Record<SocialAccounts['type'], React.FC<SvgProps>> = {
   FB: FbIcon,

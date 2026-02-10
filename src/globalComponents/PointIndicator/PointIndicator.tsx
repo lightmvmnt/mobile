@@ -1,9 +1,10 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Text, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
+
+import PointStarIcon from '../../assets/icons/pointStar.svg';
 import {COLORS} from '../../constants';
 import {styles} from './PointIndicator.styles';
-import PointStarIcon from '../../assets/icons/pointStar.svg';
 
 const PointIndicator = ({
   loading,

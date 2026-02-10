@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+
 import {AppInitialState} from './app.types';
 
 const initialState: AppInitialState = {

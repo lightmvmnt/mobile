@@ -1,23 +1,24 @@
 import React, {useEffect} from 'react';
-import Routing from './src/services/navigation/Base.navigation';
+import appsFlyer, {InitSDKOptions} from 'react-native-appsflyer';
+import {Settings} from 'react-native-fbsdk-next';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {PaperProvider} from 'react-native-paper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Provider} from 'react-redux';
-import {store} from './src/store/store';
-import {SimpleModal} from './src/globalComponents';
 import Toast, {
   ErrorToast,
   InfoToast,
   ToastConfig,
 } from 'react-native-toast-message';
-import {configureNativeComponents} from './src/utils/configureNativeComponents.util';
-import {PaperProvider} from 'react-native-paper';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import appsFlyer, {InitSDKOptions} from 'react-native-appsflyer';
-import {TaskSuggestionModal} from './src/modules/tasks/components';
-import {SetStorageObjectValue} from './src/utils/asyncStore.util';
-import {Settings} from 'react-native-fbsdk-next';
-import {FontSizeGenerator} from './src/utils/fontSizeGenerator.util';
+import {Provider} from 'react-redux';
+
+import {SimpleModal} from './src/globalComponents';
 import {SocialAddModal} from './src/modules/profile/components';
+import {TaskSuggestionModal} from './src/modules/tasks/components';
+import Routing from './src/services/navigation/Base.navigation';
+import {store} from './src/store/store';
+import {SetStorageObjectValue} from './src/utils/asyncStore.util';
+import {configureNativeComponents} from './src/utils/configureNativeComponents.util';
+import {FontSizeGenerator} from './src/utils/fontSizeGenerator.util';
 
 const toastConfig: ToastConfig = {
   error: props => <ErrorToast {...props} text2NumberOfLines={10} />,

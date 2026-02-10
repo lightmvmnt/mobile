@@ -1,29 +1,29 @@
+import appleAuth from '@invertase/react-native-apple-authentication';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {
-  CreateUser,
-  GetUserTotalPointsResponse,
-  SigninResponse,
-} from './auth.types';
-import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
+import {Platform} from 'react-native';
+import appsFlyer from 'react-native-appsflyer';
+
+import {environment} from '../../constants/environment';
+import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {
-  GetStorageObject,
+  getApnsToken,
+  getFcmToken,
+} from '../../services/notifications/notificationHandler';
+import {
   RemoveStorageValue,
   SetStorageObjectValue,
 } from '../../utils/asyncStore.util';
-import axios from 'axios';
-import {environment} from '../../constants/environment';
 import {
   sendAndroidDeviceIdForTasks,
   sendIosDeviceIdForTasks,
 } from '../tasks/tasks.thunk';
 import {
-  getApnsToken,
-  getFcmToken,
-} from '../../services/notifications/notificationHandler';
-import {Platform} from 'react-native';
-import appleAuth from '@invertase/react-native-apple-authentication';
-import appsFlyer from 'react-native-appsflyer';
+  CreateUser,
+  GetUserTotalPointsResponse,
+  SigninResponse,
+} from './auth.types';
 
 GoogleSignin.configure({
   webClientId: environment.CLIENT_ID,
@@ -193,7 +193,7 @@ export const CheckSessionValidation = createAsyncThunk(
   'auth/CheckSessionValidation',
   async (
     {
-      session_token,
+      session_token: _session_token,
       navigation,
     }: {session_token: string; navigation: NavigationProps},
     {rejectWithValue},
@@ -213,8 +213,6 @@ export const CheckSessionValidation = createAsyncThunk(
       await RemoveStorageValue('session_token');
       await RemoveStorageValue('access_token');
       await RemoveStorageValue('user');
-
-      navigation.navigate('Signin');
 
       navigation.navigate('Signin');
 

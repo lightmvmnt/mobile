@@ -1,16 +1,13 @@
+import AppleIcon from '@assets/icons/AppleLogo.svg';
+import GoogleIcon from '@assets/icons/googleSign.svg';
+import {LogoWithTitle, SafeAreaBackground, SimpleButton} from '@components';
+import {COLORS} from '@constants';
 import React from 'react';
-import {
-  LogoWithTitle,
-  SimpleButton,
-  SafeAreaBackground,
-} from '../../../../globalComponents';
 import {Linking, Platform, Text, View} from 'react-native';
-import {styles} from './Signin.styles';
-import {COLORS} from '../../../../constants';
-import GoogleIcon from '../../../../assets/icons/googleSign.svg';
-import AppleIcon from '../../../../assets/icons/AppleLogo.svg';
-import {useSignin} from './Signin.hook';
+
 import TACBottomSheet from '../../components/TACBottomSheet';
+import {useSignin} from './Signin.hook';
+import {styles} from './Signin.styles';
 
 function SigninScreen() {
   const {

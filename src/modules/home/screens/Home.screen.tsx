@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {ScrollView} from 'react-native';
-import {SafeAreaBackgroundWithHeader} from '../../../globalComponents';
-import {styles} from './Home.styles';
-import {TasksDepartment} from '../components';
-import {useAppDispatch, useAppSelector} from '../../../store/store';
-import {selectTasksList} from '@store/tasks/tasks.selectors';
+import {SafeAreaBackgroundWithHeader} from '@components';
 import {selectPolls} from '@store/polls/polls.selectors';
-import PollsDepartment from '../components/PollsDepartment';
-import {useEffect} from 'react';
-import {getTasks} from '@store/tasks/tasks.thunk';
 import {getAllPolls, getUserPollsVotes} from '@store/polls/polls.thunk';
-import {GetStorageObject} from '../../../utils/asyncStore.util';
 import {sendReferrerId} from '@store/referral/referral.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {selectTasksList} from '@store/tasks/tasks.selectors';
+import {getTasks} from '@store/tasks/tasks.thunk';
+import {GetStorageObject} from '@utils/asyncStore.util';
+import {useEffect} from 'react';
+import {ScrollView} from 'react-native';
+
+import {TasksDepartment} from '../components';
+import PollsDepartment from '../components/PollsDepartment';
 import UserProgressInfo from '../components/UserProgressInfo';
+import {styles} from './Home.styles';
 
 function HomeScreen() {
   const tasks = useAppSelector(selectTasksList);

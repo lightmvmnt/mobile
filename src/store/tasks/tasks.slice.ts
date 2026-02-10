@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {TasksInitialState} from './tasks.types';
+
 import {
   getCompletedTaskCount,
   getTask,
@@ -7,6 +7,7 @@ import {
   getTasksPoints,
   updateTask,
 } from './tasks.thunk';
+import {TasksInitialState} from './tasks.types';
 
 const initialState: TasksInitialState = {
   tasks: [],

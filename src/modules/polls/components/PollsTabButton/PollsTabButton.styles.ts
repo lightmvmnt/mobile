@@ -1,5 +1,5 @@
+import {FONTS} from '@constants';
 import {StyleSheet} from 'react-native';
-import {FONTS} from '../../../../constants';
 
 export const styles = StyleSheet.create({
   button: {

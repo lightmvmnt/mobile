@@ -1,25 +1,23 @@
-import {Linking, View} from 'react-native';
-import React from 'react';
+import ExitIcon from '@assets/icons/exitIcon.svg';
+import TrashcanIcon from '@assets/icons/trashCanIcon.svg';
 import {
   SafeAreaBackgroundWithHeader,
   ScreenHeader,
   SimpleButton,
-} from '../../../../globalComponents';
-import {styles} from './ProfileSettings.styles';
-import {COLORS, LAYOUT} from '../../../../constants';
-import {FontSizeGenerator} from '../../../../utils/fontSizeGenerator.util';
-import {useAppDispatch, useAppSelector} from '../../../../store/store';
-import {selectAuthLoading} from '@store/auth/auth.selectors';
-import {changeModalState} from '@store/app/app.slice';
-import {setModalCallback} from '../../../../store/modalCallback';
-import {
-  AccountDeletion,
-  Logout,
-} from '@store/auth/auth.thunk';
+} from '@components';
+import {COLORS, LAYOUT} from '@constants';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../../services/navigation/Base.navigation';
-import TrashcanIcon from '../../../../assets/icons/trashCanIcon.svg';
-import ExitIcon from '../../../../assets/icons/exitIcon.svg';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {changeModalState} from '@store/app/app.slice';
+import {selectAuthLoading} from '@store/auth/auth.selectors';
+import {AccountDeletion, Logout} from '@store/auth/auth.thunk';
+import {setModalCallback} from '@store/modalCallback';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {FontSizeGenerator} from '@utils/fontSizeGenerator.util';
+import React from 'react';
+import {Linking, View} from 'react-native';
+
+import {styles} from './ProfileSettings.styles';
 
 const ProfileSettingsScreen = () => {
   const loading = useAppSelector(selectAuthLoading);

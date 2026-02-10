@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { DebounceParams } from './debounce.types';
+import {useEffect, useState} from 'react';
 
-function useDebounce({ value, delay = 400 }: DebounceParams) {
+import {DebounceParams} from './debounce.types';
+
+function useDebounce({value, delay = 400}: DebounceParams) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {

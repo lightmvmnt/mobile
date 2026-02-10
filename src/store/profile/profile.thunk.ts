@@ -1,17 +1,18 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {environment} from '../../constants/environment';
 import axios from 'axios';
+
+import {environment} from '../../constants/environment';
+import {NavigationProps} from '../../services/navigation/Base.navigation';
 import {
-  UserSocialsResponse,
-  UpdateAccountPayload,
+  Account,
+  connectFacebookProfileParams,
   FacebookConnectPayload,
   FacebookConnectResponse,
-  connectFacebookProfileParams,
   GetconnectedProvidersResponse,
   removeConnectedProviderPayload,
+  UpdateAccountPayload,
+  UserSocialsResponse,
 } from './profile.types';
-import {Account} from './profile.types';
-import {NavigationProps} from '../../services/navigation/Base.navigation';
 
 export const GetAccountData = createAsyncThunk(
   'profile/GetAccountData',

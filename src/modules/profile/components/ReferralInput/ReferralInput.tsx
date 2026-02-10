@@ -1,12 +1,13 @@
+import CopyIcon from '@assets/icons/copyIcon.svg';
+import ReferralIcon from '@assets/icons/referralIcon.svg';
+import {CountIndicator} from '@components';
+import {COLORS} from '@constants';
+import Clipboard from '@react-native-clipboard/clipboard';
 import React from 'react';
 import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './ReferralInput.styles';
-import {CountIndicator} from '../../../../globalComponents';
-import ReferralIcon from '../../../../assets/icons/referralIcon.svg';
-import CopyIcon from '../../../../assets/icons/copyIcon.svg';
-import {COLORS} from '../../../../constants';
-import Clipboard from '@react-native-clipboard/clipboard';
 import Toast from 'react-native-toast-message';
+
+import {styles} from './ReferralInput.styles';
 
 const ReferralInput = ({
   link,

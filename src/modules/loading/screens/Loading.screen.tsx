@@ -1,38 +1,39 @@
-import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
-import {styles} from './Loading.styles';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import BackImg from '@assets/icons/back_img.svg';
+import Logo from '@assets/icons/DzalaLogo.svg';
+import {LAYOUT} from '@constants/index';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../../../services/navigation/Base.navigation';
-import {useAppDispatch, useAppSelector} from '@store/store';
+import {NavigationProps} from '@services/navigation/Base.navigation';
+import {notificationHandler} from '@services/notifications/notificationHandler';
+import {requestNotificationsPermission} from '@services/notifications/notificationPermissions';
 import {selectAuth} from '@store/auth/auth.selectors';
-import {selectAccount} from '@store/profile/profile.selectors';
-import {selectTasks} from '@store/tasks/tasks.selectors';
-import {selectPolls} from '@store/polls/polls.selectors';
-import {GetStorageObject} from '@utils/asyncStore.util';
+import {changeDeviceId} from '@store/auth/auth.slice';
 import {
   CheckSessionValidation,
   getUserTotalPoints,
 } from '@store/auth/auth.thunk';
 import {User} from '@store/auth/auth.types';
-import {
-  getCompletedTaskCount,
-  getTasks,
-  getTasksPoints,
-} from '@store/tasks/tasks.thunk';
-import {requestNotificationsPermission} from '@services/notifications/notificationPermissions';
-import {notificationHandler} from '@services/notifications/notificationHandler';
-import {getUniqueId} from 'react-native-device-info';
-import {changeDeviceId} from '@store/auth/auth.slice';
+import {selectPolls} from '@store/polls/polls.selectors';
 import {
   getAllPolls,
   getPollsPoints,
   getUserPollsVotes,
 } from '@store/polls/polls.thunk';
-import Logo from '@assets/icons/DzalaLogo.svg';
-import BackImg from '@assets/icons/back_img.svg';
-import {LAYOUT} from '@constants/index';
+import {selectAccount} from '@store/profile/profile.selectors';
 import {GetAccountData, getUserSocials} from '@store/profile/profile.thunk';
+import {useAppDispatch, useAppSelector} from '@store/store';
+import {selectTasks} from '@store/tasks/tasks.selectors';
+import {
+  getCompletedTaskCount,
+  getTasks,
+  getTasksPoints,
+} from '@store/tasks/tasks.thunk';
+import {GetStorageObject} from '@utils/asyncStore.util';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
+import {getUniqueId} from 'react-native-device-info';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+import {styles} from './Loading.styles';
 
 function LoadingScreen() {
   const [isFirstLaunched, setIsFirstLaunched] = useState(false);

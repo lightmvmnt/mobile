@@ -1,10 +1,11 @@
+import {useNavigation} from '@react-navigation/native';
+import {Logout} from '@store/auth/auth.thunk';
 import axios, {AxiosError} from 'axios';
 import {useEffect} from 'react';
 import Toast from 'react-native-toast-message';
-import {useAppDispatch} from '../../store/store';
-import {Logout} from '@store/auth/auth.thunk';
-import {useNavigation} from '@react-navigation/native';
+
 import {NavigationProps} from '../../services/navigation/Base.navigation';
+import {useAppDispatch} from '../../store/store';
 import {GetStorageObject} from '../../utils/asyncStore.util';
 
 function BaseInterceptor() {

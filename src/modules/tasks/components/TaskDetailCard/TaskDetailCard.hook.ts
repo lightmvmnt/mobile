@@ -1,11 +1,10 @@
-import {useAppDispatch} from '../../../../store/store';
-import {updateTask} from '@store/tasks/tasks.thunk';
-import {Task} from '@store/tasks/tasks.types';
+import {useTaskMetrics} from '@hooks/useTaskMetrics';
 import {changeModalState} from '@store/app/app.slice';
+import {useAppDispatch} from '@store/store';
+import {updateTask} from '@store/tasks/tasks.thunk';
+import {Task, UpdatedTaskPayload} from '@store/tasks/tasks.types';
+import {heightGenerator} from '@utils/heightGenerator.util';
 import {Linking} from 'react-native';
-import {heightGenerator} from '../../../../utils/heightGenerator.util';
-import {UpdatedTaskPayload} from '@store/tasks/tasks.types';
-import {useTaskMetrics} from '../../../../hooks/useTaskMetrics';
 
 export const useTaskDetail = (task: Task | null) => {
   const {completedCount, countLoading, taskPoint, tasksPointsLoading} =

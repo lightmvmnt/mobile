@@ -1,10 +1,11 @@
+import EditIcon from '@assets/icons/editIcon.svg';
+import GoBackIcon from '@assets/icons/goBackBtn.svg';
+import {SocialAccountsContainer} from '@components';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './ProfileForm.styles';
-import EditIcon from '../../../../assets/icons/editIcon.svg';
-import GoBackIcon from '../../../../assets/icons/goBackBtn.svg';
+
 import FormInput from './FormInput';
-import {SocialAccountsContainer} from '../../../../globalComponents';
 import {useProfileForm} from './ProfileForm.hooks';
+import {styles} from './ProfileForm.styles';
 
 function ProfileForm() {
   const {
