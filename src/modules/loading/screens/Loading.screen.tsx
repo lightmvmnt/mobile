@@ -24,6 +24,7 @@ import {useAppDispatch, useAppSelector} from '@store/store';
 import {selectTasks} from '@store/tasks/tasks.selectors';
 import {
   getCompletedTaskCount,
+  getMissionCompletionCounts,
   getTasks,
   getTasksPoints,
 } from '@store/tasks/tasks.thunk';
@@ -91,6 +92,7 @@ function LoadingScreen() {
         dispatch(getTasks());
         dispatch(getTasksPoints());
         dispatch(getCompletedTaskCount());
+        dispatch(getMissionCompletionCounts());
         dispatch(GetAccountData());
         dispatch(getUserSocials());
         dispatch(getUserTotalPoints());

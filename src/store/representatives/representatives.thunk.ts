@@ -16,7 +16,7 @@ export const getRepresentatives = createAsyncThunk(
   async (search_query: string, {rejectWithValue}) => {
     try {
       const response = await axios.get<Representative[]>(
-        `${environment.API_BASE_URL}/users/leaders?search=${search_query}`,
+        `${environment.API_BASE_URL}/leaders?search=${search_query}`,
       );
 
       return response.data;
@@ -34,7 +34,7 @@ export const getRepresentativeDetails = createAsyncThunk(
   async (id: number, {rejectWithValue}) => {
     try {
       const response = await axios.get<RepresentativeDetails>(
-        `${environment.API_BASE_URL}/users/leader/${id}`,
+        `${environment.API_BASE_URL}/leaders/${id}`,
       );
 
       return response.data;
@@ -52,12 +52,15 @@ export const sentRepresentativeRequest = createAsyncThunk(
   async (_, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.post(
-        `${environment.API_BASE_URL}/users/leader/`,
+        `${environment.API_BASE_URL}/leaders/`,
+        {},
       );
 
       if (response.status === 201) {
         dispatch(GetAccountData());
       }
+
+      return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data || error.message);
@@ -72,12 +75,14 @@ export const removeRepresentativeStatus = createAsyncThunk(
   async (_, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.delete(
-        `${environment.API_BASE_URL}/users/leader/`,
+        `${environment.API_BASE_URL}/leaders/`,
       );
 
       if (response.status === 204) {
         dispatch(GetAccountData());
       }
+
+      return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data || error.message);
@@ -94,13 +99,15 @@ export const updateRepresentativeDetails = createAsyncThunk(
       const body = JSON.stringify({about_me});
 
       const response = await axios.put(
-        `${environment.API_BASE_URL}/users/leader/`,
+        `${environment.API_BASE_URL}/leaders/`,
         body,
       );
 
       if (response.status === 200) {
         dispatch(GetAccountData());
       }
+
+      return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data || error.message);
@@ -117,7 +124,7 @@ export const chooseRepresentative = createAsyncThunk(
       const body = JSON.stringify({leader_user_id: id});
 
       const response = await axios.post<ChooseRepresentativeResponse>(
-        `${environment.API_BASE_URL}/users/leader/vote/`,
+        `${environment.API_BASE_URL}/leaders/vote/`,
         body,
       );
 
@@ -142,7 +149,7 @@ export const updateChosenRepresentative = createAsyncThunk(
       const body = JSON.stringify({leader_user_id: id});
 
       const response = await axios.put<UpdateChosenRepresentativeResponse>(
-        `${environment.API_BASE_URL}/users/leader/vote/`,
+        `${environment.API_BASE_URL}/leaders/vote/`,
         body,
       );
 
@@ -165,7 +172,7 @@ export const removeChosenRepresentative = createAsyncThunk(
   async (_, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.delete(
-        `${environment.API_BASE_URL}/users/leader/vote/`,
+        `${environment.API_BASE_URL}/leaders/vote/`,
       );
 
       if (response.status === 204) {
@@ -187,7 +194,7 @@ export const getChosenRepresentativeId = createAsyncThunk(
   async (_, {rejectWithValue}) => {
     try {
       const response = await axios.get<GetChosenRepresentativeIdResponse>(
-        `${environment.API_BASE_URL}/users/leader/vote/`,
+        `${environment.API_BASE_URL}/leaders/vote/`,
       );
 
       return response.data;

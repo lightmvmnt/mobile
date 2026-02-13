@@ -8,6 +8,7 @@ import {User} from '../auth/auth.types';
 import {
   GetCompletedTaskCountResponse,
   GetTaskPointsResponse,
+  MissionCompletionCount,
   sendDeviceIdForTasksTypes,
   TaskResponse,
   UpdateTaskTypes,
@@ -105,6 +106,7 @@ export const updateTask = createAsyncThunk(
       if (response.status === 200) {
         dispatch(getTasks());
         dispatch(getCompletedTaskCount());
+        dispatch(getMissionCompletionCounts());
         dispatch(getUserTotalPoints());
       }
 
@@ -160,6 +162,24 @@ export const getTasksPoints = createAsyncThunk(
     try {
       const response = await axios.get<GetTaskPointsResponse[]>(
         `${environment.API_BASE_URL}/missions/points/`,
+      );
+
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data || error.message);
+      }
+      return rejectWithValue('An unexpected error occurred');
+    }
+  },
+);
+
+export const getMissionCompletionCounts = createAsyncThunk(
+  'tasks/getMissionCompletionCounts',
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axios.get<MissionCompletionCount[]>(
+        `${environment.API_BASE_URL}/missions/counts/`,
       );
 
       return response.data;

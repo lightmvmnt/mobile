@@ -30,6 +30,8 @@ export interface TasksInitialState {
   completedTasksCountLoading: boolean;
   tasksPoints: TaskPoints[];
   tasksPointsLoading: boolean;
+  missionCompletionCounts: MissionCompletionCount[];
+  missionCompletionCountsLoading: boolean;
   error: string | null;
 }
 
@@ -63,4 +65,9 @@ export interface GetCompletedTaskCountResponse {
 export interface GetTaskPointsResponse {
   mission_id: number;
   points: number;
+}
+
+export interface MissionCompletionCount {
+  mission_id: number;
+  count: number;
 }

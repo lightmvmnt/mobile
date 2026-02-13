@@ -7,3 +7,7 @@ export const selectTasksPointsLoading = (state: RootState) =>
   state.tasks.tasksPointsLoading;
 export const selectIsTaskSuggestionModalVisible = (state: RootState) =>
   state.tasks.isTaskSuggestionModalVisible;
+export const selectMissionCompletionCounts = (state: RootState) =>
+  state.tasks.missionCompletionCounts;
+export const selectMissionCompletionCountsLoading = (state: RootState) =>
+  state.tasks.missionCompletionCountsLoading;

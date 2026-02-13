@@ -13,6 +13,8 @@ function BaseInterceptor() {
   const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
+    axios.defaults.timeout = 30000;
+
     const requestInterceptor = axios.interceptors.request.use(
       async request => {
         const token = await GetStorageObject('access_token');

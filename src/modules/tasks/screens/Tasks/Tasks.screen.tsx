@@ -1,7 +1,7 @@
 import {SafeAreaBackgroundWithHeader} from '@components';
 import {useAppDispatch, useAppSelector} from '@store/store';
 import {selectTasks} from '@store/tasks/tasks.selectors';
-import {getTasks} from '@store/tasks/tasks.thunk';
+import {getMissionCompletionCounts, getTasks} from '@store/tasks/tasks.thunk';
 import {Task} from '@store/tasks/tasks.types';
 import React, {useCallback, useEffect} from 'react';
 import {FlatList, ListRenderItem, View} from 'react-native';
@@ -16,6 +16,7 @@ function TasksScreen() {
 
   useEffect(() => {
     dispatch(getTasks());
+    dispatch(getMissionCompletionCounts());
   }, [dispatch]);
 
   const renderItem: ListRenderItem<Task> = useCallback(
@@ -31,7 +32,10 @@ function TasksScreen() {
         <View style={styles.tasksContainer}>
           <FlatList
             refreshing={loading}
-            onRefresh={() => dispatch(getTasks())}
+            onRefresh={() => {
+              dispatch(getTasks());
+              dispatch(getMissionCompletionCounts());
+            }}
             scrollEnabled
             contentContainerStyle={styles.list}
             data={tasks}

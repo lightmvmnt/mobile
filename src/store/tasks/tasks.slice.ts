@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {
   getCompletedTaskCount,
+  getMissionCompletionCounts,
   getTask,
   getTasks,
   getTasksPoints,
@@ -19,6 +20,8 @@ const initialState: TasksInitialState = {
   completedTasksCountLoading: false,
   tasksPoints: [],
   tasksPointsLoading: false,
+  missionCompletionCounts: [],
+  missionCompletionCountsLoading: false,
   error: null,
 };
 
@@ -92,6 +95,17 @@ export const tasksSlice = createSlice({
       .addCase(getTasksPoints.rejected, state => {
         state.tasksPoints = [];
         state.tasksPointsLoading = false;
+      })
+      .addCase(getMissionCompletionCounts.pending, state => {
+        state.missionCompletionCountsLoading = true;
+      })
+      .addCase(getMissionCompletionCounts.fulfilled, (state, action) => {
+        state.missionCompletionCounts = action.payload;
+        state.missionCompletionCountsLoading = false;
+      })
+      .addCase(getMissionCompletionCounts.rejected, state => {
+        state.missionCompletionCounts = [];
+        state.missionCompletionCountsLoading = false;
       });
   },
 });
